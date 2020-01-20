@@ -1,0 +1,18 @@
+body{
+  background-color: gainsboro;
+}
+header{
+  display: flex;
+  width: 1024px;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
+.image{
+  margin: auto;
+  width: 1024px;
+  height: 400px;
+  background-image: url(../../assets/image/medicina_budushego_11-600x374.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
