@@ -19,7 +19,8 @@ function App () {
       <Router history={history}>
         <Switch>
           <Route exact path='/' component={homeComponent} />
-          <Route exact path='/registration' component={userRegistrationComponent} />
+          <Route path='/registration' component={userRegistrationComponent} />
+          <Route path='*' component={() => '404 NOT FOUND'} />
         </Switch>
       </Router>
     </>

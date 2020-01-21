@@ -1,8 +1,68 @@
-
-.wrapperForm{
+.wrapperForm {
   display: flex;
   justify-content: center;
   width: 600px;
-  border: 2px solid lightsteelblue;
-  background-color: aliceblue;
+  margin: 20px auto;
+  border: 3px solid lightsteelblue;
+  background-color: silver;
 }
+
+.firstName, .lastName, .userName, .email,
+.tel, .password, .confirmPassword, .address, .sex, .info {
+  display: flex;
+  width: 550px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#inputFirstName:valid, #inputLastName:valid, #inputUserName:valid,
+#inputTel:valid, #inputPassword:valid, #inputConfirmPassword:valid, #inputAddress:valid {
+  border: 2px solid green;
+}
+
+#inputFirstName:invalid:not(:placeholder-shown), #inputLastName:invalid:not(:placeholder-shown),
+#inputUserName:invalid:not(:placeholder-shown), #inputTel:invalid:not(:placeholder-shown),
+#inputPassword:invalid:not(:placeholder-shown), #inputConfirmPassword:invalid:not(:placeholder-shown),
+#inputAddress:invalid:not(:placeholder-shown), #inputEmail:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+}
+
+#inputEmail:valid:not(:placeholder-shown) {
+  border: 2px solid green;
+}
+
+.requirements {
+  color: red;
+}
+
+.wrapperButton {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.button {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.important {
+  color: red;
+}
+
+.infoUser {
+  font-size: 15px;
+  color: red;
+}
+
+.error{
+  color: red;
+}
+
+
+
