@@ -7,7 +7,7 @@
   background-color: silver;
 }
 
-.firstName, .lastName, .userName, .email,
+.firstName, .lastName, .nickname, .email,
 .tel, .password, .confirmPassword, .address, .sex, .info {
   display: flex;
   width: 550px;
@@ -17,13 +17,13 @@
   margin-top: 10px;
 }
 
-#inputFirstName:valid, #inputLastName:valid, #inputUserName:valid,
+#inputFirstName:valid, #inputLastName:valid, #inputNickname:valid,
 #inputTel:valid, #inputPassword:valid, #inputConfirmPassword:valid, #inputAddress:valid {
   border: 2px solid green;
 }
 
 #inputFirstName:invalid:not(:placeholder-shown), #inputLastName:invalid:not(:placeholder-shown),
-#inputUserName:invalid:not(:placeholder-shown), #inputTel:invalid:not(:placeholder-shown),
+#inputNickname:invalid:not(:placeholder-shown), #inputTel:invalid:not(:placeholder-shown),
 #inputPassword:invalid:not(:placeholder-shown), #inputConfirmPassword:invalid:not(:placeholder-shown),
 #inputAddress:invalid:not(:placeholder-shown), #inputEmail:invalid:not(:placeholder-shown) {
   border: 2px solid red;
@@ -33,8 +33,8 @@
   border: 2px solid green;
 }
 
-.requirements {
-  color: red;
+#inputConfirmPasswordError{
+  border: 2px solid red;
 }
 
 .wrapperButton {
@@ -42,13 +42,6 @@
   width: 500px;
   justify-content: center;
   margin: 12px auto;
-}
-
-.button {
-  width: 100px;
-  height: 30px;
-  border-radius: 5px;
-  outline: none;
 }
 
 .important {

@@ -6,7 +6,7 @@ const initialState = {
   mainUser: {
     firstName: '',
     lastName: '',
-    userName: '',
+    nickname: '',
     email: '',
     tel: '',
     password: '',
@@ -27,13 +27,13 @@ export default (state = initialState, action) => {
         mainUser: {
           firstName: { $set: action.payload.firstName },
           lastName: { $set: action.payload.lastName },
-          userName: { $set: action.payload.userName },
+          nickname: { $set: action.payload.userName },
           email: { $set: action.payload.email },
           tel: { $set: action.payload.tel },
           password: { $set: action.payload.password },
           confirmPassword: { $set: action.payload.confirmPassword },
           address: { $set: action.payload.address },
-          sex: { $set: action.payload.sex},
+          sex: { $set: action.payload.sex },
           additionalInfo: { $set: action.payload.additionalInfo }
         }
       })

@@ -9,23 +9,48 @@ export default class userRegistrationComponent extends Component {
       firstName: '',
       firstNameError: '',
       lastName: '',
-      userName: '',
+      lastNameError: '',
+      nickname: '',
+      nicknameError: '',
       email: '',
+      emailError: '',
       tel: '',
       password: '',
+      passwordError: '',
       confirmPassword: '',
+      confirmPasswordError: '',
+      actionConfirmPasswordError: false,
       address: '',
       sex: {
         man: false,
         woman: false
       },
-      additionalInfo: ''
+      additionalInfo: '',
+      disabled: true,
+    }
+  }
+
+  allValid = () => {
+    return this.state.firstName && this.state.lastName && this.state.nickname
+      && this.state.password && this.state.confirmPassword  && (this.state.sex.woman
+        || this.state.sex.man) && !this.state.emailError && !this.state.passwordError
+      && !this.state.confirmPasswordError && !this.state.firstNameError && !this.state.lastNameError
+      && !this.state.nicknameError
+  }
+
+  isValidForm = () => {
+    if (this.allValid()) {
+      this.setState({ disabled: false })
+    } else {
+      this.setState({ disabled: true })
     }
   }
 
   handleInput = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
+    }, () => {
+      this.isValidForm()
     })
   }
 
@@ -37,11 +62,100 @@ export default class userRegistrationComponent extends Component {
       let re = new RegExp('^[a-zA-Z]+$')
       let result = re.test(this.state.firstName)
       if (!result) {
-        this.setState({ firstNameError: 'first name can only contain letters' }
-        )
+        this.setState({ firstNameError: 'first name can only contain letters' },
+        this.isValidForm)
       } else {
-        this.setState({ firstNameError: '' }
+        this.setState({ firstNameError: '' },
+          this.isValidForm
         )
+      }
+    })
+  }
+
+  handleLastName = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      let re = new RegExp('^[a-zA-Z]+$')
+      let result = re.test(this.state.lastName)
+      if (!result) {
+        this.setState({ lastNameError: 'last name can only contain letters' },
+          this.isValidForm )
+      } else {
+        this.setState({ lastNameError: '' },
+          this.isValidForm)
+      }
+    })
+  }
+
+  handleNickname = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      let re = new RegExp('^[A-Za-z0-9_\\-.]+$')
+      let result = re.test(this.state.nickname)
+      if (!result) {
+        this.setState({ nicknameError: 'nickname can only contain number, letter, dash, underscore, and dot' },
+          this.isValidForm)
+      } else {
+        this.setState({ nicknameError: '' },
+          this.isValidForm )
+      }
+    })
+  }
+
+  isValidPassword = () => {
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState({
+        confirmPasswordError: 'password does not match',
+        actionConfirmPasswordError: true
+      },
+        this.isValidForm)
+    } else {
+      this.setState({
+        confirmPasswordError: '',
+        actionConfirmPasswordError: false
+      },
+        this.isValidForm)
+    }
+  }
+
+  handlePassword = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      let re = new RegExp('^([a-zA-Z0-9]{10,})+$')
+      let result = re.test(this.state.password)
+      if (!result) {
+        this.setState({ passwordError: 'password must contain at least 10 characters (letters or number)' },
+          this.isValidPassword)
+      } else {
+        this.setState({ passwordError: '' },
+          this.isValidPassword)
+      }
+    })
+  }
+
+  handleConfPassword = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      if (this.state.password !== this.state.confirmPassword) {
+        this.setState({
+          confirmPasswordError: 'password does not match',
+          actionConfirmPasswordError: true
+        },
+          this.isValidForm)
+      } else {
+        this.setState({
+          confirmPasswordError: '',
+          actionConfirmPasswordError: false
+        },
+          this.isValidForm)
       }
     })
   }
@@ -59,7 +173,24 @@ export default class userRegistrationComponent extends Component {
     this.setState({
       sex: { man, woman }
     }, () => {
-      //  this.isValidForm()
+      this.isValidForm()
+    })
+  }
+
+  handleEmail = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      let re = new RegExp('^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,4})$')
+      let result = re.test(this.state.email)
+      if (!result) {
+        this.setState({ emailError: 'enter valid email' },
+          this.isValidForm )
+      } else {
+        this.setState({ emailError: '' },
+          this.isValidForm)
+      }
     })
   }
 
@@ -112,26 +243,28 @@ export default class userRegistrationComponent extends Component {
               id='inputLastName'
               value={this.state.lastName}
               type="text"
-              onChange={this.handleInput}
+              onChange={this.handleLastName}
               placeholder='Enter last name'/>
+            <span className='error'>{this.state.lastNameError}</span>
           </div>
 
-          <div className='userName'>
-            <span> <span className='important'> * </span>User name:</span>
+          <div className='nickname'>
+            <span> <span className='important'> * </span>Nickname:</span>
             <input
               required
               pattern='^[A-Za-z0-9_\-.]+$'
-              name="userName"
+              name="nickname"
               className='form-control'
-              id='inputUserName'
-              value={this.state.userName}
+              id='inputNickname'
+              value={this.state.nickname}
               type="text"
-              onChange={this.handleInput}
-              placeholder='Enter user name'/>
+              onChange={this.handleNickname}
+              placeholder='Enter nickname'/>
+            <span className='error'>{this.state.nicknameError}</span>
           </div>
 
           <div className='tel'>
-            <span> <span className='important'> * </span> Tel: </span>
+            <span> <span className='important'> * </span> Telephone: </span>
             <MaskedInput
               required
               mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -141,32 +274,36 @@ export default class userRegistrationComponent extends Component {
               value={this.state.tel}
               type="text"
               onChange={this.handleInput}
-              placeholder='Enter tel'/>
+              placeholder='Enter telephone'/>
           </div>
 
           <div className='password'>
             <span> <span className='important'> * </span> Password: </span>
-            <input required
-                   className='form-control'
-                   id='inputPassword'
-                   type="password"
-                   value={this.state.password}
-                   name="password"
-                   onChange={this.handleInput}
-                   placeholder='Enter password'/>
+            <input
+              required
+              pattern='^([a-zA-Z0-9]{10,})+$'
+              className='form-control'
+              id='inputPassword'
+              type="password"
+              value={this.state.password}
+              name="password"
+              onChange={this.handlePassword}
+              placeholder='Enter password'/>
+            <span className='error'>{this.state.passwordError}</span>
           </div>
 
           <div className='confirmPassword'>
             <span> <span className='important'> * </span>Confirm password: </span>
             <input
+              id={this.state.actionConfirmPasswordError ? 'inputConfirmPasswordError' : 'inputConfirmPassword'}
               required
               value={this.state.confirmPassword}
               name="confirmPassword"
               className='form-control'
-              id='inputConfirmPassword'
               type="password"
-              onChange={this.handleInput}
+              onChange={this.handleConfPassword}
               placeholder='Enter password'/>
+            <span className='error'>{this.state.confirmPasswordError}</span>
           </div>
 
           <div className='address'>
@@ -208,8 +345,9 @@ export default class userRegistrationComponent extends Component {
               id='inputEmail'
               value={this.state.email}
               type="text"
-              onChange={this.handleInput}
+              onChange={this.handleEmail}
               placeholder='Enter email'/>
+            <span className='error'>{this.state.emailError}</span>
           </div>
 
           <div className='info'>
@@ -222,7 +360,7 @@ export default class userRegistrationComponent extends Component {
           </div>
 
           <div className='wrapperButton'>
-            <input className='btn btn-outline-primary' type="submit" value="Submit"/>
+            <input disabled={this.state.disabled} className='btn btn-outline-primary' type="submit" value="Submit"/>
           </div>
 
           <span className='infoUser'>* field is required</span>

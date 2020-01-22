@@ -7,7 +7,7 @@ class HomeComponent extends Component {
     return (
       <>
         <header>
-          <div className='wrapperLinc'><NavLink className='linc' to='/'> <h1>OnlineMedService</h1></NavLink></div>
+          <div className='wrapperLinc'><NavLink className='linc' to='/'><h1>OnlineMedService</h1></NavLink></div>
           <div className='wrapperLinc'><NavLink className='linc' to='/about'>About as</NavLink></div>
           <div className='wrapperLinc'><NavLink className='linc' to='/registration'>Registration</NavLink></div>
           <div className='wrapperLinc'><NavLink className='linc' to='/login'>Personal account</NavLink></div>
