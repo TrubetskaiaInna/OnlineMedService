@@ -7,6 +7,11 @@ const setUserData = (payload) => {
   }
 }
 
+const clearUserData = () => {
+  return { type: user.CLEAR_USER_DATA}
+}
+
 export default {
-  setUserData
+  setUserData,
+  clearUserData
 }

@@ -30,9 +30,14 @@ export default class userRegistrationComponent extends Component {
     }
   }
 
+  componentDidMount () {
+    const { clearUserData } = this.props
+     clearUserData()
+  }
+
   allValid = () => {
     return this.state.firstName && this.state.lastName && this.state.nickname
-      && this.state.password && this.state.confirmPassword  && (this.state.sex.woman
+      && this.state.password && this.state.confirmPassword && (this.state.sex.woman
         || this.state.sex.man) && !this.state.emailError && !this.state.passwordError
       && !this.state.confirmPasswordError && !this.state.firstNameError && !this.state.lastNameError
       && !this.state.nicknameError
@@ -63,7 +68,7 @@ export default class userRegistrationComponent extends Component {
       let result = re.test(this.state.firstName)
       if (!result) {
         this.setState({ firstNameError: 'first name can only contain letters' },
-        this.isValidForm)
+          this.isValidForm)
       } else {
         this.setState({ firstNameError: '' },
           this.isValidForm
@@ -81,7 +86,7 @@ export default class userRegistrationComponent extends Component {
       let result = re.test(this.state.lastName)
       if (!result) {
         this.setState({ lastNameError: 'last name can only contain letters' },
-          this.isValidForm )
+          this.isValidForm)
       } else {
         this.setState({ lastNameError: '' },
           this.isValidForm)
@@ -101,7 +106,7 @@ export default class userRegistrationComponent extends Component {
           this.isValidForm)
       } else {
         this.setState({ nicknameError: '' },
-          this.isValidForm )
+          this.isValidForm)
       }
     })
   }
@@ -109,15 +114,15 @@ export default class userRegistrationComponent extends Component {
   isValidPassword = () => {
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
-        confirmPasswordError: 'password does not match',
-        actionConfirmPasswordError: true
-      },
+          confirmPasswordError: 'password does not match',
+          actionConfirmPasswordError: true
+        },
         this.isValidForm)
     } else {
       this.setState({
-        confirmPasswordError: '',
-        actionConfirmPasswordError: false
-      },
+          confirmPasswordError: '',
+          actionConfirmPasswordError: false
+        },
         this.isValidForm)
     }
   }
@@ -146,15 +151,15 @@ export default class userRegistrationComponent extends Component {
     }, () => {
       if (this.state.password !== this.state.confirmPassword) {
         this.setState({
-          confirmPasswordError: 'password does not match',
-          actionConfirmPasswordError: true
-        },
+            confirmPasswordError: 'password does not match',
+            actionConfirmPasswordError: true
+          },
           this.isValidForm)
       } else {
         this.setState({
-          confirmPasswordError: '',
-          actionConfirmPasswordError: false
-        },
+            confirmPasswordError: '',
+            actionConfirmPasswordError: false
+          },
           this.isValidForm)
       }
     })
@@ -186,7 +191,7 @@ export default class userRegistrationComponent extends Component {
       let result = re.test(this.state.email)
       if (!result) {
         this.setState({ emailError: 'enter valid email' },
-          this.isValidForm )
+          this.isValidForm)
       } else {
         this.setState({ emailError: '' },
           this.isValidForm)
@@ -197,11 +202,11 @@ export default class userRegistrationComponent extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const { setUserData } = this.props
-    const { firstName, lastName, userName, email, tel, password, confirmPassword, address, sex, additionalInfo } = this.state
+    const { firstName, lastName, nickname, email, tel, password, confirmPassword, address, sex, additionalInfo } = this.state
     setUserData({
       firstName,
       lastName,
-      userName,
+      nickname,
       email,
       tel,
       password,
@@ -210,13 +215,30 @@ export default class userRegistrationComponent extends Component {
       sex,
       additionalInfo
     })
+
+
+    this.setState({
+      firstName: '',
+      lastName: '',
+      nickname: '',
+      address: '',
+      tel: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      sex: {
+        man: false,
+        woman: false
+      },
+      additionalInfo: '',
+      disabled: true
+    })
   }
 
   render () {
     return (
       <div className='wrapperForm'>
-        <form
-          onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
 
           <div className='firstName'>
             <span> <span className='important'> * </span> First name: </span>

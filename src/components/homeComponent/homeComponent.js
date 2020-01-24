@@ -12,6 +12,7 @@ class HomeComponent extends Component {
           <div className='wrapperLinc'><NavLink className='linc' to='/registration'>Registration</NavLink></div>
           <div className='wrapperLinc'><NavLink className='linc' to='/login'>Personal account</NavLink></div>
           <div className='wrapperLinc'><NavLink className='linc' to='/contact'>Contact</NavLink></div>
+          <div className='wrapperLinc'><NavLink className='linc' to='/logout'>Exit</NavLink></div>
         </header>
         <div className='image'/>
       </>
