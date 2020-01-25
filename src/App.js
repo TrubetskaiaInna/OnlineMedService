@@ -8,6 +8,7 @@ import userRegistrationComponent from './components/userRegistrationComponent/us
 import { createBrowserHistory } from 'history'
 import userLoginComponent from './components/userLoginComponent/userLoginComponentContainer'
 import personalAccountComponent from './components/personalAccountComponent/personalAccountComponent'
+import HeaderComponent  from './components/headerComponent/headerComponent'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -18,6 +19,7 @@ function App () {
       <PersistGate loading={null} persistor={persistor}>
         <>
           <Router history={history}>
+            <HeaderComponent/>
             <Switch>
               <Route exact path='/' component={homeComponent}/>
               <Route path='/registration' component={userRegistrationComponent}/>

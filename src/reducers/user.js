@@ -16,7 +16,9 @@ const initialState = {
       man: false,
       woman: false
     },
-    additionalInfo: ''
+    additionalInfo: '',
+    nicknameLog: '',
+    passwordLog: ''
   }
 }
 
@@ -34,7 +36,9 @@ export default (state = initialState, action) => {
           confirmPassword: { $set: action.payload.confirmPassword },
           address: { $set: action.payload.address },
           sex: { $set: action.payload.sex },
-          additionalInfo: { $set: action.payload.additionalInfo }
+          additionalInfo: { $set: action.payload.additionalInfo },
+          nicknameLog: {$set: action.payload.nicknameLog},
+          passwordLog: {$set: action.payload.passwordLog}
         }
       })
     case user.CLEAR_USER_DATA:

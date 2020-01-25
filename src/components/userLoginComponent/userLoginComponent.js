@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './userLoginComponent.scss'
-import { NavLink } from 'react-router-dom'
 import apiService from '../../service/apiService'
 
 class userLoginComponent extends Component {
@@ -62,50 +61,46 @@ class userLoginComponent extends Component {
   render () {
     return (
       <div className='wrapperLogComponent'>
-        <div className='nav'>
-          <div className='wrapperLinc'><NavLink className='linc' to='/registration'>Registration</NavLink></div>
-          <div className='wrapperLinc'><NavLink className='linc' to='/'>Home</NavLink></div>
+
+        <div className='wrapperLogin'>
+          <form onSubmit={this.onSubmit}>
+
+            <div className='text'><h4>Access to your personal account</h4></div>
+            <div className='nickname'>
+              <span>Nickname:</span>
+              <input
+                required
+                pattern='^[A-Za-z0-9_\-.]+$'
+                name="nicknameLog"
+                className='form-control'
+                id='inputNickname'
+                value={this.state.nicknameLog}
+                type="text"
+                onChange={this.handleNickname}
+                placeholder='Enter nickname'/>
+              <span className='error'>{this.state.nicknameErrorLog}</span>
+            </div>
+
+            <div className='password'>
+              <span> Password: </span>
+              <input
+                required
+                pattern='^([a-zA-Z0-9]{10,})+$'
+                className='form-control'
+                id='inputPassword'
+                type="password"
+                value={this.state.passwordLog}
+                name="passwordLog"
+                onChange={this.handlePassword}
+                placeholder='Enter password'/>
+              <span className='error'>{this.state.passwordErrorLog}</span>
+            </div>
+            <div className='wrapperButton'>
+              <input className='btn btn-secondary' type="submit" value="Login"/>
+            </div>
+          </form>
         </div>
-
-      <div className='wrapperLogin'>
-        <form onSubmit={this.onSubmit}>
-
-          <div className='text'> <h4>Access to your personal account</h4></div>
-          <div className='nickname'>
-            <span>Nickname:</span>
-            <input
-              required
-              pattern='^[A-Za-z0-9_\-.]+$'
-              name="nicknameLog"
-              className='form-control'
-              id='inputNickname'
-              value={this.state.nicknameLog}
-              type="text"
-              onChange={this.handleNickname}
-              placeholder='Enter nickname'/>
-            <span className='error'>{this.state.nicknameErrorLog}</span>
-          </div>
-
-          <div className='password'>
-            <span> Password: </span>
-            <input
-              required
-              pattern='^([a-zA-Z0-9]{10,})+$'
-              className='form-control'
-              id='inputPassword'
-              type="password"
-              value={this.state.passwordLog}
-              name="passwordLog"
-              onChange={this.handlePassword}
-              placeholder='Enter password'/>
-            <span className='error'>{this.state.passwordErrorLog}</span>
-          </div>
-          <div className='wrapperButton'>
-            <input className='btn btn-secondary' type="submit" value="Submit"/>
-          </div>
-        </form>
       </div>
-        </div>
     )
   }
 }

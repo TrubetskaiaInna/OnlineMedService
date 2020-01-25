@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
 import './userRegistrationComponent.scss'
-import { NavLink } from 'react-router-dom'
 
 export default class userRegistrationComponent extends Component {
   constructor (props) {
@@ -256,10 +255,6 @@ export default class userRegistrationComponent extends Component {
   render () {
     return (
       <div className='wrapperRegComponent'>
-        <div className='nav'>
-          <div className='wrapperLinc'><NavLink className='linc' to='/login'>Personal account</NavLink></div>
-          <div className='wrapperLinc'><NavLink className='linc' to='/'>Home</NavLink></div>
-        </div>
         <div className='wrapperForm'>
           <form onSubmit={this.onSubmit}>
 
@@ -405,7 +400,8 @@ export default class userRegistrationComponent extends Component {
             </div>
 
             <div className='wrapperButton'>
-              <input disabled={this.state.disabled} className='btn btn-outline-primary' type="submit" value="Submit"/>
+              <input disabled={this.state.disabled} className='btn btn-outline-primary' type="submit"
+                     value="Registration"/>
             </div>
 
             <span className='infoUser'>* field is required</span>
