@@ -1,5 +1,20 @@
+.wrapperLogComponent{
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: 5px auto;
+}
 .wrapperLogin{
   width: 600px;
-  border: 2px solid grey;
-  margin: 80px auto;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
 }
+
+.text{
+  display: flex;
+  justify-content: center;
+  color: grey;
+}
+
+

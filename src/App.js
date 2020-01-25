@@ -7,6 +7,7 @@ import homeComponent from './components/homeComponent/homeComponent'
 import userRegistrationComponent from './components/userRegistrationComponent/userRegistrationComponentContainer'
 import { createBrowserHistory } from 'history'
 import userLoginComponent from './components/userLoginComponent/userLoginComponentContainer'
+import personalAccountComponent from './components/personalAccountComponent/personalAccountComponent'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -15,16 +16,17 @@ function App () {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-    <>
-      <Router history={history}>
-        <Switch>
-          <Route exact path='/' component={homeComponent} />
-          <Route path='/registration' component={userRegistrationComponent} />
-          <Route path='/login' component={userLoginComponent} />
-          <Route path='*' component={() => '404 NOT FOUND'} />
-        </Switch>
-      </Router>
-    </>
+        <>
+          <Router history={history}>
+            <Switch>
+              <Route exact path='/' component={homeComponent}/>
+              <Route path='/registration' component={userRegistrationComponent}/>
+              <Route path='/login' component={userLoginComponent}/>
+              <Route path='/personalAccount' component={personalAccountComponent}/>
+              <Route path='*' component={() => '404 NOT FOUND'}/>
+            </Switch>
+          </Router>
+        </>
       </PersistGate>
     </Provider>
   )

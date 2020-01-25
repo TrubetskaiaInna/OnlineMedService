@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './userLoginComponent.scss'
 import { NavLink } from 'react-router-dom'
+import apiService from '../../service/apiService'
 
 class userLoginComponent extends Component {
   constructor () {
@@ -46,19 +47,30 @@ class userLoginComponent extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const { nicknameLog, passwordLog } = this.state
-    console.log(nicknameLog, passwordLog)
-    this.setState({
-      nicknameLog: '',
-      passwordLog: '',
+    apiService.login({ nicknameLog, passwordLog })
+      .then(() => {
+        this.props.setUserData({ nicknameLog, passwordLog })
+        this.props.history.push('/personalAccount')
+      }).catch(() => {
+      this.setState({
+        nicknameLog: '',
+        passwordLog: ''
+      })
     })
   }
 
   render () {
     return (
+      <div className='wrapperLogComponent'>
+        <div className='nav'>
+          <div className='wrapperLinc'><NavLink className='linc' to='/registration'>Registration</NavLink></div>
+          <div className='wrapperLinc'><NavLink className='linc' to='/'>Home</NavLink></div>
+        </div>
+
       <div className='wrapperLogin'>
         <form onSubmit={this.onSubmit}>
 
-          <h3>Access to your personal account</h3>
+          <div className='text'> <h4>Access to your personal account</h4></div>
           <div className='nickname'>
             <span>Nickname:</span>
             <input
@@ -91,10 +103,9 @@ class userLoginComponent extends Component {
           <div className='wrapperButton'>
             <input className='btn btn-secondary' type="submit" value="Submit"/>
           </div>
-          <div className='wrapperLinc'><NavLink className='linc' to='/registration'>Registration</NavLink></div>
-          <div className='wrapperLinc'><NavLink className='linc' to='/'>Home</NavLink></div>
         </form>
       </div>
+        </div>
     )
   }
 }

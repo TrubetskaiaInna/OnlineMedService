@@ -1,10 +1,27 @@
+.wrapperRegComponent{
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: 5px auto;
+}
+
 .wrapperForm {
   display: flex;
   justify-content: center;
   width: 600px;
-  margin: 20px auto;
+  margin: 5px auto;
   border: 3px solid lightsteelblue;
   background-color: silver;
+}
+
+.nav{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.wrapperLinc{
+  margin-left: 10px;
 }
 
 .firstName, .lastName, .nickname, .email,

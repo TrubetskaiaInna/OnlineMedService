@@ -1,0 +1,17 @@
+[
+  {
+    "firstName": "User",
+    "lastName": "lastUser",
+    "nickname": "superUser",
+    "email": "user@ukr.net",
+    "tel": "(111)111-1111",
+    "password": "password111",
+    "confirmPassword": "password111",
+    "address": "Rudneva,20/20",
+    "sex": {
+      "man": true,
+      "woman": false
+    },
+    "additionalInfo": ""
+  }
+]

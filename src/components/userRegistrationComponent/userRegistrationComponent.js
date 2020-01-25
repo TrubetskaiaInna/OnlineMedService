@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
 import './userRegistrationComponent.scss'
+import { NavLink } from 'react-router-dom'
 
 export default class userRegistrationComponent extends Component {
   constructor (props) {
@@ -15,6 +16,7 @@ export default class userRegistrationComponent extends Component {
       email: '',
       emailError: '',
       tel: '',
+      telError: '',
       password: '',
       passwordError: '',
       confirmPassword: '',
@@ -32,15 +34,15 @@ export default class userRegistrationComponent extends Component {
 
   componentDidMount () {
     const { clearUserData } = this.props
-     clearUserData()
+    clearUserData()
   }
 
   allValid = () => {
     return this.state.firstName && this.state.lastName && this.state.nickname
       && this.state.password && this.state.confirmPassword && (this.state.sex.woman
-        || this.state.sex.man) && !this.state.emailError && !this.state.passwordError
-      && !this.state.confirmPasswordError && !this.state.firstNameError && !this.state.lastNameError
-      && !this.state.nicknameError
+        || this.state.sex.man) && this.state.tel && this.state.address && !this.state.emailError
+      && !this.state.passwordError && !this.state.confirmPasswordError && !this.state.firstNameError
+      && !this.state.lastNameError && !this.state.nicknameError && !this.state.telError
   }
 
   isValidForm = () => {
@@ -110,6 +112,23 @@ export default class userRegistrationComponent extends Component {
       }
     })
   }
+
+  // handleTel = (e) => {
+  //   const name = e.target.name
+  //   this.setState({
+  //     [name]: e.target.value
+  //   }, () => {
+  //     let re = new RegExp('^\\(?\\d{3}\\)?\\d{3}\\+?([-])\\d{4}$')
+  //     let result = re.test(this.state.tel)
+  //     if (!result) {
+  //       this.setState({ telError: 'enter valid telephone number' },
+  //         this.isValidForm)
+  //     } else {
+  //       this.setState({ telError: '' },
+  //         this.isValidForm)
+  //     }
+  //   })
+  // }
 
   isValidPassword = () => {
     if (this.state.password !== this.state.confirmPassword) {
@@ -216,7 +235,6 @@ export default class userRegistrationComponent extends Component {
       additionalInfo
     })
 
-
     this.setState({
       firstName: '',
       lastName: '',
@@ -237,157 +255,163 @@ export default class userRegistrationComponent extends Component {
 
   render () {
     return (
-      <div className='wrapperForm'>
-        <form onSubmit={this.onSubmit}>
+      <div className='wrapperRegComponent'>
+        <div className='nav'>
+          <div className='wrapperLinc'><NavLink className='linc' to='/login'>Personal account</NavLink></div>
+          <div className='wrapperLinc'><NavLink className='linc' to='/'>Home</NavLink></div>
+        </div>
+        <div className='wrapperForm'>
+          <form onSubmit={this.onSubmit}>
 
-          <div className='firstName'>
-            <span> <span className='important'> * </span> First name: </span>
-            <input
-              required
-              pattern='^[a-zA-Z]+$'
-              name="firstName"
-              id='inputFirstName'
-              className='form-control'
-              type="text"
-              value={this.state.firstName}
-              onChange={this.handleFirsName}
-              placeholder='Enter first name'/>
-            <span className='error'>{this.state.firstNameError}</span>
-          </div>
-
-          <div className='lastName'>
-            <span> <span className='important'> * </span>Last name:</span>
-            <input
-              required
-              pattern='^[a-zA-Z]+$'
-              name="lastName"
-              className='form-control'
-              id='inputLastName'
-              value={this.state.lastName}
-              type="text"
-              onChange={this.handleLastName}
-              placeholder='Enter last name'/>
-            <span className='error'>{this.state.lastNameError}</span>
-          </div>
-
-          <div className='nickname'>
-            <span> <span className='important'> * </span>Nickname:</span>
-            <input
-              required
-              pattern='^[A-Za-z0-9_\-.]+$'
-              name="nickname"
-              className='form-control'
-              id='inputNickname'
-              value={this.state.nickname}
-              type="text"
-              onChange={this.handleNickname}
-              placeholder='Enter nickname'/>
-            <span className='error'>{this.state.nicknameError}</span>
-          </div>
-
-          <div className='tel'>
-            <span> <span className='important'> * </span> Telephone: </span>
-            <MaskedInput
-              required
-              mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-              name="tel"
-              className='form-control'
-              id='inputTel'
-              value={this.state.tel}
-              type="text"
-              onChange={this.handleInput}
-              placeholder='Enter telephone'/>
-          </div>
-
-          <div className='password'>
-            <span> <span className='important'> * </span> Password: </span>
-            <input
-              required
-              pattern='^([a-zA-Z0-9]{10,})+$'
-              className='form-control'
-              id='inputPassword'
-              type="password"
-              value={this.state.password}
-              name="password"
-              onChange={this.handlePassword}
-              placeholder='Enter password'/>
-            <span className='error'>{this.state.passwordError}</span>
-          </div>
-
-          <div className='confirmPassword'>
-            <span> <span className='important'> * </span>Confirm password: </span>
-            <input
-              id={this.state.actionConfirmPasswordError ? 'inputConfirmPasswordError' : 'inputConfirmPassword'}
-              required
-              value={this.state.confirmPassword}
-              name="confirmPassword"
-              className='form-control'
-              type="password"
-              onChange={this.handleConfPassword}
-              placeholder='Enter password'/>
-            <span className='error'>{this.state.confirmPasswordError}</span>
-          </div>
-
-          <div className='address'>
-            <span> <span className='important'> * </span>Address: </span>
-            <input
-              required
-              value={this.state.address}
-              name="address"
-              className='form-control'
-              id='inputAddress'
-              type="address"
-              onChange={this.handleInput}
-              placeholder='Enter address'/>
-          </div>
-
-
-          <div className='sex'>
-            <span> <span className='important'> * </span> Sex: </span>
-            <div className='wrapperRadio'>
-              <span> woman </span>
-              <input type="radio"
-                     name="woman"
-                     checked={this.state.sex.woman}
-                     onChange={this.handleRadio}/>
-              <span>man</span>
-              <input type="radio"
-                     name="man"
-                     checked={this.state.sex.man}
-                     onChange={this.handleRadio}/>
+            <div className='firstName'>
+              <span> <span className='important'> * </span> First name: </span>
+              <input
+                required
+                pattern='^[a-zA-Z]+$'
+                name="firstName"
+                id='inputFirstName'
+                className='form-control'
+                type="text"
+                value={this.state.firstName}
+                onChange={this.handleFirsName}
+                placeholder='Enter first name'/>
+              <span className='error'>{this.state.firstNameError}</span>
             </div>
-          </div>
 
-          <div className='email'>
-            <span>  Email: </span>
-            <input
-              name="email"
-              pattern='^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$'
-              className='form-control'
-              id='inputEmail'
-              value={this.state.email}
-              type="text"
-              onChange={this.handleEmail}
-              placeholder='Enter email'/>
-            <span className='error'>{this.state.emailError}</span>
-          </div>
+            <div className='lastName'>
+              <span> <span className='important'> * </span>Last name:</span>
+              <input
+                required
+                pattern='^[a-zA-Z]+$'
+                name="lastName"
+                className='form-control'
+                id='inputLastName'
+                value={this.state.lastName}
+                type="text"
+                onChange={this.handleLastName}
+                placeholder='Enter last name'/>
+              <span className='error'>{this.state.lastNameError}</span>
+            </div>
 
-          <div className='info'>
-            <span>Additional info:</span>
-            <textarea
-              value={this.state.additionalInfo}
-              name='additionalInfo'
-              onChange={this.handleInput}
-              className='form-control'/>
-          </div>
+            <div className='nickname'>
+              <span> <span className='important'> * </span>Nickname:</span>
+              <input
+                required
+                pattern='^[A-Za-z0-9_\-.]+$'
+                name="nickname"
+                className='form-control'
+                id='inputNickname'
+                value={this.state.nickname}
+                type="text"
+                onChange={this.handleNickname}
+                placeholder='Enter nickname'/>
+              <span className='error'>{this.state.nicknameError}</span>
+            </div>
 
-          <div className='wrapperButton'>
-            <input disabled={this.state.disabled} className='btn btn-outline-primary' type="submit" value="Submit"/>
-          </div>
+            <div className='tel'>
+              <span> <span className='important'> * </span> Telephone: </span>
+              <MaskedInput
+                required
+                mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                name="tel"
+                className='form-control'
+                id='inputTel'
+                value={this.state.tel}
+                type="text"
+                onChange={this.handleInput}
+                placeholder='Enter telephone'/>
+            </div>
 
-          <span className='infoUser'>* field is required</span>
-        </form>
+            <div className='password'>
+              <span> <span className='important'> * </span> Password: </span>
+              <input
+                required
+                pattern='^([a-zA-Z0-9]{10,})+$'
+                className='form-control'
+                id='inputPassword'
+                type="password"
+                value={this.state.password}
+                name="password"
+                onChange={this.handlePassword}
+                placeholder='Enter password'/>
+              <span className='error'>{this.state.passwordError}</span>
+            </div>
 
+            <div className='confirmPassword'>
+              <span> <span className='important'> * </span>Confirm password: </span>
+              <input
+                id={this.state.actionConfirmPasswordError ? 'inputConfirmPasswordError' : 'inputConfirmPassword'}
+                required
+                value={this.state.confirmPassword}
+                name="confirmPassword"
+                className='form-control'
+                type="password"
+                onChange={this.handleConfPassword}
+                placeholder='Enter password'/>
+              <span className='error'>{this.state.confirmPasswordError}</span>
+            </div>
+
+            <div className='address'>
+              <span> <span className='important'> * </span>Address: </span>
+              <input
+                required
+                value={this.state.address}
+                name="address"
+                className='form-control'
+                id='inputAddress'
+                type="address"
+                onChange={this.handleInput}
+                placeholder='Enter address'/>
+            </div>
+
+
+            <div className='sex'>
+              <span> <span className='important'> * </span> Sex: </span>
+              <div className='wrapperRadio'>
+                <span> woman </span>
+                <input type="radio"
+                       name="woman"
+                       checked={this.state.sex.woman}
+                       onChange={this.handleRadio}/>
+                <span>man</span>
+                <input type="radio"
+                       name="man"
+                       checked={this.state.sex.man}
+                       onChange={this.handleRadio}/>
+              </div>
+            </div>
+
+            <div className='email'>
+              <span>  Email: </span>
+              <input
+                name="email"
+                pattern='^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$'
+                className='form-control'
+                id='inputEmail'
+                value={this.state.email}
+                type="text"
+                onChange={this.handleEmail}
+                placeholder='Enter email'/>
+              <span className='error'>{this.state.emailError}</span>
+            </div>
+
+            <div className='info'>
+              <span>Additional info:</span>
+              <textarea
+                value={this.state.additionalInfo}
+                name='additionalInfo'
+                onChange={this.handleInput}
+                className='form-control'/>
+            </div>
+
+            <div className='wrapperButton'>
+              <input disabled={this.state.disabled} className='btn btn-outline-primary' type="submit" value="Submit"/>
+            </div>
+
+            <span className='infoUser'>* field is required</span>
+          </form>
+
+        </div>
       </div>
     )
   }
