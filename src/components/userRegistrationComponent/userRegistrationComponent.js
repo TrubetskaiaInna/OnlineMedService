@@ -233,7 +233,7 @@ export default class userRegistrationComponent extends Component {
       sex,
       additionalInfo
     })
-
+    this.props.history.push('/login')
     this.setState({
       firstName: '',
       lastName: '',

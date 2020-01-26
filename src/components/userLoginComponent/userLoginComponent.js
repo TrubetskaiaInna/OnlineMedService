@@ -9,7 +9,21 @@ class userLoginComponent extends Component {
       nicknameLog: '',
       nicknameErrorLog: '',
       passwordLog: '',
-      passwordErrorLog: ''
+      passwordErrorLog: '',
+      disabled: true
+    }
+  }
+
+  allValid = () => {
+    return this.state.nicknameLog && this.state.passwordLog &&!this.state.passwordErrorLog
+      && !this.state.nicknameErrorLog
+  }
+
+  isValidForm = () => {
+    if (this.allValid()) {
+      this.setState({ disabled: false })
+    } else {
+      this.setState({ disabled: true })
     }
   }
 
@@ -21,9 +35,11 @@ class userLoginComponent extends Component {
       let re = new RegExp('^[A-Za-z0-9_\\-.]+$')
       let result = re.test(this.state.nicknameLog)
       if (!result) {
-        this.setState({ nicknameErrorLog: 'nickname can only contain number, letter, dash, underscore, and dot' })
+        this.setState({ nicknameErrorLog: 'nickname can only contain number, letter, dash, underscore, and dot' },
+          this.isValidForm)
       } else {
-        this.setState({ nicknameErrorLog: '' })
+        this.setState({ nicknameErrorLog: '' },
+          this.isValidForm)
       }
     })
   }
@@ -36,9 +52,11 @@ class userLoginComponent extends Component {
       let re = new RegExp('^([a-zA-Z0-9]{10,})+$')
       let result = re.test(this.state.passwordLog)
       if (!result) {
-        this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)' })
+        this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)'},
+          this.isValidForm)
       } else {
-        this.setState({ passwordErrorLog: '' })
+        this.setState({ passwordErrorLog: '' },
+          this.isValidForm)
       }
     })
   }
@@ -96,7 +114,7 @@ class userLoginComponent extends Component {
               <span className='error'>{this.state.passwordErrorLog}</span>
             </div>
             <div className='wrapperButton'>
-              <input className='btn btn-secondary' type="submit" value="Login"/>
+              <input disabled={this.state.disabled} className='btn btn-secondary' type="submit" value="Login"/>
             </div>
           </form>
         </div>
