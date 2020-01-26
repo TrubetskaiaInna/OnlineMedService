@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './userLoginComponent.scss'
+import './UserLoginComponent.scss'
 import apiService from '../../service/apiService'
 
 class userLoginComponent extends Component {

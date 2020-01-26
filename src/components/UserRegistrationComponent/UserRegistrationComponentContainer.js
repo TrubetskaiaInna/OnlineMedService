@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import userComponent from './userLoginComponent'
+import userComponent from './UserRegistrationComponent'
 import { user } from '../../actions'
 
 const mapStateToProps = (state) => {
-  console.log(111,state)
+  console.log(state)
   return {
     mainUser: state.user.mainUser
   }

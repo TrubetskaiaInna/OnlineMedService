@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
-import './userRegistrationComponent.scss'
+import './UserRegistrationComponent.scss'
 
 export default class userRegistrationComponent extends Component {
   constructor (props) {

@@ -3,12 +3,12 @@ import { Provider } from 'react-redux'
 import { Switch, Route, Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import configureStore from './store/store'
-import homeComponent from './components/homeComponent/homeComponent'
-import userRegistrationComponent from './components/userRegistrationComponent/userRegistrationComponentContainer'
+import HomeComponent from './components/HomeComponent/HomeComponent'
+import UserRegistrationComponent from './components/UserRegistrationComponent/UserRegistrationComponentContainer'
 import { createBrowserHistory } from 'history'
-import userLoginComponent from './components/userLoginComponent/userLoginComponentContainer'
-import personalAccountComponent from './components/personalAccountComponent/personalAccountComponent'
-import HeaderComponent  from './components/headerComponent/headerComponent'
+import UserLoginComponent from './components/UserLoginComponent/UserLoginComponentContainer'
+import PersonalAccountComponent from './components/PersonalAccountComponent/PersonalAccountComponent'
+import HeaderComponent  from './components/HeaderComponent/HeaderComponent'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -21,10 +21,10 @@ function App () {
           <Router history={history}>
             <HeaderComponent/>
             <Switch>
-              <Route exact path='/' component={homeComponent}/>
-              <Route path='/registration' component={userRegistrationComponent}/>
-              <Route path='/login' component={userLoginComponent}/>
-              <Route path='/personalAccount' component={personalAccountComponent}/>
+              <Route exact path='/' component={HomeComponent}/>
+              <Route path='/registration' component={UserRegistrationComponent}/>
+              <Route path='/login' component={UserLoginComponent}/>
+              <Route path='/personalAccount' component={PersonalAccountComponent}/>
               <Route path='*' component={() => '404 NOT FOUND'}/>
             </Switch>
           </Router>
