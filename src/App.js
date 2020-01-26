@@ -8,7 +8,7 @@ import UserRegistrationComponent from './components/UserRegistrationComponent/Us
 import { createBrowserHistory } from 'history'
 import UserLoginComponent from './components/UserLoginComponent/UserLoginComponentContainer'
 import PersonalAccountComponent from './components/PersonalAccountComponent/PersonalAccountComponent'
-import HeaderComponent  from './components/HeaderComponent/HeaderComponent'
+import HeaderComponent from './components/HeaderComponent/HeaderComponentContainer'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -19,13 +19,13 @@ function App () {
       <PersistGate loading={null} persistor={persistor}>
         <>
           <Router history={history}>
-            <HeaderComponent/>
+            <HeaderComponent />
             <Switch>
-              <Route exact path='/' component={HomeComponent}/>
-              <Route path='/registration' component={UserRegistrationComponent}/>
-              <Route path='/login' component={UserLoginComponent}/>
-              <Route path='/personalAccount' component={PersonalAccountComponent}/>
-              <Route path='*' component={() => '404 NOT FOUND'}/>
+              <Route exact path='/' component={HomeComponent} />
+              <Route path='/registration' component={UserRegistrationComponent} />
+              <Route path='/login' component={UserLoginComponent} />
+              <Route path='/personalAccount' component={PersonalAccountComponent} />
+              <Route path='*' component={() => '404 NOT FOUND'} />
             </Switch>
           </Router>
         </>

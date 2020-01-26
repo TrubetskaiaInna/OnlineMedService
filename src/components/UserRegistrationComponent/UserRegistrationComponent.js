@@ -31,10 +31,10 @@ export default class userRegistrationComponent extends Component {
     }
   }
 
-  componentDidMount () {
-    const { clearUserData } = this.props
-    clearUserData()
-  }
+  // componentDidMount () {
+  //   const { clearUserData } = this.props
+  //   clearUserData()
+  // }
 
   allValid = () => {
     return this.state.firstName && this.state.lastName && this.state.nickname
@@ -219,20 +219,20 @@ export default class userRegistrationComponent extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    const { setUserData } = this.props
-    const { firstName, lastName, nickname, email, tel, password, confirmPassword, address, sex, additionalInfo } = this.state
-    setUserData({
-      firstName,
-      lastName,
-      nickname,
-      email,
-      tel,
-      password,
-      confirmPassword,
-      address,
-      sex,
-      additionalInfo
-    })
+    // const { setUserData } = this.props
+    // const { firstName, lastName, nickname, email, tel, password, confirmPassword, address, sex, additionalInfo } = this.state
+    // setUserData({
+    //   firstName,
+    //   lastName,
+    //   nickname,
+    //   email,
+    //   tel,
+    //   password,
+    //   confirmPassword,
+    //   address,
+    //   sex,
+    //   additionalInfo
+    // })
     this.props.history.push('/login')
     this.setState({
       firstName: '',

@@ -4,19 +4,6 @@ import { user } from '../constants'
 
 const initialState = {
   mainUser: {
-    firstName: '',
-    lastName: '',
-    nickname: '',
-    email: '',
-    tel: '',
-    password: '',
-    confirmPassword: '',
-    address: '',
-    sex: {
-      man: false,
-      woman: false
-    },
-    additionalInfo: '',
     nicknameLog: '',
     passwordLog: ''
   }
@@ -27,33 +14,15 @@ export default (state = initialState, action) => {
     case user.SET_USER_DATA:
       return update(state, {
         mainUser: {
-          firstName: { $set: action.payload.firstName },
-          lastName: { $set: action.payload.lastName },
-          nickname: { $set: action.payload.nickname },
-          email: { $set: action.payload.email },
-          tel: { $set: action.payload.tel },
-          password: { $set: action.payload.password },
-          confirmPassword: { $set: action.payload.confirmPassword },
-          address: { $set: action.payload.address },
-          sex: { $set: action.payload.sex },
-          additionalInfo: { $set: action.payload.additionalInfo },
-          nicknameLog: {$set: action.payload.nicknameLog},
-          passwordLog: {$set: action.payload.passwordLog}
+          nicknameLog: { $set: action.payload.nicknameLog },
+          passwordLog: { $set: action.payload.passwordLog }
         }
       })
     case user.CLEAR_USER_DATA:
       return update(state, {
         mainUser: {
-          firstName: { $set: '' },
-          lastName: { $set: '' },
-          nickname: { $set: '' },
-          email: { $set: '' },
-          tel: { $set: '' },
-          password: { $set: '' },
-          confirmPassword: { $set: '' },
-          address: { $set: '' },
-          sex: { $set: '' },
-          additionalInfo: { $set: '' }
+          nicknameLog: { $set: '' },
+          passwordLog: { $set: '' }
         }
       })
     default:
