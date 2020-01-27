@@ -79,7 +79,8 @@ class userLoginComponent extends Component {
         showMessage: true,
         showSpinner: false,
         nicknameLog: '',
-        passwordLog: ''
+        passwordLog: '',
+        validInput: true
       })
     })
   }
@@ -100,8 +101,8 @@ class userLoginComponent extends Component {
                     required
                     pattern='^[A-Za-z0-9_\-.]+$'
                     name="nicknameLog"
-                    className='form-control'
                     id='inputNickname'
+                    className={this.state.validInput ? 'form-control inputNickNameValid' : 'form-control'}
                     value={this.state.nicknameLog}
                     type="text"
                     onChange={this.handleNickname}
@@ -114,7 +115,7 @@ class userLoginComponent extends Component {
                   <input
                     required
                     pattern='^([a-zA-Z0-9]{10,})+$'
-                    className='form-control'
+                    className={this.state.validInput ? 'form-control inputNickNameValid' : 'form-control'}
                     id='inputPassword'
                     type="password"
                     value={this.state.passwordLog}
