@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './UserLoginComponent.scss'
 import apiService from '../../service/apiService'
+import MessageComponent from '../MessageComponent/MessageComponent'
+import SpinnerComponent from '../SpinnerComponent/SpinnerComponent'
 
 class userLoginComponent extends Component {
   constructor () {
@@ -10,12 +12,15 @@ class userLoginComponent extends Component {
       nicknameErrorLog: '',
       passwordLog: '',
       passwordErrorLog: '',
-      disabled: true
+      disabled: true,
+      showMessage: false,
+      showSpinner: false,
+      validInput: false
     }
   }
 
   allValid = () => {
-    return this.state.nicknameLog && this.state.passwordLog &&!this.state.passwordErrorLog
+    return this.state.nicknameLog && this.state.passwordLog && !this.state.passwordErrorLog
       && !this.state.nicknameErrorLog
   }
 
@@ -52,7 +57,7 @@ class userLoginComponent extends Component {
       let re = new RegExp('^([a-zA-Z0-9]{10,})+$')
       let result = re.test(this.state.passwordLog)
       if (!result) {
-        this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)'},
+        this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)' },
           this.isValidForm)
       } else {
         this.setState({ passwordErrorLog: '' },
@@ -63,6 +68,7 @@ class userLoginComponent extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
+    this.setState({ showSpinner: true })
     const { nicknameLog, passwordLog } = this.state
     apiService.login({ nicknameLog, passwordLog })
       .then(() => {
@@ -70,6 +76,8 @@ class userLoginComponent extends Component {
         this.props.history.push('/personalAccount')
       }).catch(() => {
       this.setState({
+        showMessage: true,
+        showSpinner: false,
         nicknameLog: '',
         passwordLog: ''
       })
@@ -78,47 +86,52 @@ class userLoginComponent extends Component {
 
   render () {
     return (
-      <div className='wrapperLogComponent'>
+      <>
+        {this.state.showSpinner ? <SpinnerComponent/> :
+          <div className='wrapperLogComponent'>
 
-        <div className='wrapperLogin'>
-          <form onSubmit={this.onSubmit}>
+            <div className='wrapperLogin'>
+              <form onSubmit={this.onSubmit}>
 
-            <div className='text'><h4>Access to your personal account</h4></div>
-            <div className='nickname'>
-              <span>Nickname:</span>
-              <input
-                required
-                pattern='^[A-Za-z0-9_\-.]+$'
-                name="nicknameLog"
-                className='form-control'
-                id='inputNickname'
-                value={this.state.nicknameLog}
-                type="text"
-                onChange={this.handleNickname}
-                placeholder='Enter nickname'/>
-              <span className='error'>{this.state.nicknameErrorLog}</span>
-            </div>
+                <div className='text'><h4>Access to your personal account</h4></div>
+                <div className='nickname'>
+                  <span>Nickname:</span>
+                  <input
+                    required
+                    pattern='^[A-Za-z0-9_\-.]+$'
+                    name="nicknameLog"
+                    className='form-control'
+                    id='inputNickname'
+                    value={this.state.nicknameLog}
+                    type="text"
+                    onChange={this.handleNickname}
+                    placeholder='Enter nickname'/>
+                  <span className='error'>{this.state.nicknameErrorLog}</span>
+                </div>
 
-            <div className='password'>
-              <span> Password: </span>
-              <input
-                required
-                pattern='^([a-zA-Z0-9]{10,})+$'
-                className='form-control'
-                id='inputPassword'
-                type="password"
-                value={this.state.passwordLog}
-                name="passwordLog"
-                onChange={this.handlePassword}
-                placeholder='Enter password'/>
-              <span className='error'>{this.state.passwordErrorLog}</span>
+                <div className='password'>
+                  <span> Password: </span>
+                  <input
+                    required
+                    pattern='^([a-zA-Z0-9]{10,})+$'
+                    className='form-control'
+                    id='inputPassword'
+                    type="password"
+                    value={this.state.passwordLog}
+                    name="passwordLog"
+                    onChange={this.handlePassword}
+                    placeholder='Enter password'/>
+                  <span className='error'>{this.state.passwordErrorLog}</span>
+                </div>
+                <div className='wrapperButton'>
+                  <input disabled={this.state.disabled} className='btn btn-secondary' type="submit" value="Login"/>
+                </div>
+              </form>
+              {this.state.showMessage ? <MessageComponent/> : null}
             </div>
-            <div className='wrapperButton'>
-              <input disabled={this.state.disabled} className='btn btn-secondary' type="submit" value="Login"/>
-            </div>
-          </form>
-        </div>
-      </div>
+          </div>
+        }
+      </>
     )
   }
 }
