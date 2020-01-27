@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './UserLoginComponent.scss'
-import apiService from '../../service/apiService'
+import {apiService} from '../../service/apiService'
 import MessageComponent from '../MessageComponent/MessageComponent'
 import SpinnerComponent from '../SpinnerComponent/SpinnerComponent'
 

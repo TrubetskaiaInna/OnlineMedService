@@ -3,12 +3,13 @@ import { Provider } from 'react-redux'
 import { Switch, Route, Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import configureStore from './store/store'
-import HomeComponent from './components/HomeComponent/HomeComponent'
+import HomeComponent from './components/HomeComponent/HomeComponentContainer'
 import UserRegistrationComponent from './components/UserRegistrationComponent/UserRegistrationComponentContainer'
 import { createBrowserHistory } from 'history'
 import UserLoginComponent from './components/UserLoginComponent/UserLoginComponentContainer'
-import PersonalAccountComponent from './components/PersonalAccountComponent/PersonalAccountComponent'
+import PersonalAccountComponent from './components/PersonalAccountComponent/PersonalAccountComponentContainer'
 import HeaderComponent from './components/HeaderComponent/HeaderComponentContainer'
+import AboutAsComponent from './components/AboutUsComponent/AboutUsComponentContainer'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -22,6 +23,7 @@ function App () {
             <HeaderComponent />
             <Switch>
               <Route exact path='/' component={HomeComponent} />
+              <Route path='/about' component={AboutAsComponent}/>
               <Route path='/registration' component={UserRegistrationComponent} />
               <Route path='/login' component={UserLoginComponent} />
               <Route path='/personalAccount' component={PersonalAccountComponent} />

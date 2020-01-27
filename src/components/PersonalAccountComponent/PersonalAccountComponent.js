@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 
-class personalAccountComponent extends Component {
+class PersonalAccountComponent extends Component {
+
   render () {
     return (
       <>
-      123
+        123
       </>
     )
   }
 }
 
-export default personalAccountComponent
+export default PersonalAccountComponent

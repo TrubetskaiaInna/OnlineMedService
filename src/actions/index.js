@@ -1,5 +1,7 @@
 import user from './user'
+import doctor from './doctor'
 
 export {
-  user
+  user,
+  doctor
 }
