@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import AboutUsComponent from './AboutUsComponent'
+import AboutUs from './AboutUs'
 import { user } from '../../actions'
 import { doctor } from '../../actions'
 
@@ -15,13 +15,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const { setUserData, clearUserData } = user
-  const { setDoctorData } = doctor
-  return bindActionCreators({ setUserData, clearUserData, setDoctorData}, dispatch)
+  const { setDoctorData ,clearDoctorData } = doctor
+  return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData}, dispatch)
 }
 
 const UserRegistrationComponentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AboutUsComponent)
+)(AboutUs)
 
 export default UserRegistrationComponentContainer

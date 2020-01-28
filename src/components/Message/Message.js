@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     background: 'silver'
   }
 }))
-export default function MessageComponent () {
+export default function Message () {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
   const handleClose = (event, reason) => {

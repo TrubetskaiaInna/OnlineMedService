@@ -1,9 +1,9 @@
 import Loader from 'react-loader-spinner'
 import React, { Component } from 'react'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-import './SpinnerComponent.scss'
+import './Spinner.scss'
 
-class SpinnerComponent extends Component {
+class Spinner extends Component {
   render () {
     return (
       <div className='wrapperSpinner'>
@@ -17,4 +17,4 @@ class SpinnerComponent extends Component {
     )
   }
 }
-export default SpinnerComponent
+export default Spinner

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './HomeComponent.scss'
+import './Home.scss'
 
-class HomeComponent extends Component {
+class Home extends Component {
   render () {
     console.log(this.props)
     return (
@@ -12,4 +12,4 @@ class HomeComponent extends Component {
   }
 }
 
-export default HomeComponent
+export default Home

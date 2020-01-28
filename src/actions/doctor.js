@@ -1,4 +1,4 @@
-import { doctor } from '../constants'
+import { doctor, user } from '../constants'
 
 const setDoctorData = (payload) => {
   return {
@@ -7,6 +7,11 @@ const setDoctorData = (payload) => {
   }
 }
 
+const clearDoctorData = () => {
+  return { type: doctor.CLEAR_DOCTOR_DATA }
+}
+
 export default {
-  setDoctorData
+  setDoctorData,
+  clearDoctorData
 }

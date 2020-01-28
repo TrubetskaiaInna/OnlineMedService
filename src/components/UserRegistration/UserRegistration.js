@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
-import './UserRegistrationComponent.scss'
+import './UserRegistration.scss'
 
-export default class userRegistrationComponent extends Component {
+export default class userRegistration extends Component {
   constructor (props) {
     super(props)
     this.state = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class PersonalAccountComponent extends Component {
+class PersonalAccount extends Component {
 
   render () {
     return (
@@ -11,4 +11,4 @@ class PersonalAccountComponent extends Component {
   }
 }
 
-export default PersonalAccountComponent
+export default PersonalAccount

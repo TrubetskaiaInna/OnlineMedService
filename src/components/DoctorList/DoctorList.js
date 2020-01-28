@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
 import DoctorListItem from '../DoctorListItem/DoctorListItem'
+import { apiService2 } from '../../service/apiService'
 
 class DoctorList extends Component {
 
+  componentDidMount () {
+   apiService2.getDoctor()
+     .then((data)=>{
+       this.props.setDoctorData(data)
+     })
+    this.props.clearDoctorData()
+  }
+
   render () {
+
+    const { doctors } = this.props
     return (
-      <ul>
+      <div>
         {
-          this.props.doctor.map((doctor) => {
+          doctors.map((doctor) => {
             return (
-              <li key={doctor.id}><DoctorListItem doctor={doctor}/></li>
+              <div key={doctor.id}><DoctorListItem doctor={doctor}/></div>
             )
           })
         }
-      </ul>
+      </div>
     )
   }
 }

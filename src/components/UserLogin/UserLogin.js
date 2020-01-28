@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './UserLoginComponent.scss'
+import './UserLogin.scss'
 import {apiService} from '../../service/apiService'
-import MessageComponent from '../MessageComponent/MessageComponent'
-import SpinnerComponent from '../SpinnerComponent/SpinnerComponent'
+import Message from '../Message/Message'
+import Spinner from '../Spinner/Spinner'
 
-class userLoginComponent extends Component {
+class userLogin extends Component {
   constructor () {
     super()
     this.state = {
@@ -88,7 +88,7 @@ class userLoginComponent extends Component {
   render () {
     return (
       <>
-        {this.state.showSpinner ? <SpinnerComponent/> :
+        {this.state.showSpinner ? <Spinner/> :
           <div className='wrapperLogComponent'>
 
             <div className='wrapperLogin'>
@@ -128,7 +128,7 @@ class userLoginComponent extends Component {
                   <input disabled={this.state.disabled} className='btn btn-secondary' type="submit" value="Login"/>
                 </div>
               </form>
-              {this.state.showMessage ? <MessageComponent/> : null}
+              {this.state.showMessage ? <Message/> : null}
             </div>
           </div>
         }
@@ -137,4 +137,4 @@ class userLoginComponent extends Component {
   }
 }
 
-export default userLoginComponent
+export default userLogin
