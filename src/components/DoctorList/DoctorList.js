@@ -3,6 +3,7 @@ import DoctorListItem from '../DoctorListItem/DoctorListItem'
 import { apiService2 } from '../../service/apiService'
 
 class DoctorList extends Component {
+
   componentDidMount () {
     apiService2.getDoctor()
       .then((data) => {
@@ -14,15 +15,15 @@ class DoctorList extends Component {
   render () {
     const { doctors } = this.props
     return (
-      <div>
+      <>
         {
           doctors.map((doctor) => {
             return (
-              <div key={doctor.id}><DoctorListItem doctor={doctor} /></div>
+              <div className='wrapperItemCard' key={doctor.id}><DoctorListItem doctor={doctor}/></div>
             )
           })
         }
-      </div>
+      </>
     )
   }
 }

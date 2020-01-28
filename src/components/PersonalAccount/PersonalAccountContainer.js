@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const { setUserData, clearUserData } = user
-  const { setDoctorData } = doctor
-  return bindActionCreators({ setUserData, clearUserData, setDoctorData }, dispatch)
+  const { setDoctorData, clearDoctorData } = doctor
+  return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData }, dispatch)
 }
 
 const UserRegistrationComponentContainer = connect(

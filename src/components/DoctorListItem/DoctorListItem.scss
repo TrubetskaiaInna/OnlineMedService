@@ -1,0 +1,32 @@
+.wrapperCard {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1024px;
+  margin: auto;
+
+}
+
+.wrapperItemCard {
+  width: 300px;
+  margin: auto;
+}
+
+.card {
+  background-color: silver;
+}
+
+.card-body {
+  //display: flex;
+  //flex-wrap: wrap;
+  //justify-content: center;
+}
+
+.card-title {
+  color: #158CBA;
+}
+
+img{
+  width: 100px;
+  height: 120px;
+}

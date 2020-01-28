@@ -1,32 +1,44 @@
 [
   {
     "id": "1",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_0IB8qo2lUO2S6tjT_axUT5vHcmsrTzSUjeF7eb10oiQExUIV&s",
     "name": "John Smith",
-    "type": "Surgeon"
+    "type": "Surgeon",
+    "info": "In 1979 she graduated from the K Medical Institute. In 2016, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 40 years of medical experience"
   },
   {
     "id": "2",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_0IB8qo2lUO2S6tjT_axUT5vHcmsrTzSUjeF7eb10oiQExUIV&s",
     "name": "Hugh Brown",
-    "type": "Dentist"
+    "type": "Dentist",
+    "info": "In 1985 she graduated from the M Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 35 years of medical experience"
   },
   {
     "id": "3",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFUVTSgingNxDbZI6WAdVIVKB8FxMXfIt1WnBYzRPKzHZtY15&s",
     "name": "Olivia Miller",
-    "type": "a"
+    "type": "Therapist",
+    "info": "In 1999 she graduated from the S Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 21 years of medical experience"
   },
   {
     "id": "4",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_0IB8qo2lUO2S6tjT_axUT5vHcmsrTzSUjeF7eb10oiQExUIV&s",
     "name": "Jack Taylor",
-    "type": "b"
+    "type": "Ophthalmologist",
+    "info": "In 2005 she graduated from the K Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 15 years of medical experience"
   },
   {
     "id": "5",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFUVTSgingNxDbZI6WAdVIVKB8FxMXfIt1WnBYzRPKzHZtY15&s",
     "name": "Emma Evans",
-    "type": "c"
+    "type": "Masseur",
+    "info": "In 1998 she graduated from the S Medical Institute. In 2013, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 22 years of medical experience"
   },
   {
     "id": "6",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFUVTSgingNxDbZI6WAdVIVKB8FxMXfIt1WnBYzRPKzHZtY15&s",
     "name": "Grace Jones",
-    "type": "d"
+    "type": "Neurologist",
+    "info": "In 2009 she graduated from the M Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 11 years of medical experience"
   }
 ]

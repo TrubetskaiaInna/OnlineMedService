@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Home from './Home'
+import Info from './Info'
 import { user, doctor } from '../../actions'
 
 const mapStateToProps = (state) => {
@@ -21,6 +21,6 @@ const mapDispatchToProps = (dispatch) => {
 const UserRegistrationComponentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(Info)
 
 export default UserRegistrationComponentContainer
