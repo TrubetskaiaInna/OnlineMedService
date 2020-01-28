@@ -1,5 +1,4 @@
-import { doctor, user } from '../constants'
-import update from 'immutability-helper'
+import { doctor } from '../constants'
 
 const initialState = {
   doctors: []

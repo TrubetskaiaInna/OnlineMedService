@@ -19,14 +19,14 @@ export class apiService {
 }
 
 export class apiService2 {
-  static  getDoctor () {
-   return new Promise((resolve, reject) =>{
-     setTimeout(()=>{
-       resolve(doctors)
-     },700)
-     setTimeout(()=>{
-       reject(new Error(401))
-     },700)
-   })
+  static getDoctor () {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(doctors)
+      }, 700)
+      setTimeout(() => {
+        reject(new Error(401))
+      }, 700)
+    })
   }
 }

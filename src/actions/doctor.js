@@ -1,4 +1,4 @@
-import { doctor, user } from '../constants'
+import { doctor } from '../constants'
 
 const setDoctorData = (payload) => {
   return {

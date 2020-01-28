@@ -2,8 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Header from './Header'
-import { user } from '../../actions'
-import { doctor } from '../../actions'
+import { user, doctor } from '../../actions'
 
 const mapStateToProps = (state) => {
   console.log(state)

@@ -2,8 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import AboutUs from './AboutUs'
-import { user } from '../../actions'
-import { doctor } from '../../actions'
+import { user, doctor } from '../../actions'
 
 const mapStateToProps = (state) => {
   console.log(111, state)
@@ -15,8 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const { setUserData, clearUserData } = user
-  const { setDoctorData ,clearDoctorData } = doctor
-  return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData}, dispatch)
+  const { setDoctorData, clearDoctorData } = doctor
+  return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData }, dispatch)
 }
 
 const UserRegistrationComponentContainer = connect(

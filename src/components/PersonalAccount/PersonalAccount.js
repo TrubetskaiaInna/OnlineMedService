@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 class PersonalAccount extends Component {
-
   render () {
     return (
       <>
