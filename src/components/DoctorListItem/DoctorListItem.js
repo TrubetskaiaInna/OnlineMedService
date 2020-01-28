@@ -9,7 +9,7 @@ const DoctorListItem = ({ doctor }) => {
     <>
       <div className='card border-secondary mb-3'>
         <div className='card-body'>
-          <div> <img src={photo} alt='img'/> </div>
+          <div> <img className='photo' src={photo} alt='img'/> </div>
           <h4 className='card-title'>{name}</h4>
           <p className='card-text'>{type}</p>
           <TransitionsModal doctor={doctor}/>

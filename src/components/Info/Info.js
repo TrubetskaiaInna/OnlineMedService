@@ -16,12 +16,12 @@ const useStyles = makeStyles(theme => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width: '300px'
+    width: '300px',
+    flexWrap: 'wrap'
   }
 }))
 
 const TransitionsModal = (props) => {
-  console.log(7777777,props)
 
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
@@ -54,7 +54,8 @@ const TransitionsModal = (props) => {
         <Fade in={open}>
 
           <div className={classes.paper}>
-            <p>{props.doctor.info}</p>
+            <h3>{props.doctor.name}</h3>
+            <span>{props.doctor.info}</span>
           </div>
         </Fade>
       </Modal>
