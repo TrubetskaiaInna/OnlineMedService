@@ -12,6 +12,7 @@ class DoctorList extends Component {
     this.props.clearDoctorData()
   }
 
+
   render () {
     const { doctors } = this.props
     return (
@@ -19,8 +20,10 @@ class DoctorList extends Component {
         {
           doctors.map((doctor) => {
             return (
-              <div className='wrapperItemCard' key={doctor.id}><DoctorListItem doctor={doctor}/></div>
-            )
+              <div className='wrapperItemCard' key={doctor.id}><DoctorListItem doctor={doctor}/>
+                {this.props.mainUser.login ? <button className='btn btn-primary'>Make an
+                  appointment</button> : null}
+              </div>)
           })
         }
       </>

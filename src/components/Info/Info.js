@@ -36,8 +36,8 @@ const TransitionsModal = (props) => {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen} style={{ width: 150 }}>
-        Additionally
+      <button type='button' onClick={handleOpen} style={{ width: 285,  }}>
+        More info
       </button>
       <Modal
         aria-labelledby='transition-modal-title'
