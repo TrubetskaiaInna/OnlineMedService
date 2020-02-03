@@ -10,12 +10,12 @@ export default class userRegistration extends Component {
       firstNameError: '',
       lastName: '',
       lastNameError: '',
-      nickname: '',
-      nicknameError: '',
+      userName: '',
+      userNameError: '',
       email: '',
       emailError: '',
-      tel: '',
-      telError: '',
+      phone: '',
+      phoneError: '',
       password: '',
       passwordError: '',
       confirmPassword: '',
@@ -37,11 +37,11 @@ export default class userRegistration extends Component {
   // }
 
   allValid = () => {
-    return this.state.firstName && this.state.lastName && this.state.nickname
+    return this.state.firstName && this.state.lastName && this.state.userName
       && this.state.password && this.state.confirmPassword && (this.state.sex.woman
-        || this.state.sex.man) && this.state.tel && this.state.address && !this.state.emailError
+        || this.state.sex.man) && this.state.phone && this.state.address && !this.state.emailError
       && !this.state.passwordError && !this.state.confirmPasswordError && !this.state.firstNameError
-      && !this.state.lastNameError && !this.state.nicknameError && !this.state.telError
+      && !this.state.lastNameError && !this.state.userNameError && !this.state.phoneError
   }
 
   isValidForm = () => {
@@ -95,35 +95,35 @@ export default class userRegistration extends Component {
     })
   }
 
-  handleNickname = (e) => {
+  handleUserName = (e) => {
     const name = e.target.name
     this.setState({
       [name]: e.target.value
     }, () => {
       let re = new RegExp('^[A-Za-z0-9_\\-.]+$')
-      let result = re.test(this.state.nickname)
+      let result = re.test(this.state.userName)
       if (!result) {
-        this.setState({ nicknameError: 'nickname can only contain number, letter, dash, underscore, and dot' },
+        this.setState({ userNameError: 'UserName can only contain number, letter, dash, underscore, and dot' },
           this.isValidForm)
       } else {
-        this.setState({ nicknameError: '' },
+        this.setState({ userNameError: '' },
           this.isValidForm)
       }
     })
   }
 
-  // handleTel = (e) => {
+  // handlePhone = (e) => {
   //   const name = e.target.name
   //   this.setState({
   //     [name]: e.target.value
   //   }, () => {
   //     let re = new RegExp('^\\(?\\d{3}\\)?\\d{3}\\+?([-])\\d{4}$')
-  //     let result = re.test(this.state.tel)
+  //     let result = re.test(this.state.phone)
   //     if (!result) {
-  //       this.setState({ telError: 'enter valid telephone number' },
+  //       this.setState({ phoneError: 'enter valid telephone number' },
   //         this.isValidForm)
   //     } else {
-  //       this.setState({ telError: '' },
+  //       this.setState({ phoneError: '' },
   //         this.isValidForm)
   //     }
   //   })
@@ -220,13 +220,13 @@ export default class userRegistration extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     // const { setUserData } = this.props
-    // const { firstName, lastName, nickname, email, tel, password, confirmPassword, address, sex, additionalInfo } = this.state
+    // const { firstName, lastName, userName, email, phone, password, confirmPassword, address, sex, additionalInfo } = this.state
     // setUserData({
     //   firstName,
     //   lastName,
-    //   nickname,
+    //   userName,
     //   email,
-    //   tel,
+    //   phone,
     //   password,
     //   confirmPassword,
     //   address,
@@ -237,9 +237,9 @@ export default class userRegistration extends Component {
     this.setState({
       firstName: '',
       lastName: '',
-      nickname: '',
+      userName: '',
       address: '',
-      tel: '',
+      phone: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -288,30 +288,30 @@ export default class userRegistration extends Component {
               <span className='error'>{this.state.lastNameError}</span>
             </div>
 
-            <div className='nickname'>
-              <span> <span className='important'> * </span>Nickname:</span>
+            <div className='userName'>
+              <span> <span className='important'> * </span>UserName:</span>
               <input
                 required
                 pattern='^[A-Za-z0-9_\-.]+$'
-                name="nickname"
+                name="userName"
                 className='form-control'
-                id='inputNickname'
-                value={this.state.nickname}
+                id='inputUserName'
+                value={this.state.userName}
                 type="text"
-                onChange={this.handleNickname}
-                placeholder='Enter nickname'/>
-              <span className='error'>{this.state.nicknameError}</span>
+                onChange={this.handleUserName}
+                placeholder='Enter userName'/>
+              <span className='error'>{this.state.userNameError}</span>
             </div>
 
-            <div className='tel'>
+            <div className='phone'>
               <span> <span className='important'> * </span> Telephone: </span>
               <MaskedInput
                 required
                 mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                name="tel"
+                name="phone"
                 className='form-control'
-                id='inputTel'
-                value={this.state.tel}
+                id='inputPhone'
+                value={this.state.phone}
                 type="text"
                 onChange={this.handleInput}
                 placeholder='Enter telephone'/>

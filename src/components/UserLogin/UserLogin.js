@@ -8,8 +8,8 @@ class userLogin extends Component {
   constructor () {
     super()
     this.state = {
-      nicknameLog: '',
-      nicknameErrorLog: '',
+      userNameLog: '',
+      userNameErrorLog: '',
       passwordLog: '',
       passwordErrorLog: '',
       disabled: true,
@@ -20,8 +20,8 @@ class userLogin extends Component {
   }
 
   allValid = () => {
-    return this.state.nicknameLog && this.state.passwordLog && !this.state.passwordErrorLog
-      && !this.state.nicknameErrorLog
+    return this.state.userNameLog && this.state.passwordLog && !this.state.passwordErrorLog
+      && !this.state.userNameErrorLog
   }
 
   isValidForm = () => {
@@ -32,18 +32,18 @@ class userLogin extends Component {
     }
   }
 
-  handleNickname = (e) => {
+  handleUserName = (e) => {
     const name = e.target.name
     this.setState({
       [name]: e.target.value
     }, () => {
       let re = new RegExp('^[A-Za-z0-9_\\-.]+$')
-      let result = re.test(this.state.nicknameLog)
+      let result = re.test(this.state.userNameLog)
       if (!result) {
-        this.setState({ nicknameErrorLog: 'nickname can only contain number, letter, dash, underscore, and dot' },
+        this.setState({ userNameErrorLog: 'userName can only contain number, letter, dash, underscore, and dot' },
           this.isValidForm)
       } else {
-        this.setState({ nicknameErrorLog: '' },
+        this.setState({ userNameErrorLog: '' },
           this.isValidForm)
       }
     })
@@ -69,16 +69,16 @@ class userLogin extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     this.setState({ showSpinner: true })
-    const { nicknameLog, passwordLog } = this.state
-    apiService.login({ nicknameLog, passwordLog })
+    const { userNameLog, passwordLog } = this.state
+    apiService.login({ userNameLog, passwordLog })
       .then(() => {
-        this.props.setUserData({ nicknameLog, passwordLog })
+        this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')
       }).catch(() => {
       this.setState({
         showMessage: true,
         showSpinner: false,
-        nicknameLog: '',
+        userNameLog: '',
         passwordLog: '',
         validInput: true
       })
@@ -95,19 +95,19 @@ class userLogin extends Component {
               <form onSubmit={this.onSubmit}>
 
                 <div className='text'><h4>Access to your personal account</h4></div>
-                <div className='nickname'>
-                  <span>Nickname:</span>
+                <div className='userName'>
+                  <span>UserName:</span>
                   <input
                     required
                     pattern='^[A-Za-z0-9_\-.]+$'
-                    name="nicknameLog"
-                    id='inputNickname'
-                    className={this.state.validInput ? 'form-control inputNickNameValid' : 'form-control'}
-                    value={this.state.nicknameLog}
+                    name="userNameLog"
+                    id='inputUserName'
+                    className={this.state.validInput ? 'form-control inputUserNameValid' : 'form-control'}
+                    value={this.state.userNameLog}
                     type="text"
-                    onChange={this.handleNickname}
-                    placeholder='Enter nickname'/>
-                  <span className='error'>{this.state.nicknameErrorLog}</span>
+                    onChange={this.handleUserName}
+                    placeholder='Enter userName'/>
+                  <span className='error'>{this.state.userNameErrorLog}</span>
                 </div>
 
                 <div className='password'>
@@ -115,7 +115,7 @@ class userLogin extends Component {
                   <input
                     required
                     pattern='^([a-zA-Z0-9]{10,})+$'
-                    className={this.state.validInput ? 'form-control inputNickNameValid' : 'form-control'}
+                    className={this.state.validInput ? 'form-control inputUserNameValid' : 'form-control'}
                     id='inputPassword'
                     type="password"
                     value={this.state.passwordLog}

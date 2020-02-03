@@ -5,7 +5,7 @@ export class apiService {
   static login (currentUser) {
     return new Promise((resolve, reject) => {
       users.forEach((user) => {
-        if (user.nickname === currentUser.nicknameLog && user.password === currentUser.passwordLog) {
+        if (user.userName === currentUser.userNameLog && user.password === currentUser.passwordLog) {
           window.localStorage.setItem('success', 'true')
         }
       })

@@ -4,7 +4,7 @@ import { user } from '../constants'
 
 const initialState = {
   mainUser: {
-    nicknameLog: '',
+    userNameLog: '',
     passwordLog: '',
     login: null
   }
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case user.SET_USER_DATA:
       return update(state, {
         mainUser: {
-          nicknameLog: { $set: action.payload.nicknameLog },
+          userNameLog: { $set: action.payload.userNameLog },
           passwordLog: { $set: action.payload.passwordLog },
           login: { $set: true }
         }
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     case user.CLEAR_USER_DATA:
       return update(state, {
         mainUser: {
-          nicknameLog: { $set: '' },
+          userNameLog: { $set: '' },
           passwordLog: { $set: '' },
           login: { $set: false }
         }

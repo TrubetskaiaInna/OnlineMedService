@@ -10,6 +10,7 @@ import UserLoginComponent from './components/UserLogin/UserLoginContainer'
 import PersonalAccountComponent from './components/PersonalAccount/PersonalAccountContainer'
 import HeaderComponent from './components/Header/HeaderContainer'
 import AboutUsComponent from './components/AboutUs/AboutUsContainer'
+import Data from './components/Data/Data'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -27,6 +28,7 @@ function App () {
               <Route path='/registration' component={UserRegistrationComponent} />
               <Route path='/login' component={UserLoginComponent} />
               <Route path='/personalAccount' component={PersonalAccountComponent} />
+              <Route path='/data' component={Data}/>
               <Route path='*' component={() => '404 NOT FOUND'} />
             </Switch>
           </Router>

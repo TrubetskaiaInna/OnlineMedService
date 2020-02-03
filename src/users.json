@@ -2,7 +2,7 @@
   {
     "firstName": "User",
     "lastName": "lastUser",
-    "nickname": "superUser",
+    "userName": "superUser",
     "email": "user@ukr.net",
     "tel": "(111)111-1111",
     "password": "password111",

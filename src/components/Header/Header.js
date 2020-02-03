@@ -21,7 +21,7 @@ const Header = (props) => {
         }
       </div>
       <div className='wrapperLinc'><NavLink className='linc' to='/contact'>Contact</NavLink></div>
-      {props.mainUser.nicknameLog}
+      {props.mainUser.userNameLog}
       <div className='buttonLinc' onClick={exitFunction}><NavLink className='linc' to='/'>Exit</NavLink></div>
     </header>
   )
