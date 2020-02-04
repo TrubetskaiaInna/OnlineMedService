@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
+import img from '../../assets/image/drop.png'
 
-const AnyReactComponent = ({ text }) => <div className='metka' style={{color:'red'}}> {text} </div>
+const AnyReactComponent = ({ metka, text }) => <div className='metka' style={{color:'#158CBA'}}>
+  {/*{metka}*/}
+{text}
+</div>
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -14,16 +18,17 @@ class SimpleMap extends Component {
 
   render () {
     return (
-      <div style={{ height: '60vh', width: '1024px' }}>
+      <div style={{ height: '75vh', width: '1024px' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyB9GsetK6T_TvgzO6-zRC6RvCgGTSTFlu8' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
-            lat={49.430097}
-            lng={32.059752}
-            text="OnlineMedService"
+            lat={49.430122}
+            lng={32.059732}
+            metka=<img src={img} alt={'img'} className="metka"/>
+            text='OnlineMedService'
           />
         </GoogleMapReact>
       </div>

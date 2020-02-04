@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import './Header.scss'
 
 const Header = (props) => {
-  console.log(props)
   const exitFunction = () => {
     window.localStorage.setItem('success', 'false')
     const { clearUserData } = props

@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export default class Data extends React.Component {
   state = {
-    startDate: new Date()
+    startDate: null
   }
 
   handleChange = date => {
@@ -19,14 +19,21 @@ export default class Data extends React.Component {
   }
 
   isWeekday = date => {
+    const { workDays } = this.props.doctor
     const day = getDay(date)
-    return day !== 0 && day !== 6
+    return day !== workDays[0]
+      && day !== workDays[1]
+      && day !== workDays[2]
+      && day !== workDays[3]
+      && day !== workDays[4]
+      && day !== workDays[5]
+      && day !== workDays[6]
   }
 
   render () {
     return (
       <div className='wrapperDate'>
-        <h4>Select date</h4>
+        {/*<span>{this.props.doctor.name}</span>*/}
         <DatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
@@ -34,6 +41,7 @@ export default class Data extends React.Component {
           minDate={new Date()}
           maxDate={addDays(new Date(), 7)}
           filterDate={this.isWeekday}
+          placeholderText="Select date"
         />
       </div>
     )
