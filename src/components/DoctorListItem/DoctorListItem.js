@@ -1,26 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './DoctorListItem.scss'
 import TransitionsModal from '../../components/Info/InfoContainer'
-import Data from '../Data/Data'
+import { NavLink } from 'react-router-dom'
 
-const DoctorListItem = ({ doctor, user }) => {
-  const { name, type, photo } = doctor
-  const { login } = user
-  const [action, setaction] = useState(false)
+const DoctorListItem = (props) => {
+  const { name, type, photo } = props.doctor
+  const { login } = props.user
   const handleClick = () => {
-    setaction(!action)
+    props.setSelectedDoctorData(props.doctor)
   }
   return (
     <>
-      <div className='card' onClick={handleClick}>
+      {login ? <NavLink to='/entry' className='card' onClick={handleClick}>
         <div className='wrapperPhoto'><img className='photo' src={photo} alt='img'/></div>
         <div className='wrapperText'>
           <h4 className='card-title'>{name}</h4>
           <p className='card-text'>{type}</p>
         </div>
-      </div>
-      <TransitionsModal doctor={doctor}/>
-      {login && action ? <Data doctor={doctor}/> : null}
+      </NavLink> : <div className='card'>
+        <div className='wrapperPhoto'><img className='photo' src={photo} alt='img'/></div>
+        <div className='wrapperText'>
+          <h4 className='card-title'>{name}</h4>
+          <p className='card-text'>{type}</p>
+        </div>
+      </div>}
+      <TransitionsModal doctor={props.doctor}/>
     </>
   )
 }

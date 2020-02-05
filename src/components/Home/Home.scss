@@ -28,3 +28,22 @@ header{
   background-color: transparent;
   cursor: pointer;
 }
+
+#btn{
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.homeText{
+  width: 500px;
+  margin: 50px auto;
+  font-size: 20px;
+  color: grey;
+}
+
+li{
+  width: 400px;
+  margin: auto;
+}

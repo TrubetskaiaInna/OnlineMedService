@@ -19,18 +19,19 @@ export default class Data extends React.Component {
   }
 
   isWeekday = date => {
-    const { weekend } = this.props.doctor
-    const day = getDay(date)
-    return day !== weekend[0]
-      && day !== weekend[1]
-      && day !== weekend[2]
-      && day !== weekend[3]
-      && day !== weekend[4]
-      && day !== weekend[5]
-      && day !== weekend[6]
+    // const { weekend } = this.props.selectedDoctors
+    // const day = getDay(date)
+    // return day !== weekend[0]
+    //   && day !== weekend[1]
+    //   && day !== weekend[2]
+    //   && day !== weekend[3]
+    //   && day !== weekend[4]
+    //   && day !== weekend[5]
+    //   && day !== weekend[6]
   }
 
   render () {
+    console.log(7777777777, this.props)
     return (
       <div className='wrapperDate'>
         <DatePicker
@@ -42,7 +43,7 @@ export default class Data extends React.Component {
           filterDate={this.isWeekday}
           placeholderText="Select date"
         />
-        <Time date={this.state.startDate} doctor={this.props.doctor}/>
+        {/*<Time date={this.state.startDate} doctor={this.props.doctor}/>*/}
       </div>
     )
   }

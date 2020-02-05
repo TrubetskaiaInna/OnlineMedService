@@ -9,10 +9,10 @@ const Time = ({ date, doctor }) => {
 
   return (
     <>
-      <div>
-        {day}{numberDay}{doctor.name}
-      </div>
-      <button>Sign</button>
+      {/*<div>*/}
+      {/*  {day}{numberDay}{doctor.name}*/}
+      {/*</div>*/}
+      {/*<button>Sign</button>*/}
     </>
   )
 

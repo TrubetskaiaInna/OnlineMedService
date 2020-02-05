@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import DoctorList from './DoctorList'
+import Data from './Data'
 import { user, doctor, selectedDoctor } from '../../actions'
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(555, state)
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,
-    selectedDoctors: state.selectedDoctor.selectedDoctors
+    selectedDoctors: state.selectedDoctor.doctors
   }
 }
 
@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData, setSelectedDoctorData }, dispatch)
 }
 
-const DoctorListContainer = connect(
+const DataContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(DoctorList)
+)(Data)
 
-export default DoctorListContainer
+export default DataContainer
