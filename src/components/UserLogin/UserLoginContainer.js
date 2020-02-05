@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-const UserRegistrationComponentContainer = connect(
+const UserLoginComponentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(UserLoginComponent)
 
-export default UserRegistrationComponentContainer
+export default UserLoginComponentContainer

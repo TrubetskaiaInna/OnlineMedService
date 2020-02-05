@@ -6,9 +6,9 @@ import Data from '../Data/Data'
 const DoctorListItem = ({ doctor, user }) => {
   const { name, type, photo } = doctor
   const { login } = user
-  const [aaaa, setaaaa] = useState(false)
+  const [action, setaction] = useState(false)
   const handleClick = () => {
-    setaaaa(!aaaa)
+    setaction(!action)
   }
   return (
     <>
@@ -20,11 +20,7 @@ const DoctorListItem = ({ doctor, user }) => {
         </div>
       </div>
       <TransitionsModal doctor={doctor}/>
-      {login && aaaa ? <Data doctor={doctor}/> : null}
-
-      {/*{login ?*/}
-      {/*  <button onClick={setData} className='btn btn-primary'>Make an*/}
-      {/*    appointment</button> : null}*/}
+      {login && action ? <Data doctor={doctor}/> : null}
     </>
   )
 }

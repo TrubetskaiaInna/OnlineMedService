@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 import img from '../../assets/image/drop.png'
+import './GoogleMap.scss'
 
-const AnyReactComponent = ({ metka, text }) => <div className='metka' style={{color:'#158CBA'}}>
-  {/*{metka}*/}
-{text}
-</div>
+const MarkerComponent = ({ marker }) => <div className='marker'>{marker}</div>
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -24,11 +22,10 @@ class SimpleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
+          <MarkerComponent
             lat={49.430122}
             lng={32.059732}
-            metka=<img src={img} alt={'img'} className="metka"/>
-            text='OnlineMedService'
+            marker=<img src={img} alt={'img'} className="markerImg"/>
           />
         </GoogleMapReact>
       </div>

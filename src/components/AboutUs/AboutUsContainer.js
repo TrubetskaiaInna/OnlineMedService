@@ -18,9 +18,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ setUserData, clearUserData, setDoctorData, clearDoctorData }, dispatch)
 }
 
-const UserRegistrationComponentContainer = connect(
+const AboutAsComponentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AboutUs)
 
-export default UserRegistrationComponentContainer
+export default AboutAsComponentContainer

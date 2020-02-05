@@ -21,9 +21,6 @@ class DoctorList extends Component {
           doctors.map((doctor) => {
             return (
               <div className='wrapperItemCard' key={doctor.id}><DoctorListItem doctor={doctor} user={mainUser}/>
-                {/*{this.props.mainUser.login ?*/}
-                {/*  <button onClick={this.setData} className='btn btn-primary'>Make an*/}
-                {/*    appointment</button> : null}*/}
               </div>
             )
           })
