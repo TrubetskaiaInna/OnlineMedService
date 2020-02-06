@@ -3,7 +3,7 @@ import DoctorList from '../DoctorList/DoctorListContainer'
 import './AboutUs.scss'
 import Carousel from '../Carousel/Carousel'
 
-const AboutUs = (props) => {
+const AboutUs = () => {
   return (
     <>
       <Carousel/>

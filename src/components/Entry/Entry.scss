@@ -1,0 +1,22 @@
+.wrapperEntry{
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.wrapperInfoDoctor{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photoDoctor, .nameDoctor, .typeDoctor{
+  display: flex;
+  justify-content: center;
+  width: 500px;
+}
+
+

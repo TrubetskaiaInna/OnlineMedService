@@ -5,7 +5,7 @@ import Data from './Data'
 import { user, doctor, selectedDoctor } from '../../actions'
 
 const mapStateToProps = (state) => {
-  console.log(555, state)
+  console.log(state)
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,

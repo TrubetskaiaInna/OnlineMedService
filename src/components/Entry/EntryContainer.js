@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,
-    selectedDoctors: state.selectedDoctor.selectedDoctors
+    selectedDoctors: state.selectedDoctor.doctors
   }
 }
 
