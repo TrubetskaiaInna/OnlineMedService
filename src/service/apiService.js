@@ -2,7 +2,7 @@ import users from '../users.json'
 import doctors from '../doctors.json'
 import axios from 'axios'
 
-export class apiService {
+export class apiService3 {
   static login (currentUser) {
     return new Promise((resolve, reject) => {
       users.forEach((user) => {
@@ -32,22 +32,23 @@ export class apiService2 {
   }
 }
 
-export class apiServiceRegistrationUser {
+export class apiService {
   static registration (currentUser) {
-    return axios.post('http://127.0.0.1:8000/api/sign-up',
-      {
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        email: currentUser.email,
-        username: currentUser.userName,
-        planePassword: currentUser.password,
-        address: currentUser.address,
-        phone: currentUser.phone,
-        gender: currentUser.sex
-      }
-    ).then(response => {
-      return response.data
-    })
+    return axios
+      .post('http://127.0.0.1:8000/api/sign-up',
+        {
+          firstName: currentUser.firstName,
+          lastName: currentUser.lastName,
+          email: currentUser.email,
+          username: currentUser.userName,
+          planePassword: currentUser.password,
+          address: currentUser.address,
+          phone: currentUser.phone,
+          gender: currentUser.sex
+        }
+      ).then(response => {
+        console.log(response)
+      })
       .catch(error => {
         if (error.response) {
           console.log(error.response.data)
@@ -58,6 +59,9 @@ export class apiServiceRegistrationUser {
         }
         console.log(error.config)
       })
+  }
+  static login(currentUser){
+    return
   }
 }
 

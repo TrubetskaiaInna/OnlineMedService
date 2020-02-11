@@ -4,7 +4,7 @@ import './Header.scss'
 
 const Header = (props) => {
   const exitFunction = () => {
-    window.localStorage.setItem('success', 'false')
+    // window.localStorage.setItem('success', 'false')
     const { clearUserData } = props
     clearUserData()
   }

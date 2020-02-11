@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
 import { RadioButton } from 'primereact/radiobutton'
 import './UserRegistration.scss'
-import axios from 'axios'
-import { apiServiceRegistrationUser } from '../../service/apiService'
+import { apiService } from '../../service/apiService'
 
 export default class userRegistration extends Component {
   constructor (props) {
@@ -201,38 +200,12 @@ export default class userRegistration extends Component {
     })
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault()
-    // const { firstName, lastName, email, userName, password, address, phone, sex } = this.state
-    // apiServiceRegistrationUser.registration(firstName, lastName, email, userName, password, address, phone, sex)
-
-    axios.post('http://127.0.0.1:8000/api/sign-up',
-      {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        username: this.state.userName,
-        planePassword: this.state.password,
-        address: this.state.address,
-        phone: this.state.phone,
-        gender: this.state.sex
-      }
-    ).then(res => console.log(res)).catch(error => console.log(error))
-
+    const { firstName, lastName, email, userName, password, address, phone, sex } = this.state
+    const newUserForm = { firstName, lastName, email, userName, password, address, phone, sex }
+    await apiService.registration(newUserForm)
     this.props.history.push('/login')
-    this.setState({
-      firstName: '',
-      lastName: '',
-      userName: '',
-      address: '',
-      phone: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      sex: '',
-      additionalInfo: '',
-      disabled: true
-    })
   }
 
   render () {
