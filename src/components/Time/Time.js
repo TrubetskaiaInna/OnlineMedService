@@ -19,7 +19,7 @@ const Time = ({ date }) => {
       <div className='wrapperTime'>
       </div>
       <div className='wrapperButton'>
-        <button className='btn btn-outline-primary'>Sign</button>
+        <button className='btn btn-outline-primary'>Confirm</button>
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import users from '../users.json'
 import doctors from '../doctors.json'
+import axios from 'axios'
 
 export class apiService {
   static login (currentUser) {
@@ -28,5 +29,23 @@ export class apiService2 {
         reject(new Error(401))
       }, 700)
     })
+  }
+}
+
+export class apiServiceRegistrationUser {
+  static registration (currentUser) {
+    axios.post('http://127.0.0.1:8000/api/sign-up',
+      {
+        firstName: currentUser.firstName,
+        lastName: currentUser.lastName,
+        email: currentUser.email,
+        username: currentUser.userName,
+        planePassword: currentUser.password,
+        address: currentUser.address,
+        phone: currentUser.phone,
+        gender: currentUser.sex
+      }
+    ).then(res => console.log(res)).catch(error => console.log(error))
+
   }
 }

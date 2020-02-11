@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
+import { RadioButton } from 'primereact/radiobutton'
 import './UserRegistration.scss'
+import axios from 'axios'
+import { apiServiceRegistrationUser } from '../../service/apiService'
 
 export default class userRegistration extends Component {
   constructor (props) {
@@ -22,24 +25,15 @@ export default class userRegistration extends Component {
       confirmPasswordError: '',
       actionConfirmPasswordError: false,
       address: '',
-      sex: {
-        man: false,
-        woman: false
-      },
+      sex: '',
       additionalInfo: '',
       disabled: true,
     }
   }
 
-  // componentDidMount () {
-  //   const { clearUserData } = this.props
-  //   clearUserData()
-  // }
-
   allValid = () => {
-    return this.state.firstName && this.state.lastName && this.state.userName
-      && this.state.password && this.state.confirmPassword && (this.state.sex.woman
-        || this.state.sex.man) && this.state.phone && this.state.address && !this.state.emailError
+    return this.state.firstName && this.state.lastName && this.state.userName && this.state.sex
+      && this.state.password && this.state.confirmPassword && this.state.phone && this.state.address && !this.state.emailError
       && !this.state.passwordError && !this.state.confirmPasswordError && !this.state.firstNameError
       && !this.state.lastNameError && !this.state.userNameError && !this.state.phoneError
   }
@@ -184,20 +178,10 @@ export default class userRegistration extends Component {
   }
 
   handleRadio = (e) => {
-    let man
-    let woman
-    if (e.target.name === 'man') {
-      man = e.target.checked
-      woman = !e.target.checked
-    } else {
-      man = !e.target.checked
-      woman = e.target.checked
-    }
+
     this.setState({
-      sex: { man, woman }
-    }, () => {
-      this.isValidForm()
-    })
+      sex: e.target.value
+    }, this.isValidForm)
   }
 
   handleEmail = (e) => {
@@ -219,20 +203,22 @@ export default class userRegistration extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    // const { setUserData } = this.props
-    // const { firstName, lastName, userName, email, phone, password, confirmPassword, address, sex, additionalInfo } = this.state
-    // setUserData({
-    //   firstName,
-    //   lastName,
-    //   userName,
-    //   email,
-    //   phone,
-    //   password,
-    //   confirmPassword,
-    //   address,
-    //   sex,
-    //   additionalInfo
-    // })
+    // const { firstName, lastName, email, userName, password, address, phone, sex } = this.state
+    // apiServiceRegistrationUser.registration(firstName, lastName, email, userName, password, address, phone, sex)
+
+    axios.post('http://127.0.0.1:8000/api/sign-up',
+      {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        username: this.state.userName,
+        planePassword: this.state.password,
+        address: this.state.address,
+        phone: this.state.phone,
+        gender: this.state.sex
+      }
+    ).then(res => console.log(res)).catch(error => console.log(error))
+
     this.props.history.push('/login')
     this.setState({
       firstName: '',
@@ -243,10 +229,7 @@ export default class userRegistration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      sex: {
-        man: false,
-        woman: false
-      },
+      sex: '',
       additionalInfo: '',
       disabled: true
     })
@@ -307,7 +290,8 @@ export default class userRegistration extends Component {
               <span> <span className='important'> * </span> Telephone: </span>
               <MaskedInput
                 required
-                mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                // mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                mask={['+', /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/]}
                 name="phone"
                 className='form-control'
                 id='inputPhone'
@@ -363,16 +347,22 @@ export default class userRegistration extends Component {
             <div className='sex'>
               <span> <span className='important'> * </span> Sex: </span>
               <div className='wrapperRadio'>
-                <span> woman </span>
-                <input type="radio"
-                       name="woman"
-                       checked={this.state.sex.woman}
-                       onChange={this.handleRadio}/>
-                <span>man</span>
-                <input type="radio"
-                       name="man"
-                       checked={this.state.sex.man}
-                       onChange={this.handleRadio}/>
+                <RadioButton
+                  type="radio"
+                  value="Women"
+                  checked={this.state.sex === 'Women'}
+                  onChange={this.handleRadio}
+                />
+                <label>women</label>
+
+                <RadioButton
+                  type="radio"
+                  value="Men"
+                  checked={this.state.sex === 'Men'}
+                  onChange={this.handleRadio}
+                />
+                <label>men</label>
+
               </div>
             </div>
 
