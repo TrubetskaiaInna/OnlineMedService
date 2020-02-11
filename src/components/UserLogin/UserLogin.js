@@ -3,7 +3,6 @@ import './UserLogin.scss'
 import { apiService } from '../../service/apiService'
 import Message from '../Message/Message'
 import Spinner from '../Spinner/Spinner'
-import axios from 'axios'
 
 class userLogin extends Component {
   constructor () {
@@ -67,28 +66,23 @@ class userLogin extends Component {
     })
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault()
     this.setState({ showSpinner: true })
     const { userNameLog, passwordLog } = this.state
-    axios.post('http://127.0.0.1:8000/api/login',
-      {
-        username: this.state.userNameLog,
-        password: this.state.passwordLog
-      })
+    await apiService.login({ userNameLog, passwordLog })
       .then((res) => {
-        console.log(res)
         this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')
       }).catch(() => {
-      this.setState({
-        showMessage: true,
-        showSpinner: false,
-        userNameLog: '',
-        passwordLog: '',
-        validInput: true
+        this.setState({
+          showMessage: true,
+          showSpinner: false,
+          userNameLog: '',
+          passwordLog: '',
+          validInput: true
+        })
       })
-    })
   }
 
   render () {
