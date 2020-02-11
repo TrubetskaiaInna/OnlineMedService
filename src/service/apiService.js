@@ -34,7 +34,7 @@ export class apiService2 {
 
 export class apiServiceRegistrationUser {
   static registration (currentUser) {
-    axios.post('http://127.0.0.1:8000/api/sign-up',
+    return axios.post('http://127.0.0.1:8000/api/sign-up',
       {
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
@@ -45,7 +45,19 @@ export class apiServiceRegistrationUser {
         phone: currentUser.phone,
         gender: currentUser.sex
       }
-    ).then(res => console.log(res)).catch(error => console.log(error))
-
+    ).then(response => {
+      return response.data
+    })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else {
+          console.log('Strange Error', error.message)
+        }
+        console.log(error.config)
+      })
   }
 }
+

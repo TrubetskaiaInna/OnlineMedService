@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './UserLogin.scss'
-import {apiService} from '../../service/apiService'
+import { apiService } from '../../service/apiService'
 import Message from '../Message/Message'
 import Spinner from '../Spinner/Spinner'
+import axios from 'axios'
 
 class userLogin extends Component {
   constructor () {
@@ -54,7 +55,7 @@ class userLogin extends Component {
     this.setState({
       [name]: e.target.value
     }, () => {
-      let re = new RegExp('^([a-zA-Z0-9]{10,})+$')
+      let re = new RegExp('^([a-zA-Z0-9]{5,})+$')
       let result = re.test(this.state.passwordLog)
       if (!result) {
         this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)' },
@@ -70,8 +71,13 @@ class userLogin extends Component {
     e.preventDefault()
     this.setState({ showSpinner: true })
     const { userNameLog, passwordLog } = this.state
-    apiService.login({ userNameLog, passwordLog })
-      .then(() => {
+    axios.post('http://127.0.0.1:8000/api/login',
+      {
+        username: this.state.userNameLog,
+        password: this.state.passwordLog
+      })
+      .then((res) => {
+        console.log(res)
         this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')
       }).catch(() => {
@@ -114,7 +120,7 @@ class userLogin extends Component {
                   <span> Password: </span>
                   <input
                     required
-                    pattern='^([a-zA-Z0-9]{10,})+$'
+                    pattern='^([a-zA-Z0-9]{5,})+$'
                     className={this.state.validInput ? 'form-control inputUserNameValid' : 'form-control'}
                     id='inputPassword'
                     type="password"

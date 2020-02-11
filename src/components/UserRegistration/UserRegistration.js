@@ -282,7 +282,7 @@ export default class userRegistration extends Component {
                 value={this.state.userName}
                 type="text"
                 onChange={this.handleUserName}
-                placeholder='Enter userName'/>
+                placeholder='Enter user name'/>
               <span className='error'>{this.state.userNameError}</span>
             </div>
 
@@ -291,7 +291,7 @@ export default class userRegistration extends Component {
               <MaskedInput
                 required
                 // mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                mask={['+', /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/]}
+                mask={['+', /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
                 name="phone"
                 className='form-control'
                 id='inputPhone'
