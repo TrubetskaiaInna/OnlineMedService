@@ -5,8 +5,8 @@ import Message from '../Message/Message'
 import Spinner from '../Spinner/Spinner'
 
 class userLogin extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       userNameLog: '',
       userNameErrorLog: '',
@@ -14,7 +14,6 @@ class userLogin extends Component {
       passwordErrorLog: '',
       disabled: true,
       showMessage: false,
-      showSpinner: false,
       validInput: false
     }
   }
@@ -68,16 +67,17 @@ class userLogin extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault()
-    this.setState({ showSpinner: true })
+    this.props.showLoading()
     const { userNameLog, passwordLog } = this.state
     await apiService.login({ userNameLog, passwordLog })
-      .then((res) => {
+      .then(() => {
+        this.props.hideLoading()
         this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')
       }).catch(() => {
+        this.props.hideLoading()
         this.setState({
           showMessage: true,
-          showSpinner: false,
           userNameLog: '',
           passwordLog: '',
           validInput: true
@@ -88,7 +88,7 @@ class userLogin extends Component {
   render () {
     return (
       <>
-        {this.state.showSpinner ? <Spinner/> :
+        {this.props.action ? <Spinner/> :
           <div className='wrapperLogComponent'>
 
             <div className='wrapperLogin'>
