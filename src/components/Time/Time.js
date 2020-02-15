@@ -5,11 +5,12 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December']
 
-const Time = ({ date }) => {
-  let day = days[date.getDay()]
-  let numberDay = date.getDate()
-  let month = months[date.getMonth()]
-  let year = date.getFullYear()
+const Time = (props) => {
+  console.log(888888888, props)
+  let day = days[props.date.getDay()]
+  let numberDay = props.date.getDate()
+  let month = months[props.date.getMonth()]
+  let year = props.date.getFullYear()
 
   return (
     <>
@@ -17,6 +18,13 @@ const Time = ({ date }) => {
         <h5> {day}, {numberDay} {month} {year}</h5>
       </div>
       <div className='wrapperTime'>
+        {props.selectedDoctors.time.map((element) => {
+          console.log(element)
+          return (
+            <div className='btn btn-secondary' id='time'> {element} </div>
+          )
+        })
+        }
       </div>
       <div className='wrapperButton'>
         <button className='btn btn-outline-primary'>Confirm</button>

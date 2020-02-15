@@ -14,6 +14,8 @@ export class apiService2 {
   }
 }
 
+let token
+
 export class apiService {
   static registration (currentUser) {
     return axios
@@ -49,7 +51,15 @@ export class apiService {
         {
           username: currentUser.userNameLog,
           password: currentUser.passwordLog
-        })
+        }).then(res => token = res.data.apiToken)
+  }
+
+  static logout () {
+    return axios
+      .post('http://127.0.0.1:8000/api/logout', null,
+        { headers: { 'X-AUTH-TOKEN': token } })
+      .then(res => console.log(res))
+      .catch(error => console.log(error))
   }
 }
 

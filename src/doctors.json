@@ -5,7 +5,8 @@
     "name": "John Smith",
     "type": "Surgeon",
     "info": "In 1979 she graduated from the K Medical Institute. In 2016, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 40 years of medical experience",
-    "weekend": [2,0,6]
+    "weekend": [2,0,6],
+    "time" : ["8.00-8.30","8.30-9.00","9.00-9.30","9.30-10.00"]
   },
   {
     "id": "2",

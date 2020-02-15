@@ -4,7 +4,7 @@ import { addDays, getDay } from 'date-fns'
 import './Data.scss'
 
 import 'react-datepicker/dist/react-datepicker.css'
-import Time from '../Time/Time'
+import Time from '../Time/TimeContainer'
 
 export default class Data extends React.Component {
   state = {

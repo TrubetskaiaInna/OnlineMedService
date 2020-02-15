@@ -1,11 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Header.scss'
+import {apiService} from '../../service/apiService'
 
 const Header = (props) => {
-  const exitFunction = () => {
+
+  const exitFunction = async () => {
     const { clearUserData } = props
     clearUserData()
+    await apiService.logout()
   }
 
   return (
