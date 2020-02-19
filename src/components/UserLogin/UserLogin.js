@@ -53,7 +53,7 @@ class userLogin extends Component {
     this.setState({
       [name]: e.target.value
     }, () => {
-      let re = new RegExp('^([a-zA-Z0-9]{5,})+$')
+      let re = new RegExp('^([a-zA-Z0-9]{10,})+$')
       let result = re.test(this.state.passwordLog)
       if (!result) {
         this.setState({ passwordErrorLog: 'password must contain at least 10 characters (letters or number)' },

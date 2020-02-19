@@ -14,6 +14,8 @@ export default class userRegistration extends Component {
       lastNameError: '',
       userName: '',
       userNameError: '',
+      userNameValid: '',
+      actionUserNameValid: false,
       email: '',
       emailError: '',
       phone: '',
@@ -105,22 +107,22 @@ export default class userRegistration extends Component {
     })
   }
 
-  // handlePhone = (e) => {
-  //   const name = e.target.name
-  //   this.setState({
-  //     [name]: e.target.value
-  //   }, () => {
-  //     let re = new RegExp('^\\(?\\d{3}\\)?\\d{3}\\+?([-])\\d{4}$')
-  //     let result = re.test(this.state.phone)
-  //     if (!result) {
-  //       this.setState({ phoneError: 'enter valid telephone number' },
-  //         this.isValidForm)
-  //     } else {
-  //       this.setState({ phoneError: '' },
-  //         this.isValidForm)
-  //     }
-  //   })
-  // }
+  handlePhone = (e) => {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+      let re = new RegExp('(^(\\+)\\d{12})+$')
+      let result = re.test(this.state.phone)
+      if (!result) {
+        this.setState({ phoneError: 'enter valid telephone number' },
+          this.isValidForm)
+      } else {
+        this.setState({ phoneError: '' },
+          this.isValidForm)
+      }
+    })
+  }
 
   isValidPassword = () => {
     if (this.state.password !== this.state.confirmPassword) {
@@ -177,7 +179,6 @@ export default class userRegistration extends Component {
   }
 
   handleRadio = (e) => {
-
     this.setState({
       sex: e.target.value
     }, this.isValidForm)
@@ -203,9 +204,18 @@ export default class userRegistration extends Component {
   onSubmit = async (e) => {
     e.preventDefault()
     const { firstName, lastName, email, userName, password, address, phone, sex, additionalInfo } = this.state
-    const newUserForm = { firstName, lastName, email, userName, password, address, phone, sex, additionalInfo}
+    const newUserForm = { firstName, lastName, email, userName, password, address, phone, sex, additionalInfo }
     await apiService.registration(newUserForm)
-    this.props.history.push('/login')
+      .then(() => {
+        this.props.history.push('/login')
+      })
+      .catch(() => {
+        this.setState({
+            userNameValid: 'user with that name already exists',
+            actionUserNameValid: true
+          },
+          this.isValidForm)
+      })
   }
 
   render () {
@@ -251,12 +261,13 @@ export default class userRegistration extends Component {
                 pattern='^[A-Za-z0-9_\-.]+$'
                 name="userName"
                 className='form-control'
-                id='inputUserName'
+                id={this.state.actionUserNameValid ? 'inputUserNameError' : 'inputUserName'}
                 value={this.state.userName}
                 type="text"
                 onChange={this.handleUserName}
                 placeholder='Enter user name'/>
               <span className='error'>{this.state.userNameError}</span>
+              <span className='error'>{this.state.userNameValid}</span>
             </div>
 
             <div className='phone'>
@@ -270,8 +281,9 @@ export default class userRegistration extends Component {
                 id='inputPhone'
                 value={this.state.phone}
                 type="text"
-                onChange={this.handleInput}
+                onChange={this.handlePhone}
                 placeholder='Enter telephone'/>
+              <span className='error'>{this.state.phoneError}</span>
             </div>
 
             <div className='password'>
