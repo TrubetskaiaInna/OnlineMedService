@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import DoctorListItem from '../DoctorListItem/DoctorListItemContainer'
-import { apiService2 } from '../../service/apiService'
+import { apiService } from '../../service/apiService'
+import Spinner from '../Spinner/Spinner'
 
 class DoctorList extends Component {
 
-  componentDidMount () {
-    apiService2.getDoctor()
-      .then((data) => {
-        this.props.setDoctorData(data)
+  componentDidMount = () => {
+    this.props.showLoading()
+    apiService.getDoctors()
+      .then((res) => {
+        this.props.hideLoading()
+        this.props.setDoctorData(res.data.doctors)
       })
+      .catch(error => console.log (error))
     this.props.clearDoctorData()
   }
 
@@ -17,8 +21,8 @@ class DoctorList extends Component {
     const { doctors } = this.props
     return (
       <>
-        {
-          doctors.map((doctor) => {
+        {this.props.action ? <Spinner/> :
+          (doctors).map((doctor) => {
             return (
               <div className='wrapperItemCard' key={doctor.id}><DoctorListItem doctor={doctor} user={mainUser}/>
               </div>

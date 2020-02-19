@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -36,7 +38,7 @@ const TransitionsModal = (props) => {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen} style={{ width: 285,  }}>
+      <button type='button' onClick={handleOpen} style={{ width: 285, }}>
         More info
       </button>
       <Modal
@@ -53,8 +55,13 @@ const TransitionsModal = (props) => {
       >
         <Fade in={open}>
 
-          <div className={classes.paper}>
-            <h3>{props.doctor.name}</h3>
+          <div className={classes.paper} style={{ outline: 'none' }}>
+            <div style={{width: '315px',display:'flex', justifyContent:'space-between', alignItems:'end'}}><h3>{props.doctor.fullName}</h3>
+              <IconButton style={{ outline: 'none'}} edge="start" size="small" color="inherit" onClick={handleClose}
+                          aria-label="close">
+                <CloseIcon/>
+              </IconButton>
+            </div>
             <span>{props.doctor.info}</span>
           </div>
         </Fade>

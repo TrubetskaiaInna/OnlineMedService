@@ -1,18 +1,4 @@
-import doctors from '../doctors.json'
 import axios from 'axios'
-
-export class apiService2 {
-  static getDoctor () {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(doctors)
-      }, 700)
-      setTimeout(() => {
-        reject(new Error(401))
-      }, 700)
-    })
-  }
-}
 
 let token
 
@@ -28,7 +14,8 @@ export class apiService {
           planePassword: currentUser.password,
           address: currentUser.address,
           phone: currentUser.phone,
-          gender: currentUser.sex
+          gender: currentUser.sex,
+          additionalInfo: currentUser.additionalInfo
         }
       ).then(response => {
         console.log(response)
@@ -52,6 +39,7 @@ export class apiService {
           username: currentUser.userNameLog,
           password: currentUser.passwordLog
         }).then(res => token = res.data.apiToken)
+      .catch(error => console.log(error))
   }
 
   static logout () {
@@ -60,6 +48,15 @@ export class apiService {
         { headers: { 'X-AUTH-TOKEN': token } })
       .then(res => console.log(res))
       .catch(error => console.log(error))
+  }
+
+  static getDoctors () {
+    return axios
+      .get('http://127.0.0.1:8000/api/doctor/list')
+      .then(res=>{
+        return res
+      })
+      .catch(error=> console.log(error))
   }
 }
 

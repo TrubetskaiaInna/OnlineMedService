@@ -5,8 +5,17 @@
     "name": "John Smith",
     "type": "Surgeon",
     "info": "In 1979 she graduated from the K Medical Institute. In 2016, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 40 years of medical experience",
-    "weekend": [2,0,6],
-    "time" : ["8.00-8.30","8.30-9.00","9.00-9.30","9.30-10.00"]
+    "weekend": [
+      2,
+      0,
+      6
+    ],
+    "time": [
+      "8.00-8.30",
+      "8.30-9.00",
+      "9.00-9.30",
+      "9.30-10.00"
+    ]
   },
   {
     "id": "2",
@@ -14,7 +23,10 @@
     "name": "Hugh Brown",
     "type": "Dentist",
     "info": "In 1985 she graduated from the M Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 35 years of medical experience",
-    "weekend": [0, 4]
+    "weekend": [
+      0,
+      4
+    ]
   },
   {
     "id": "3",
@@ -22,7 +34,10 @@
     "name": "Olivia Miller",
     "type": "Therapist",
     "info": "In 1999 she graduated from the S Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 21 years of medical experience",
-    "weekend": [1, 5]
+    "weekend": [
+      1,
+      5
+    ]
   },
   {
     "id": "4",
@@ -30,7 +45,10 @@
     "name": "Jack Taylor",
     "type": "Ophthalmologist",
     "info": "In 2005 she graduated from the K Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 15 years of medical experience",
-    "weekend": [3, 6]
+    "weekend": [
+      3,
+      6
+    ]
   },
   {
     "id": "5",
@@ -38,7 +56,10 @@
     "name": "Emma Evans",
     "type": "Masseur",
     "info": "In 1998 she graduated from the S Medical Institute. In 2013, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 22 years of medical experience",
-    "weekend": [0, 2]
+    "weekend": [
+      0,
+      2
+    ]
   },
   {
     "id": "6",
@@ -46,6 +67,10 @@
     "name": "Grace Jones",
     "type": "Neurologist",
     "info": "In 2009 she graduated from the M Medical Institute. In 2019, she confirmed the First Category of Pediatric Physician. As of 01.01.2020 he has 11 years of medical experience",
-    "weekend": [1, 4]
+    "weekend": [
+      1,
+      4
+    ]
   }
 ]
+

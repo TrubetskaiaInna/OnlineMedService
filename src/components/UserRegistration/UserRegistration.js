@@ -202,8 +202,8 @@ export default class userRegistration extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault()
-    const { firstName, lastName, email, userName, password, address, phone, sex } = this.state
-    const newUserForm = { firstName, lastName, email, userName, password, address, phone, sex }
+    const { firstName, lastName, email, userName, password, address, phone, sex, additionalInfo } = this.state
+    const newUserForm = { firstName, lastName, email, userName, password, address, phone, sex, additionalInfo}
     await apiService.registration(newUserForm)
     this.props.history.push('/login')
   }
