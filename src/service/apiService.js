@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-let token
-
 export class apiService {
   static registration (currentUser) {
     return axios

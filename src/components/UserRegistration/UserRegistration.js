@@ -20,6 +20,7 @@ export default class userRegistration extends Component {
       emailError: '',
       phone: '',
       phoneError: '',
+      actionPhoneError: false,
       password: '',
       passwordError: '',
       confirmPassword: '',
@@ -115,10 +116,16 @@ export default class userRegistration extends Component {
       let re = new RegExp('(^(\\+)\\d{12})+$')
       let result = re.test(this.state.phone)
       if (!result) {
-        this.setState({ phoneError: 'enter valid telephone number' },
+        this.setState({
+            phoneError: 'enter valid telephone number',
+            actionPhoneError: true
+          },
           this.isValidForm)
       } else {
-        this.setState({ phoneError: '' },
+        this.setState({
+            phoneError: '',
+            actionPhoneError: false
+          },
           this.isValidForm)
       }
     })
@@ -278,7 +285,7 @@ export default class userRegistration extends Component {
                 mask={['+', /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
                 name="phone"
                 className='form-control'
-                id='inputPhone'
+                id={this.state.actionPhoneError ? 'inputPhoneError' : 'inputPhone'}
                 value={this.state.phone}
                 type="text"
                 onChange={this.handlePhone}
