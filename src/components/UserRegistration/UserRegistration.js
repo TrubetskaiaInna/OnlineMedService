@@ -30,6 +30,7 @@ export default class userRegistration extends Component {
       sex: '',
       additionalInfo: '',
       disabled: true,
+      error: ''
     }
   }
 
@@ -99,7 +100,7 @@ export default class userRegistration extends Component {
       let re = new RegExp('^[A-Za-z0-9_\\-.]+$')
       let result = re.test(this.state.userName)
       if (!result) {
-        this.setState({ userNameError: 'UserName can only contain number, letter, dash, underscore, and dot' },
+        this.setState({ userNameError: 'userName can only contain number, letter, dash, underscore, and dot' },
           this.isValidForm)
       } else {
         this.setState({ userNameError: '' },
@@ -216,18 +217,29 @@ export default class userRegistration extends Component {
       .then(() => {
         this.props.history.push('/login')
       })
-      .catch(() => {
-        this.setState({
-            userNameValid: 'user with that name already exists',
-            actionUserNameValid: true
-          },
-          this.isValidForm)
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.status === 500) {
+            this.setState({
+                userNameValid: 'user with that name already exists',
+                actionUserNameValid: true
+              },
+              this.isValidForm)
+          } else {
+            this.setState({ error: 'Having problems, please try again later' },
+              this.isValidForm)
+          }
+        } else {
+          this.setState({ error: 'Having problems, please try again later' },
+            this.isValidForm)
+        }
       })
   }
 
   render () {
     return (
       <div className='wrapperRegComponent'>
+        <div className='error'>{this.state.error}</div>
         <div className='wrapperForm'>
           <form onSubmit={this.onSubmit}>
 

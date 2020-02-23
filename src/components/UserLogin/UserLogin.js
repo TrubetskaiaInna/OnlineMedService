@@ -14,7 +14,8 @@ class userLogin extends Component {
       passwordErrorLog: '',
       disabled: true,
       showMessage: false,
-      validInput: false
+      validInput: false,
+      error: '',
     }
   }
 
@@ -74,14 +75,25 @@ class userLogin extends Component {
         this.props.hideLoading()
         this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')
-      }).catch(() => {
-        this.props.hideLoading()
-        this.setState({
-          showMessage: true,
-          userNameLog: '',
-          passwordLog: '',
-          validInput: true
-        })
+      }).catch((error) => {
+        if (error.response) {
+          if (error.response.status === 400) {
+            this.props.hideLoading()
+            this.setState({
+              showMessage: true,
+              userNameLog: '',
+              passwordLog: '',
+              validInput: true
+            })
+          } else {
+            this.props.hideLoading()
+            this.setState({ error: 'Having problems, please try again later' })
+          }
+        } else {
+          console.log('Strange Error', error.message)
+          this.props.hideLoading()
+          this.setState({ error: 'Having problems, please try again later' })
+        }
       })
   }
 
@@ -90,7 +102,7 @@ class userLogin extends Component {
       <>
         {this.props.action ? <Spinner/> :
           <div className='wrapperLogComponent'>
-
+            <div className='error'> {this.state.error} </div>
             <div className='wrapperLogin'>
               <form onSubmit={this.onSubmit}>
 

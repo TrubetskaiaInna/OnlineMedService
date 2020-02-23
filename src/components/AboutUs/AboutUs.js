@@ -6,16 +6,15 @@ import Carousel from '../Carousel/Carousel'
 const AboutUs = () => {
   return (
     <>
-      <Carousel/>
+      <Carousel />
       <div className='wrapper'>
         <h2>Our doctors</h2>
       </div>
       <div className='wrapperCard'>
-        <DoctorList/>
+        <DoctorList />
       </div>
     </>
   )
 }
 
 export default AboutUs
-

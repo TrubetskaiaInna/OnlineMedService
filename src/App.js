@@ -30,9 +30,9 @@ function App () {
               <Route path='/registration' component={UserRegistrationComponent} />
               <Route path='/login' component={UserLoginComponent} />
               <Route path='/personalAccount' component={PersonalAccountComponent} />
-              <Route path='/data' component={Data}/>
-              <Route path='/contact' component={Contact}/>
-              <Route path='/entry' component={Entry}/>
+              <Route path='/data' component={Data} />
+              <Route path='/contact' component={Contact} />
+              <Route path='/entry' component={Entry} />
               <Route path='*' component={() => '404 NOT FOUND'} />
             </Switch>
           </Router>

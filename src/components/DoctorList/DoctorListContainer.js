@@ -19,8 +19,13 @@ const mapDispatchToProps = (dispatch) => {
   const { setDoctorData, clearDoctorData } = doctor
   const { setSelectedDoctorData } = selectedDoctor
   const { showLoading, hideLoading } = spinner
-  return bindActionCreators({ setUserData, clearUserData, setDoctorData,
-    clearDoctorData, setSelectedDoctorData, showLoading, hideLoading }, dispatch)
+  return bindActionCreators({ setUserData,
+    clearUserData,
+    setDoctorData,
+    clearDoctorData,
+    setSelectedDoctorData,
+    showLoading,
+    hideLoading }, dispatch)
 }
 
 const DoctorListContainer = connect(

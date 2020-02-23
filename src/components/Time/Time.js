@@ -31,7 +31,6 @@ const Time = (props) => {
       </div>
     </>
   )
-
 }
 
 export default Time

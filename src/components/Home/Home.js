@@ -3,10 +3,9 @@ import './Home.scss'
 import { NavLink } from 'react-router-dom'
 
 const Home = (props) => {
-
   return (
     <>
-      <div className='image'/>
+      <div className='image' />
       <ul className='homeText'>
         <li>
           Quick recording and cancellation of reception
@@ -19,8 +18,8 @@ const Home = (props) => {
         </li>
       </ul>
       <div className='btn btn-outline-secondary' id='btn'>
-        {props.mainUser.login ?
-          <NavLink className='linc' to='/personalAccount'>Make an appointment</NavLink>
+        {props.mainUser.login
+          ? <NavLink className='linc' to='/personalAccount'>Make an appointment</NavLink>
           : <NavLink className='linc' to='/login'>Make an appointment</NavLink>
         }</div>
     </>

@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { API_HOST } from '../config/index'
 
 export class apiService {
   static registration (currentUser) {
     return axios
-      .post('http://127.0.0.1:8000/api/sign-up',
+      .post(`${API_HOST}sign-up`,
         {
           firstName: currentUser.firstName,
           lastName: currentUser.lastName,
@@ -19,30 +20,38 @@ export class apiService {
 
   static login (currentUser) {
     return axios
-      .post('http://127.0.0.1:8000/api/login',
+      .post(`${API_HOST}login`,
         {
           username: currentUser.userNameLog,
           password: currentUser.passwordLog
-        }).then(response => localStorage.setItem('token', response.data.apiToken))
-      .catch(error => console.log(error))
+        }).then((response) =>{
+        localStorage.setItem('token', response.data.apiToken)
+      })
   }
 
   static logout () {
     return axios
-      .post('http://127.0.0.1:8000/api/logout',
+      .post(`${API_HOST}logout`,
         null,
         { headers: { 'X-AUTH-TOKEN': localStorage.getItem('token') } })
       .then(response => console.log(response))
-      .catch(error => console.log(error))
   }
 
   static getDoctors () {
     return axios
-      .get('http://127.0.0.1:8000/api/doctor/list')
+      .get(`${API_HOST}doctor/list`)
       .then(response => {
         return response
       })
       .catch(error => console.log(error))
   }
-}
 
+  static getSchedule (idDoctor) {
+    return axios
+      .get(`${API_HOST}doctor/${idDoctor}/schedule`)
+      .then(response => {
+        return response
+      })
+      .catch((error => console.log(error)))
+  }
+}

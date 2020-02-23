@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   paper: {
     display: 'flex',
@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const TransitionsModal = (props) => {
-
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 
@@ -38,7 +37,7 @@ const TransitionsModal = (props) => {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen} style={{ width: 285, }}>
+      <button type='button' onClick={handleOpen} style={{ width: 285 }}>
         More info
       </button>
       <Modal
@@ -56,10 +55,10 @@ const TransitionsModal = (props) => {
         <Fade in={open}>
 
           <div className={classes.paper} style={{ outline: 'none' }}>
-            <div style={{width: '315px',display:'flex', justifyContent:'space-between', alignItems:'end'}}><h3>{props.doctor.fullName}</h3>
-              <IconButton style={{ outline: 'none'}} edge="start" size="small" color="inherit" onClick={handleClose}
-                          aria-label="close">
-                <CloseIcon/>
+            <div style={{ width: '315px', display: 'flex', justifyContent: 'space-between', alignItems: 'end' }}><h3>{props.doctor.fullName}</h3>
+              <IconButton style={{ outline: 'none' }} edge='start' size='small' color='inherit' onClick={handleClose}
+                aria-label='close'>
+                <CloseIcon />
               </IconButton>
             </div>
             <span>{props.doctor.info}</span>

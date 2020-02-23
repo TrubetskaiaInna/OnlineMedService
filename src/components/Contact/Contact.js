@@ -9,12 +9,12 @@ class Contact extends Component {
     return (
       <>
         <div className='map'>
-          <GoogleMap/>
+          <GoogleMap />
         </div>
         <div className='contactData'>
           <span>st. Maksyma Zalizniaka, 17</span>
-          <div className='wrapperPhone'><img src={img} alt={'img'} className="phoneImg"/>Phone 33-22-11</div>
-          <div className='wrapperEmail'><img src={img2} alt={'img'} className="emailImg"/>OnlaneMedService@ukr.net</div>
+          <div className='wrapperPhone'><img src={img} alt={'img'} className='phoneImg' />Phone 33-22-11</div>
+          <div className='wrapperEmail'><img src={img2} alt={'img'} className='emailImg' />OnlaneMedService@ukr.net</div>
         </div>
       </>
     )

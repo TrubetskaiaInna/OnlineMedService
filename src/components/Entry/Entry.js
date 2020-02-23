@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import Data from '../Data/DataContainer'
 import './Entry.scss'
+import { apiService } from '../../service/apiService'
 
 class Entry extends Component {
+
+  componentDidMount = async () => {
+    await apiService.getSchedule(this.props.selectedDoctors.id)
+      .then(res=>{console.log(77777777,res)})
+  }
+
   render () {
     return (
       <div className='wrapperEntry'>
@@ -20,7 +27,8 @@ class Entry extends Component {
             <p>{this.props.selectedDoctors.info}</p>
           </div>
         </div>
-        <Data/>
+
+        {/*<Data />*/}
       </div>
     )
   }

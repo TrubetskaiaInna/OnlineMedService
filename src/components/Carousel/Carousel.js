@@ -20,13 +20,13 @@ class Carousel extends React.Component {
       <div className='wrapperCarousel'>
         <Slider {...settings}>
           <div>
-            <img src={img} alt={'img'} className="carouselImage"/>
+            <img src={img} alt={'img'} className='carouselImage' />
           </div>
           <div>
-            <img src={img1} alt={'img'} className="carouselImage"/>
+            <img src={img1} alt={'img'} className='carouselImage' />
           </div>
           <div>
-            <img src={img2} alt={'img'}className="carouselImage" />
+            <img src={img2} alt={'img'}className='carouselImage' />
           </div>
         </Slider>
       </div>
