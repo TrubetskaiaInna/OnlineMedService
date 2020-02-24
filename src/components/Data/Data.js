@@ -39,7 +39,7 @@ export default class Data extends React.Component {
             onChange={this.handleChange}
             dateFormat="dd/MM/yyyy"
             minDate={new Date()}
-            maxDate={addDays(new Date(), 7)}
+            maxDate={addDays(new Date(), 6)}
             filterDate={this.isWeekday}
             placeholderText="Select date"
           />

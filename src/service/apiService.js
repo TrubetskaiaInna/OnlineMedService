@@ -24,17 +24,16 @@ export class apiService {
         {
           username: currentUser.userNameLog,
           password: currentUser.passwordLog
-        }).then((response) =>{
-        localStorage.setItem('token', response.data.apiToken)
-      })
+        })
   }
 
-  static logout () {
+  static logout (token) {
     return axios
       .post(`${API_HOST}logout`,
         null,
-        { headers: { 'X-AUTH-TOKEN': localStorage.getItem('token') } })
+        { headers: { 'X-AUTH-TOKEN': token } })
       .then(response => console.log(response))
+      .catch(error=>console.log(error))
   }
 
   static getDoctors () {

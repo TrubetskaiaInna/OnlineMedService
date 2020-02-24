@@ -18,6 +18,7 @@ const Time = (props) => {
       <div className='wrapperTitle'>
         <h5> {day}, {numberDay} {month} {year}</h5>
       </div>
+
       <div className='wrapperTime'>
         {props.schedule.map((element) => {
           if (element.day === day) {

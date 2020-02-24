@@ -71,7 +71,8 @@ class userLogin extends Component {
     this.props.showLoading()
     const { userNameLog, passwordLog } = this.state
     await apiService.login({ userNameLog, passwordLog })
-      .then(() => {
+      .then((response) => {
+        this.props.setToken(response.data.apiToken)
         this.props.hideLoading()
         this.props.setUserData({ userNameLog, passwordLog })
         this.props.history.push('/personalAccount')

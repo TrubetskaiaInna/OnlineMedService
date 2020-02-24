@@ -5,10 +5,10 @@ import { apiService } from '../../service/apiService'
 
 const Header = (props) => {
   const exitFunction = async () => {
-    const { clearUserData } = props
+    const { clearUserData, clearToken } = props
     clearUserData()
-    await apiService.logout()
-    localStorage.clear()
+    await apiService.logout(props.token)
+    clearToken()
   }
 
   return (
