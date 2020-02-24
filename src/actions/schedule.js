@@ -1,4 +1,4 @@
-import { schedule } from '../constants'
+import {  schedule } from '../constants'
 
 const setScheduleDoctor = (payload) => {
   return {
@@ -7,6 +7,11 @@ const setScheduleDoctor = (payload) => {
   }
 }
 
+const clearScheduleDoctor = () => {
+  return { type: schedule.CLEAR_SCHEDULE_DOCTOR }
+}
+
 export default {
-  setScheduleDoctor
+  setScheduleDoctor,
+  clearScheduleDoctor
 }

@@ -18,14 +18,15 @@ const mapDispatchToProps = (dispatch) => {
   const { setUserData, clearUserData } = user
   const { setDoctorData, clearDoctorData } = doctor
   const { setSelectedDoctorData } = selectedDoctor
-  const { setScheduleDoctor } = schedule
+  const { setScheduleDoctor, clearScheduleDoctor} = schedule
   return bindActionCreators({
     setUserData,
     clearUserData,
     setDoctorData,
     clearDoctorData,
     setSelectedDoctorData,
-    setScheduleDoctor
+    setScheduleDoctor,
+    clearScheduleDoctor
   }, dispatch)
 }
 

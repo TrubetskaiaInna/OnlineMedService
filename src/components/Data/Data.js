@@ -44,7 +44,7 @@ export default class Data extends React.Component {
             placeholderText="Select date"
           />
         </div>
-        <Time date={this.state.startDate}/>
+        <Time date={this.state.startDate} history={this.props.history} error={this.props.error}/>
       </>
     )
   }

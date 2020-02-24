@@ -7,7 +7,8 @@ class Entry extends Component {
   constructor () {
     super()
     this.state = {
-      weekend: []
+      weekend: [],
+      error:''
     }
   }
 
@@ -33,6 +34,9 @@ class Entry extends Component {
         this.isWeekend(res)
         this.props.setScheduleDoctor(res.data.schedule)
       })
+      .catch(error=>{
+        this.setState({error:'download failed, please try again later'})
+      })
   }
 
   render () {
@@ -53,7 +57,7 @@ class Entry extends Component {
           </div>
         </div>
 
-        <Data weekend={this.state.weekend}/>
+        <Data weekend={this.state.weekend} history={this.props.history} error={this.state.error}/>
       </div>
     )
   }
