@@ -6,9 +6,9 @@
 
 .wrapperTime{
   display: flex;
+  flex-wrap: wrap;
   width: 900px;
   height: 200px;
-  border: 1px solid silver;
 }
 
 #time{

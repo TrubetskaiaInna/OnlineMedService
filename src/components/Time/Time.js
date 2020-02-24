@@ -1,16 +1,17 @@
 import React from 'react'
 import './Time.scss'
+import TimeButton from '../TimeButton/TimeButton'
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December']
 
 const Time = (props) => {
-  console.log(888888888, props)
-  let day = days[props.date.getDay()]
-  let numberDay = props.date.getDate()
-  let month = months[props.date.getMonth()]
-  let year = props.date.getFullYear()
+
+  const day = days[props.date.getDay()]
+  const numberDay = props.date.getDate()
+  const month = months[props.date.getMonth()]
+  const year = props.date.getFullYear()
 
   return (
     <>
@@ -18,11 +19,10 @@ const Time = (props) => {
         <h5> {day}, {numberDay} {month} {year}</h5>
       </div>
       <div className='wrapperTime'>
-        {props.selectedDoctors.time.map((element) => {
-          console.log(element)
-          return (
-            <div className='btn btn-secondary' id='time'> {element} </div>
-          )
+        {props.schedule.map((element) => {
+          if (element.day === day) {
+            return (<div key={element.id}><TimeButton element={element} date={props.date}/></div>)
+          }
         })
         }
       </div>
@@ -32,5 +32,4 @@ const Time = (props) => {
     </>
   )
 }
-
 export default Time

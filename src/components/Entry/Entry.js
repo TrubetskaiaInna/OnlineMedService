@@ -4,10 +4,35 @@ import './Entry.scss'
 import { apiService } from '../../service/apiService'
 
 class Entry extends Component {
+  constructor () {
+    super()
+    this.state = {
+      weekend: []
+    }
+  }
+
+  isWeekend = (res) => {
+    let weekday = []
+    let weekend = []
+    let week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let arr = res.data.schedule
+    for (let day of arr) {
+      if (!weekday.includes(day.day)) {
+        weekday.push(day.day)
+      }
+    }
+    (week.filter(x => !weekday.includes(x))).forEach(el => {
+      weekend.push(week.indexOf(el))
+    })
+    this.setState({ weekend: weekend })
+  }
 
   componentDidMount = async () => {
     await apiService.getSchedule(this.props.selectedDoctors.id)
-      .then(res=>{console.log(77777777,res)})
+      .then(res => {
+        this.isWeekend(res)
+        this.props.setScheduleDoctor(res.data.schedule)
+      })
   }
 
   render () {
@@ -28,7 +53,7 @@ class Entry extends Component {
           </div>
         </div>
 
-        {/*<Data />*/}
+        <Data weekend={this.state.weekend}/>
       </div>
     )
   }

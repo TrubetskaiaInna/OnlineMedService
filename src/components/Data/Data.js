@@ -18,7 +18,7 @@ export default class Data extends React.Component {
   }
 
   isWeekday = date => {
-    const { weekend } = this.props.selectedDoctors
+    const { weekend } = this.props
     const day = getDay(date)
     return day !== weekend[0]
       && day !== weekend[1]
