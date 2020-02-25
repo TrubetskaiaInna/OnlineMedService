@@ -4,6 +4,7 @@ import selectedDoctor from './selectedDoctor'
 import spinner from './spinner'
 import schedule from './schedule'
 import token from './token'
+import selectedData from './selectedData'
 
 export {
   user,
@@ -11,5 +12,6 @@ export {
   selectedDoctor,
   spinner,
   schedule,
-  token
+  token,
+  selectedData
 }

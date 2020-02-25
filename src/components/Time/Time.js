@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Time.scss";
-import TimeButton from "../TimeButton/TimeButton";
+import TimeButton from "../TimeButton/TimeButtonContainer";
 
 const days = [
   "Sunday",
@@ -50,6 +50,12 @@ const Time = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.history]);
 
+  const getIdDoctor = () => {
+    props.history.push("/personalAccount")
+    props.clearSelectedData();
+    console.log(1111, props.selectedData);
+  };
+
   return (
     <>
       <div className="wrapperTitle">
@@ -77,7 +83,12 @@ const Time = props => {
         })}
       </div>
       <div className="wrapperButton">
-        <button className="btn btn-outline-primary">Confirm</button>
+        <button
+          onClick={getIdDoctor}
+          className="btn btn-outline-primary"
+        >
+          Confirm
+        </button>
       </div>
     </>
   );
