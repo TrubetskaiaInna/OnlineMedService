@@ -2,23 +2,67 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import { addDays, getDay } from "date-fns";
 import "./Data.scss";
+import { apiService } from "../../service/apiService";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Time from "../Time/TimeContainer";
+import Spinner from "../Spinner/Spinner";
 
 export default class Data extends React.Component {
   state = {
-    startDate: new Date()
+    startDate: new Date(),
+    weekend: [],
+    error: ""
   };
 
-  handleChange = date => {
+  isWeekend = res => {
+    let weekday = [];
+    let weekend = [];
+    let week = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    let arr = res.data.schedule;
+    for (let day of arr) {
+      if (!weekday.includes(day.day)) {
+        weekday.push(day.day);
+      }
+    }
+    week
+      .filter(x => !weekday.includes(x))
+      .forEach(el => {
+        weekend.push(week.indexOf(el));
+      });
+    this.setState({ weekend: weekend });
+  };
+
+  handleChange = async date => {
+    this.props.showLoading();
+    this.props.clearScheduleDoctor();
     this.setState({
       startDate: date
     });
+    await apiService
+      .getSchedule(this.props.selectedDoctors.id)
+      .then(response => {
+        this.props.hideLoading();
+        this.isWeekend(response);
+        this.props.setScheduleDoctor(response.data.schedule);
+        this.setState({ error: "" });
+      })
+      .catch(() => {
+        this.props.hideLoading();
+        this.setState({ error: "download failed, please try again later" });
+      });
   };
 
   isWeekday = date => {
-    const { weekend } = this.props;
+    const { weekend } = this.state;
     const day = getDay(date);
     return (
       day !== weekend[0] &&
@@ -37,7 +81,6 @@ export default class Data extends React.Component {
         <div className="wrapperDate">
           <DatePicker
             inline
-            selected={this.state.startDate}
             onChange={this.handleChange}
             dateFormat="dd/MM/yyyy"
             minDate={new Date()}
@@ -46,12 +89,16 @@ export default class Data extends React.Component {
             placeholderText="Select date"
           />
         </div>
-        <Time
-          date={this.state.startDate}
-          history={this.props.history}
-          error={this.props.error}
-          weekend={this.props.weekend}
-        />
+        {this.props.action ? (
+          <Spinner />
+        ) : (
+          <Time
+            date={this.state.startDate}
+            history={this.props.history}
+            error={this.state.error}
+            weekend={this.state.weekend}
+          />
+        )}
       </>
     );
   }

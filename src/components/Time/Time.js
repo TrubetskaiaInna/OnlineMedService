@@ -59,11 +59,11 @@ const Time = props => {
 
   return (
     <>
-      <div className="wrapperTitle">
-        <h5>
-          {day}, {numberDay} {month} {year}
-        </h5>
-      </div>
+      {/*<div className="wrapperTitle">*/}
+      {/*  <h5>*/}
+      {/*    {day}, {numberDay} {month} {year}*/}
+      {/*  </h5>*/}
+      {/*</div>*/}
       {weekend.map((element, index) => {
         return (
           day === element && (
