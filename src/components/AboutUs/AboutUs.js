@@ -1,20 +1,20 @@
-import React from 'react'
-import DoctorList from '../DoctorList/DoctorListContainer'
-import './AboutUs.scss'
-import Carousel from '../Carousel/Carousel'
+import React from "react";
+import DoctorList from "../DoctorList/DoctorListContainer";
+import "./AboutUs.scss";
+import Carousel from "../Carousel/Carousel";
 
 const AboutUs = () => {
   return (
     <>
       <Carousel />
-      <div className='wrapper'>
+      <div className="wrapper">
         <h2>Our doctors</h2>
       </div>
-      <div className='wrapperCard'>
+      <div className="wrapperCard">
         <DoctorList />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;

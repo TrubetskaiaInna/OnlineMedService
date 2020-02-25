@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
-import img from '../../assets/image/drop.png'
-import './GoogleMap.scss'
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import img from "../../assets/image/drop.png";
+import "./GoogleMap.scss";
 
-const MarkerComponent = ({ marker }) => <div className='marker'>{marker}</div>
+const MarkerComponent = ({ marker }) => <div className="marker">{marker}</div>;
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -12,25 +12,25 @@ class SimpleMap extends Component {
       lng: 32.06
     },
     zoom: 16
-  }
+  };
 
-  render () {
+  render() {
     return (
-      <div style={{ height: '75vh', width: '1024px' }}>
+      <div style={{ height: "75vh", width: "1024px" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyB9GsetK6T_TvgzO6-zRC6RvCgGTSTFlu8' }}
+          bootstrapURLKeys={{ key: "AIzaSyB9GsetK6T_TvgzO6-zRC6RvCgGTSTFlu8" }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
           <MarkerComponent
             lat={49.430122}
             lng={32.059732}
-            marker=<img src={img} alt={'img'} className="markerImg"/>
+            marker=<img src={img} alt={"img"} className="markerImg" />
           />
         </GoogleMapReact>
       </div>
-    )
+    );
   }
 }
 
-export default SimpleMap
+export default SimpleMap;

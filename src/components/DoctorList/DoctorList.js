@@ -19,7 +19,7 @@ class DoctorList extends Component {
       })
       .catch((error) => {
         console.log(error)
-        this.setState({ error: 'download failed, please try again later' })
+        this.setState({ error: "download failed, please try again later" });
       })
 
     this.props.clearDoctorData()

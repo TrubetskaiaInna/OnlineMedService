@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import "./Time.scss";
 import TimeButton from "../TimeButton/TimeButton";
 
@@ -31,15 +31,23 @@ const Time = props => {
   const numberDay = props.date.getDate();
   const month = months[props.date.getMonth()];
   const year = props.date.getFullYear();
-
+  const weekend = [];
+  for (let i = 0; i < props.weekend.length; i++) {
+    weekend.push(days[props.weekend[i]]);
+  }
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      props.history.push('/personalAccount')
-    }, 1000*60*10,[])
+    props.clearScheduleDoctor();
+    const timeout = setTimeout(
+      () => {
+        props.history.push("/personalAccount");
+      },
+      1000 * 60 * 6,
+      []
+    );
     return () => {
-      props.clearScheduleDoctor()
       clearTimeout(timeout);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.history]);
 
   return (
@@ -49,7 +57,14 @@ const Time = props => {
           {day}, {numberDay} {month} {year}
         </h5>
       </div>
-      <div className='error'>{props.error}</div>
+      {weekend.map((element, index) => {
+        return (
+          day === element && (
+            <div key={index}>This day is a doctor's day off</div>
+          )
+        );
+      })}
+      <div className="error">{props.error}</div>
       <div className="wrapperTime">
         {props.schedule.map(element => {
           return (
