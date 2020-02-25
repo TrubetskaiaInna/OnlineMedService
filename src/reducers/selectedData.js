@@ -1,7 +1,7 @@
 import { selectedData } from '../constants'
 
 const initialState = {
-  selectedData: []
+  selectedData: null
 
 }
 
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
       }
     case selectedData.CLEAR_SELECTED_DATA:
       return {
-        selectedData: []
+        selectedData: null
       }
     default:
       return state

@@ -36,6 +36,7 @@ const Time = props => {
     weekend.push(days[props.weekend[i]]);
   }
   useEffect(() => {
+    props.clearSelectedData();
     props.clearScheduleDoctor();
     const timeout = setTimeout(
       () => {
@@ -84,6 +85,7 @@ const Time = props => {
       </div>
       <div className="wrapperButton">
         <button
+          disabled={!props.selectedData? true:null}
           onClick={getIdDoctor}
           className="btn btn-outline-primary"
         >

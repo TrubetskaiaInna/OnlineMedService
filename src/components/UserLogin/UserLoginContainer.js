@@ -5,7 +5,6 @@ import UserLoginComponent from "./UserLogin";
 import { user, doctor, spinner, token } from "../../actions";
 
 const mapStateToProps = state => {
-  console.log(111, state);
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,

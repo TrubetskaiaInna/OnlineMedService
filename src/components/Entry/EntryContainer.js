@@ -5,7 +5,6 @@ import Entry from "./Entry";
 import { user, doctor, selectedDoctor, schedule } from "../../actions";
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,

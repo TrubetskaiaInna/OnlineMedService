@@ -5,7 +5,6 @@ import DoctorListItem from "./DoctorListItem";
 import { user, doctor, selectedDoctor } from "../../actions";
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,

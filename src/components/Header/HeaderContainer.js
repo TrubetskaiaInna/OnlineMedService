@@ -5,7 +5,6 @@ import Header from "./Header";
 import { user, doctor, token } from "../../actions";
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     mainUser: state.user.mainUser,
     doctors: state.doctor.doctors,
