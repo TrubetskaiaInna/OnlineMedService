@@ -74,103 +74,107 @@ export default class userRegistration extends Component {
     );
   };
 
-  handleFirsName = e => {
-    const name = e.target.name;
+  isValidFirstName = () => {
+    let re = new RegExp("^[a-zA-Z]+$");
+    let result = re.test(this.state.firstName);
+    if (!result) {
+      this.setState(
+        { firstNameError: "first name can only contain letters" },
+        this.isValidForm
+      );
+    } else {
+      this.setState({ firstNameError: "" }, this.isValidForm);
+    }
+  };
+
+  handleFirsName = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^[a-zA-Z]+$");
-        let result = re.test(this.state.firstName);
-        if (!result) {
-          this.setState(
-            { firstNameError: "first name can only contain letters" },
-            this.isValidForm
-          );
-        } else {
-          this.setState({ firstNameError: "" }, this.isValidForm);
-        }
-      }
+      this.isValidFirstName
     );
   };
 
-  handleLastName = e => {
-    const name = e.target.name;
+  isValidLastName = () => {
+    let re = new RegExp("^[a-zA-Z]+$");
+    let result = re.test(this.state.lastName);
+    if (!result) {
+      this.setState(
+        { lastNameError: "last name can only contain letters" },
+        this.isValidForm
+      );
+    } else {
+      this.setState({ lastNameError: "" }, this.isValidForm);
+    }
+  };
+
+  handleLastName = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^[a-zA-Z]+$");
-        let result = re.test(this.state.lastName);
-        if (!result) {
-          this.setState(
-            { lastNameError: "last name can only contain letters" },
-            this.isValidForm
-          );
-        } else {
-          this.setState({ lastNameError: "" }, this.isValidForm);
-        }
-      }
+      this.isValidLastName
     );
   };
 
-  handleUserName = e => {
-    const name = e.target.name;
+  isValidUserName = () => {
+    let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
+    let result = re.test(this.state.userName);
+    if (!result) {
+      this.setState(
+        {
+          userNameError:
+            "userName can only contain number, letter, dash, underscore, and dot"
+        },
+        this.isValidForm
+      );
+    } else {
+      this.setState({ userNameError: "" }, this.isValidForm);
+    }
+  };
+
+  handleUserName = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
-        let result = re.test(this.state.userName);
-        if (!result) {
-          this.setState(
-            {
-              userNameError:
-                "userName can only contain number, letter, dash, underscore, and dot"
-            },
-            this.isValidForm
-          );
-        } else {
-          this.setState({ userNameError: "" }, this.isValidForm);
-        }
-      }
+      this.isValidUserName
     );
   };
 
-  handlePhone = e => {
-    const name = e.target.name;
+  isValidPhone = () => {
+    let re = new RegExp("(^(\\+)\\d{12})+$");
+    let result = re.test(this.state.phone);
+    if (!result) {
+      this.setState(
+        {
+          phoneError: "enter valid telephone number",
+          actionPhoneError: true
+        },
+        this.isValidForm
+      );
+    } else {
+      this.setState(
+        {
+          phoneError: "",
+          actionPhoneError: false
+        },
+        this.isValidForm
+      );
+    }
+  };
+
+  handlePhone = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("(^(\\+)\\d{12})+$");
-        let result = re.test(this.state.phone);
-        if (!result) {
-          this.setState(
-            {
-              phoneError: "enter valid telephone number",
-              actionPhoneError: true
-            },
-            this.isValidForm
-          );
-        } else {
-          this.setState(
-            {
-              phoneError: "",
-              actionPhoneError: false
-            },
-            this.isValidForm
-          );
-        }
-      }
+      this.isValidPhone
     );
   };
 
-  isValidPassword = () => {
+  isValidMatchPassword = () => {
     if (this.state.password !== this.state.confirmPassword) {
       this.setState(
         {
@@ -190,55 +194,57 @@ export default class userRegistration extends Component {
     }
   };
 
-  handlePassword = e => {
-    const name = e.target.name;
+  isValidPassword = () => {
+    let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
+    let result = re.test(this.state.password);
+    if (!result) {
+      this.setState(
+        {
+          passwordError:
+            "password must contain at least 10 characters (letters or number)"
+        },
+        this.isValidMatchPassword
+      );
+    } else {
+      this.setState({ passwordError: "" }, this.isValidMatchPassword);
+    }
+  };
+
+  handlePassword = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
-        let result = re.test(this.state.password);
-        if (!result) {
-          this.setState(
-            {
-              passwordError:
-                "password must contain at least 10 characters (letters or number)"
-            },
-            this.isValidPassword
-          );
-        } else {
-          this.setState({ passwordError: "" }, this.isValidPassword);
-        }
-      }
+      this.isValidPassword
     );
   };
 
-  handleConfPassword = e => {
-    const name = e.target.name;
+  isValidConfPassword = () => {
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState(
+        {
+          confirmPasswordError: "password does not match",
+          actionConfirmPasswordError: true
+        },
+        this.isValidForm
+      );
+    } else {
+      this.setState(
+        {
+          confirmPasswordError: "",
+          actionConfirmPasswordError: false
+        },
+        this.isValidForm
+      );
+    }
+  };
+
+  handleConfPassword = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        if (this.state.password !== this.state.confirmPassword) {
-          this.setState(
-            {
-              confirmPasswordError: "password does not match",
-              actionConfirmPasswordError: true
-            },
-            this.isValidForm
-          );
-        } else {
-          this.setState(
-            {
-              confirmPasswordError: "",
-              actionConfirmPasswordError: false
-            },
-            this.isValidForm
-          );
-        }
-      }
+      this.isValidConfPassword
     );
   };
 
@@ -251,29 +257,55 @@ export default class userRegistration extends Component {
     );
   };
 
-  handleEmail = e => {
-    const name = e.target.name;
+  isValidEmail = () => {
+    let re = new RegExp(
+      "^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,4})$"
+    );
+    let result = re.test(this.state.email);
+    if (!result) {
+      this.setState({ emailError: "enter valid email" }, this.isValidForm);
+    } else {
+      this.setState({ emailError: "" }, this.isValidForm);
+    }
+  };
+
+  handleEmail = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp(
-          "^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,4})$"
-        );
-        let result = re.test(this.state.email);
-        if (!result) {
-          this.setState({ emailError: "enter valid email" }, this.isValidForm);
-        } else {
-          this.setState({ emailError: "" }, this.isValidForm);
-        }
-      }
+      this.isValidEmail
     );
   };
 
+  catchError = error => {
+    if (error.response) {
+      if (error.response.status === 500) {
+        this.setState(
+          {
+            userNameValid: "user with that name already exists",
+            actionUserNameValid: true
+          },
+          this.isValidForm
+        );
+      } else {
+        this.setState(
+          { error: "Having problems, please try again later" },
+          this.isValidForm
+        );
+      }
+    } else {
+      this.setState(
+        { error: "Having problems, please try again later" },
+        this.isValidForm
+      );
+    }
+  };
+
   onSubmit = async e => {
+    const { showLoading, history, hideLoading } = this.props;
     e.preventDefault();
-    this.props.showLoading()
+    showLoading();
     const {
       firstName,
       lastName,
@@ -299,32 +331,12 @@ export default class userRegistration extends Component {
     await apiService
       .registration(newUserForm)
       .then(() => {
-        this.props.history.push("/login");
-        this.props.hideLoading()
+        history.push("/login");
+        hideLoading();
       })
       .catch(error => {
-        this.props.hideLoading()
-        if (error.response) {
-          if (error.response.status === 500) {
-            this.setState(
-              {
-                userNameValid: "user with that name already exists",
-                actionUserNameValid: true
-              },
-              this.isValidForm
-            );
-          } else {
-            this.setState(
-              { error: "Having problems, please try again later" },
-              this.isValidForm
-            );
-          }
-        } else {
-          this.setState(
-            { error: "Having problems, please try again later" },
-            this.isValidForm
-          );
-        }
+        hideLoading();
+        this.catchError(error);
       });
   };
 
@@ -403,9 +415,7 @@ export default class userRegistration extends Component {
                   </span>
                   <MaskedInput
                     required
-                    mask={[
-                      "+", /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/
-                    ]}
+                    mask={["+", /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
                     name="phone"
                     className="form-control"
                     id={

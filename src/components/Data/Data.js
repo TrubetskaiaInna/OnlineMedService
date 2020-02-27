@@ -76,6 +76,8 @@ export default class Data extends React.Component {
   };
 
   render() {
+    const { startDate, error, weekend } = this.state;
+    const { action, history } = this.props;
     return (
       <>
         <div className="wrapperDate">
@@ -89,14 +91,14 @@ export default class Data extends React.Component {
             placeholderText="Select date"
           />
         </div>
-        {this.props.action ? (
+        {action ? (
           <Spinner />
         ) : (
           <Time
-            date={this.state.startDate}
-            history={this.props.history}
-            error={this.state.error}
-            weekend={this.state.weekend}
+            date={startDate}
+            history={history}
+            error={error}
+            weekend={weekend}
           />
         )}
       </>

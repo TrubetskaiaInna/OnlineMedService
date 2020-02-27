@@ -1,56 +1,74 @@
-import axios from 'axios'
-import { API_HOST } from '../config/index'
+import axios from "axios";
+import { API_HOST } from "../config/index";
 
 export class apiService {
-  static registration (currentUser) {
-    return axios
-      .post(`${API_HOST}sign-up`,
-        {
-          firstName: currentUser.firstName,
-          lastName: currentUser.lastName,
-          email: currentUser.email,
-          username: currentUser.userName,
-          planePassword: currentUser.password,
-          address: currentUser.address,
-          phone: currentUser.phone,
-          gender: currentUser.sex,
-          additionalInfo: currentUser.additionalInfo
-        })
+  static registration(currentUser) {
+    return axios.post(`${API_HOST}sign-up`, {
+      firstName: currentUser.firstName,
+      lastName: currentUser.lastName,
+      email: currentUser.email,
+      username: currentUser.userName,
+      planePassword: currentUser.password,
+      address: currentUser.address,
+      phone: currentUser.phone,
+      gender: currentUser.sex,
+      additionalInfo: currentUser.additionalInfo
+    });
   }
 
-  static login (currentUser) {
-    return axios
-      .post(`${API_HOST}login`,
-        {
-          username: currentUser.userNameLog,
-          password: currentUser.passwordLog
-        })
+  static login(currentUser) {
+    return axios.post(`${API_HOST}login`, {
+      username: currentUser.userNameLog,
+      password: currentUser.passwordLog
+    });
   }
 
-  static logout (token) {
+  static logout(token) {
     return axios
-      .post(`${API_HOST}logout`,
-        null,
-        { headers: { 'X-AUTH-TOKEN': token } })
+      .post(`${API_HOST}logout`, null, { headers: { "X-AUTH-TOKEN": token } })
       .then(response => console.log(response))
-      .catch(error=>console.log(error))
+      .catch(error => console.log(error));
   }
 
-  static getDoctors () {
+  static getDoctors() {
     return axios
       .get(`${API_HOST}doctor/list`)
       .then(response => {
-        return response
+        return response;
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
-  static getSchedule (idDoctor) {
+  static getSchedule(idDoctor) {
     return axios
       .get(`${API_HOST}doctor/${idDoctor}/schedule`)
       .then(response => {
-        return response
+        return response;
       })
-      .catch((error => console.log(error)))
+      .catch(error => console.log(error));
+  }
+
+  static createAppointment(currentId, token) {
+    return axios
+      .post(
+        `${API_HOST}appointment/create`,
+        {
+          scheduleId: currentId
+        },
+        { headers: { "X-AUTH-TOKEN": token } }
+      )
+      .then(response => {
+        return response;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  static getAppointment(token) {
+    return axios
+      .get(`${API_HOST}appointment/list`,{headers: { "X-AUTH-TOKEN": token } })
+      // .then(response => console.log(response))
+      .catch(error => console.log(error));
   }
 }

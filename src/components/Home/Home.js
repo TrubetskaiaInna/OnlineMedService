@@ -3,6 +3,7 @@ import "./Home.scss";
 import { NavLink } from "react-router-dom";
 
 const Home = props => {
+  const { login } = props.mainUser;
   return (
     <>
       <div className="image" />
@@ -12,7 +13,7 @@ const Home = props => {
         <li>List of your medical events</li>
       </ul>
       <div className="btn btn-outline-secondary" id="btn">
-        {props.mainUser.login ? (
+        {login ? (
           <NavLink className="linc" to="/personalAccount">
             Make an appointment
           </NavLink>

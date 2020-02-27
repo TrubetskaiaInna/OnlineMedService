@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Time from "./Time";
-import { user, doctor, selectedDoctor, schedule, selectedData } from "../../actions";
+import { user, doctor, selectedDoctor, schedule, selectedData, token} from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -11,6 +11,7 @@ const mapStateToProps = state => {
     selectedDoctors: state.selectedDoctor.doctors,
     schedule: state.schedule.schedule,
     selectedData: state.selectedData.selectedData,
+    token: state.token.token
   };
 };
 
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => {
   const { setSelectedDoctorData } = selectedDoctor;
   const  {setSelectedData, clearSelectedData} = selectedData
   const { setScheduleDoctor, clearScheduleDoctor } = schedule;
+  const { setToken, clearToken } = token;
   return bindActionCreators(
     {
       setUserData,
@@ -30,7 +32,9 @@ const mapDispatchToProps = dispatch => {
       setScheduleDoctor,
       clearScheduleDoctor,
       setSelectedData,
-      clearSelectedData
+      clearSelectedData,
+      setToken,
+      clearToken
     },
     dispatch
   );

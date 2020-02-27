@@ -36,70 +36,79 @@ class userLogin extends Component {
     }
   };
 
-  handleUserName = e => {
-    const name = e.target.name;
+  isValidUserName = () => {
+    let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
+    let result = re.test(this.state.userNameLog);
+    if (!result) {
+      this.setState(
+        {
+          userNameErrorLog:
+            "userName can only contain number, letter, dash, underscore, and dot"
+        },
+        this.isValidForm
+      );
+    } else {
+      this.setState({ userNameErrorLog: "" }, this.isValidForm);
+    }
+  };
+
+  isValidPassword = () => {
+    let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
+    let result = re.test(this.state.passwordLog);
+    if (!result) {
+      this.setState(
+        {
+          passwordErrorLog:
+            "password must contain at least 10 characters (letters or number)"
+        },
+        this.isValidForm
+      );
+    } else {
+      this.setState({ passwordErrorLog: "" }, this.isValidForm);
+    }
+  };
+
+  handleUserName = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
-        let result = re.test(this.state.userNameLog);
-        if (!result) {
-          this.setState(
-            {
-              userNameErrorLog:
-                "userName can only contain number, letter, dash, underscore, and dot"
-            },
-            this.isValidForm
-          );
-        } else {
-          this.setState({ userNameErrorLog: "" }, this.isValidForm);
-        }
-      }
+      this.isValidUserName
     );
   };
 
-  handlePassword = e => {
-    const name = e.target.name;
+  handlePassword = ({ target: { name, value } }) => {
     this.setState(
       {
-        [name]: e.target.value
+        [name]: value
       },
-      () => {
-        let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
-        let result = re.test(this.state.passwordLog);
-        if (!result) {
-          this.setState(
-            {
-              passwordErrorLog:
-                "password must contain at least 10 characters (letters or number)"
-            },
-            this.isValidForm
-          );
-        } else {
-          this.setState({ passwordErrorLog: "" }, this.isValidForm);
-        }
-      }
+      this.isValidPassword
     );
   };
 
   onSubmit = async e => {
-    e.preventDefault();
-    this.props.showLoading();
     const { userNameLog, passwordLog } = this.state;
+    const {
+      showLoading,
+      setToken,
+      hideLoading,
+      setUserData,
+      history
+    } = this.props;
+    e.preventDefault();
+    showLoading();
     await apiService
       .login({ userNameLog, passwordLog })
       .then(response => {
-        this.props.setToken(response.data.apiToken);
-        this.props.hideLoading();
-        this.props.setUserData({ userNameLog, passwordLog });
-        this.props.history.push("/personalAccount");
+        setToken(response.data.apiToken);
+        hideLoading();
+        setUserData({ userNameLog, passwordLog });
+        history.push("/personalAccount");
       })
       .catch(error => {
+        hideLoading();
         if (error.response) {
           if (error.response.status === 400) {
-            this.props.hideLoading();
             this.setState({
               showMessage: true,
               userNameLog: "",
@@ -107,12 +116,10 @@ class userLogin extends Component {
               validInput: true
             });
           } else {
-            this.props.hideLoading();
             this.setState({ error: "Having problems, please try again later" });
           }
         } else {
           console.log("Strange Error", error.message);
-          this.props.hideLoading();
           this.setState({ error: "Having problems, please try again later" });
         }
       });

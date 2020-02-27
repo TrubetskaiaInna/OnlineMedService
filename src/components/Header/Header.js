@@ -5,12 +5,12 @@ import { apiService } from "../../service/apiService";
 
 const Header = props => {
   const exitFunction = async () => {
-    const { clearUserData, clearToken } = props;
+    const { clearUserData, clearToken, token } = props;
     clearUserData();
-    await apiService.logout(props.token);
+    await apiService.logout(token);
     clearToken();
   };
-
+  const { login, userNameLog } = props.mainUser;
   return (
     <header>
       <div className="wrapperLinc">
@@ -29,7 +29,7 @@ const Header = props => {
         </NavLink>
       </div>
       <div className="wrapperLinc">
-        {props.mainUser.login ? (
+        {login ? (
           <NavLink className="linc" to="/personalAccount">
             Personal account
           </NavLink>
@@ -44,7 +44,7 @@ const Header = props => {
           Contact
         </NavLink>
       </div>
-      {props.mainUser.userNameLog}
+      {userNameLog}
       <div className="buttonLinc" onClick={exitFunction}>
         <NavLink className="linc" to="/">
           Exit
