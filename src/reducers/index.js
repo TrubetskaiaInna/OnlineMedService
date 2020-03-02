@@ -6,6 +6,7 @@ import spinner from './spinner'
 import schedule from './schedule'
 import token from './token'
 import selectedData from './selectedData'
+import appointment from './appointment'
 export default combineReducers({
   user,
   doctor,
@@ -13,5 +14,6 @@ export default combineReducers({
   spinner,
   schedule,
   token,
-  selectedData
+  selectedData,
+  appointment
 })

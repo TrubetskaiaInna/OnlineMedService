@@ -67,8 +67,17 @@ export class apiService {
 
   static getAppointment(token) {
     return axios
-      .get(`${API_HOST}appointment/list`,{headers: { "X-AUTH-TOKEN": token } })
-      // .then(response => console.log(response))
+      .get(`${API_HOST}appointment/list`, {
+        headers: { "X-AUTH-TOKEN": token }
+      })
+      .catch(error => console.log(error));
+  }
+
+  static cancelAppointment(id, token) {
+    return axios
+      .put(`${API_HOST}appointment/${id}/cancel`, null, {
+        headers: { "X-AUTH-TOKEN": token }
+      })
       .catch(error => console.log(error));
   }
 }

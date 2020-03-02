@@ -56,17 +56,15 @@ const Time = props => {
     await apiService.createAppointment(String(props.selectedData),props.token)
     props.history.push("/personalAccount")
     props.clearSelectedData();
-    await apiService.getAppointment(props.token)
-      .then(response => console.log(response.data))
   };
 
   return (
     <>
-      <div className="wrapperTitle">
-        <h5>
-          {day}, {numberDay} {month} {year}
-        </h5>
-      </div>
+      {/*<div className="wrapperTitle">*/}
+      {/*  <h5>*/}
+      {/*    {day}, {numberDay} {month} {year}*/}
+      {/*  </h5>*/}
+      {/*</div>*/}
       {weekend.map((element, index) => {
         return (
           day === element && (

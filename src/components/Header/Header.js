@@ -5,10 +5,11 @@ import { apiService } from "../../service/apiService";
 
 const Header = props => {
   const exitFunction = async () => {
-    const { clearUserData, clearToken, token } = props;
+    const { clearUserData, clearToken, token, clearAppointmentData } = props;
     clearUserData();
     await apiService.logout(token);
     clearToken();
+    clearAppointmentData();
   };
   const { login, userNameLog } = props.mainUser;
   return (

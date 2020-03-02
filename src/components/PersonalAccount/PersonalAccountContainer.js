@@ -7,7 +7,9 @@ import { user, doctor } from "../../actions";
 const mapStateToProps = state => {
   return {
     mainUser: state.user.mainUser,
-    doctors: state.doctor.doctors
+    doctors: state.doctor.doctors,
+    appointment: state.appointment.appointment,
+    token: state.token.token
   };
 };
 
@@ -15,7 +17,12 @@ const mapDispatchToProps = dispatch => {
   const { setUserData, clearUserData } = user;
   const { setDoctorData, clearDoctorData } = doctor;
   return bindActionCreators(
-    { setUserData, clearUserData, setDoctorData, clearDoctorData },
+    {
+      setUserData,
+      clearUserData,
+      setDoctorData,
+      clearDoctorData
+    },
     dispatch
   );
 };

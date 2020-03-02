@@ -5,6 +5,7 @@ import spinner from './spinner'
 import schedule from './schedule'
 import token from './token'
 import selectedData from './selectedData'
+import appointment from './appointment'
 
 export {
   user,
@@ -13,5 +14,6 @@ export {
   spinner,
   schedule,
   token,
-  selectedData
+  selectedData,
+  appointment
 }
