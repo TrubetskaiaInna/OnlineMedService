@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Time.scss";
 import TimeButton from "../TimeButton/TimeButtonContainer";
-import { apiService } from '../../service/apiService'
+import { apiService } from "../../service/apiService";
 
 const days = [
   "Sunday",
@@ -12,26 +12,9 @@ const days = [
   "Friday",
   "Saturday"
 ];
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
 
 const Time = props => {
   const day = days[props.date.getDay()];
-  const numberDay = props.date.getDate();
-  const month = months[props.date.getMonth()];
-  const year = props.date.getFullYear();
   const weekend = [];
   for (let i = 0; i < props.weekend.length; i++) {
     weekend.push(days[props.weekend[i]]);
@@ -53,18 +36,14 @@ const Time = props => {
   }, [props.history]);
 
   const getIdDoctor = async () => {
-    await apiService.createAppointment(String(props.selectedData),props.token)
-    props.history.push("/personalAccount")
+    await apiService.createAppointment(String(props.selectedData), props.token);
+    props.history.push("/personalAccount");
     props.clearSelectedData();
   };
 
   return (
     <>
-      {/*<div className="wrapperTitle">*/}
-      {/*  <h5>*/}
-      {/*    {day}, {numberDay} {month} {year}*/}
-      {/*  </h5>*/}
-      {/*</div>*/}
+      <div className='title'>Select a time</div>
       {weekend.map((element, index) => {
         return (
           day === element && (
@@ -86,7 +65,7 @@ const Time = props => {
       </div>
       <div className="wrapperButton">
         <button
-          disabled={!props.selectedData? true:null}
+          disabled={!props.selectedData ? true : null}
           onClick={getIdDoctor}
           className="btn btn-outline-primary"
         >

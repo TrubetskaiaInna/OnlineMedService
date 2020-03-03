@@ -19,8 +19,7 @@ class Appointment extends Component {
         this.props.hideLoading();
         setAppointmentData(response.data.appointments);
       })
-      .catch(error => {
-        // console.log(error);
+      .catch(() => {
         this.props.hideLoading();
         this.props.clearAppointmentData()
         this.setState({ error: "download failed, please try again later" });
