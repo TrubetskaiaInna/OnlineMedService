@@ -2,23 +2,28 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Appointment from "./Appointment";
-import { token, appointment } from "../../actions";
+import { token, appointment, spinner } from "../../actions";
 
 const mapStateToProps = state => {
   return {
     token: state.token.token,
-    appointment: state.appointment.appointment
+    appointment: state.appointment.appointment,
+    action: state.spinner.action
   };
 };
 
 const mapDispatchToProps = dispatch => {
   const { setToken, clearToken } = token;
-  const { setAppointmentData } = appointment;
+  const { setAppointmentData, clearAppointmentData } = appointment;
+  const { showLoading, hideLoading } = spinner;
   return bindActionCreators(
     {
       setToken,
       clearToken,
-      setAppointmentData
+      setAppointmentData,
+      showLoading,
+      hideLoading,
+      clearAppointmentData
     },
     dispatch
   );
