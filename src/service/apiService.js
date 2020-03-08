@@ -29,14 +29,14 @@ export class apiService {
       .then(response => console.log(response))
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
   }
 
   static getDoctors() {
@@ -47,14 +47,14 @@ export class apiService {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
   }
 
   static getSchedule(idDoctor) {
@@ -65,14 +65,14 @@ export class apiService {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
   }
 
   static createAppointment(currentId, token) {
@@ -89,14 +89,14 @@ export class apiService {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
   }
 
   static getAppointment(token) {
@@ -106,14 +106,14 @@ export class apiService {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
   }
 
   static cancelAppointment(id, token) {
@@ -123,13 +123,36 @@ export class apiService {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         } else {
-          console.log('Strange Error', error.message)
+          console.log("Strange Error", error.message);
         }
-        console.log(error.config)
-      })
+        console.log(error.config);
+      });
+  }
+
+  static getAuthorizationToken(token) {
+    return axios
+      .post(`${API_HOST}payment/generate-token`, null, { headers: { "X-AUTH-TOKEN": token } })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else {
+          console.log("Strange Error", error.message);
+        }
+        console.log(error.config);
+      });
+  }
+
+  static payment (nonce, appointmentId, token){
+    return axios
+      .post(`${API_HOST}payment/${appointmentId}/pay`,{nonce}, { headers: { "X-AUTH-TOKEN": token } })
+      .then(response=> console.log(response))
+      .catch(error=> console.log(error))
+
   }
 }

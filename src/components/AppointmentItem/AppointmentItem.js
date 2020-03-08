@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { apiService } from "../../service/apiService";
 import "./AppointmentItem.scss";
+import ExampleComponent from '../Braintree-dropin/clientAppContainer'
 
 const AppointmentItem = props => {
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
-  const cancelAppointment = async () => {
-    const { appointment, token, setAppointmentData } = props;
-    await apiService.cancelAppointment(appointment.id, token).then(() => {
-      apiService.getAppointment(props.token).then(response => {
-        setAppointmentData(response.data.appointments);
-      });
-    });
-  };
-
   const days = [
     "Sunday",
     "Monday",
@@ -39,6 +31,14 @@ const AppointmentItem = props => {
     "November",
     "December"
   ];
+  const cancelAppointment = async () => {
+    const { appointment, token, setAppointmentData } = props;
+    await apiService.cancelAppointment(appointment.id, token).then(() => {
+      apiService.getAppointment(props.token).then(response => {
+        setAppointmentData(response.data.appointments);
+      });
+    });
+  };
 
   const isNumberDay = () => {
     let index = days.findIndex(day => day === props.appointment.day);
@@ -82,6 +82,7 @@ const AppointmentItem = props => {
             <h5>Doctor:</h5>
             {props.appointment.doctor.fullName}
           </div>
+          <ExampleComponent/>
           <button
             onClick={cancelAppointment}
             className="btnb btn-outline-primary"
