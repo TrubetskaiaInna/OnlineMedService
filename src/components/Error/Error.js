@@ -28,7 +28,7 @@ export const Error = (props) => {
       <Snackbar
         anchorOrigin={{
           vertical: "top",
-          horizontal: "right"
+          horizontal: "center"
         }}
         open={open}
         autoHideDuration={5000}

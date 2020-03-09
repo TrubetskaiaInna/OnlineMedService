@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     background: "silver"
   }
 }));
-export default function Message() {
+export default function Message(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleClose = (event, reason) => {
@@ -26,7 +26,7 @@ export default function Message() {
       <Snackbar
         anchorOrigin={{
           vertical: "top",
-          horizontal: "right"
+          horizontal: "center"
         }}
         open={open}
         autoHideDuration={5000}
@@ -38,8 +38,8 @@ export default function Message() {
           }
         }}
         message={
-          <span id="message-id" style={{ color: "red" }}>
-            Invalid login or password
+          <span id="message-id" style={{ color: props.color }}>
+            {props.text}
           </span>
         }
         action={[

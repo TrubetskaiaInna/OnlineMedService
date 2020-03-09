@@ -151,12 +151,10 @@ export class apiService {
   }
 
   static payment(nonce, appointmentId, token) {
-    return axios
-      .post(
-        `${API_HOST}payment/${appointmentId}/pay`,
-        { nonce },
-        { headers: { "X-AUTH-TOKEN": token } }
-      )
-      .then(response => console.log(response))
+    return axios.post(
+      `${API_HOST}payment/${appointmentId}/pay`,
+      { nonce },
+      { headers: { "X-AUTH-TOKEN": token } }
+    );
   }
 }

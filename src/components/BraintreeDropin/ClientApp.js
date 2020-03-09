@@ -3,7 +3,8 @@ import braintree from "braintree-web-drop-in";
 import PropTypes from "prop-types";
 import BraintreeDropin from "../BraintreeDropIn/BraintreeDropIn";
 import { apiService } from "../../service/apiService";
-import {Error} from "../Error/Error";
+import { Error } from "../Error/Error";
+import Message from "../Message/Message";
 
 const renderSubmitButton = ({ onClick, isDisabled, text }) => {
   return (
@@ -30,7 +31,8 @@ class ExampleComponent extends React.Component {
     super();
     this.state = {
       authorizationToken: "",
-      actionError: false
+      actionError: false,
+      showMessage: false
     };
   }
 
@@ -48,6 +50,12 @@ class ExampleComponent extends React.Component {
 
   errorAction = () => {
     this.setState({ actionError: !this.state.actionError });
+  };
+
+  showMessage = () => {
+    this.setState({
+      showMessage: true
+    });
   };
 
   handlePaymentMethod = payload => {
@@ -91,9 +99,13 @@ class ExampleComponent extends React.Component {
             token={this.props.token}
             appointment={this.props.appointment}
             errorAction={this.errorAction}
+            showMessage={this.showMessage}
           />
         ) : null}
-        {this.state.actionError && <Error errorAction={this.errorAction}/>}
+        {this.state.actionError && <Error errorAction={this.errorAction} />}
+        {this.state.showMessage && (
+          <Message text={"Payment was successful!"} color={"green"} />
+        )}
       </>
     );
   }

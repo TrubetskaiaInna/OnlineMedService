@@ -186,7 +186,7 @@ class userLogin extends Component {
                   />
                 </div>
               </form>
-              {this.state.showMessage ? <Message /> : null}
+              {this.state.showMessage ? <Message text={' Invalid login or password'} color={'red'}/> : null}
             </div>
           </div>
         )}

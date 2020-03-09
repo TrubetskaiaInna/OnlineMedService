@@ -137,7 +137,11 @@ class BraintreeDropIn extends React.Component {
                 this.props.appointment.id,
                 this.props.token
               )
-              .catch((error) => {
+              .then(response => {
+                console.log(response);
+                this.props.showMessage();
+              })
+              .catch(error => {
                 console.log(error);
                 this.props.errorAction();
               });
