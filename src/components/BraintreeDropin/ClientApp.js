@@ -100,6 +100,7 @@ class ExampleComponent extends React.Component {
             appointment={this.props.appointment}
             errorAction={this.errorAction}
             showMessage={this.showMessage}
+            handleClose={this.props.handleClose}
           />
         ) : null}
         {this.state.actionError && <Error errorAction={this.errorAction} />}

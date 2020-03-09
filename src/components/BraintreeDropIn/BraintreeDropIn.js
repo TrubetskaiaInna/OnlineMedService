@@ -137,9 +137,10 @@ class BraintreeDropIn extends React.Component {
                 this.props.appointment.id,
                 this.props.token
               )
-              .then(response => {
+              .then((response) => {
                 console.log(response);
                 this.props.showMessage();
+                setTimeout(()=>{this.props.handleClose()},5500)
               })
               .catch(error => {
                 console.log(error);
