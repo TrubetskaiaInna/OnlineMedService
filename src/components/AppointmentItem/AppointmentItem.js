@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { apiService } from "../../service/apiService";
 import "./AppointmentItem.scss";
-import ExampleComponent from '../Braintree-dropin/clientAppContainer'
+import Payment from "../Payment/Payment";
 
 const AppointmentItem = props => {
   const [day, setDay] = useState("");
@@ -82,13 +82,15 @@ const AppointmentItem = props => {
             <h5>Doctor:</h5>
             {props.appointment.doctor.fullName}
           </div>
-          <ExampleComponent/>
-          <button
-            onClick={cancelAppointment}
-            className="btnb btn-outline-primary"
-          >
-            Cancel
-          </button>
+          <Payment appointment={props.appointment} />
+          <div>
+            <button
+              onClick={cancelAppointment}
+              className="btn-sm btn-outline-primary"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       ) : null}
     </>

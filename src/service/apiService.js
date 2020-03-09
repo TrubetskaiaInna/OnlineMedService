@@ -133,9 +133,11 @@ export class apiService {
       });
   }
 
-  static getAuthorizationToken(token) {
+  static getAuthorizationTokenPayment(token) {
     return axios
-      .post(`${API_HOST}payment/generate-token`, null, { headers: { "X-AUTH-TOKEN": token } })
+      .post(`${API_HOST}payment/generate-token`, null, {
+        headers: { "X-AUTH-TOKEN": token }
+      })
       .catch(error => {
         if (error.response) {
           console.log(error.response.data);
@@ -148,11 +150,23 @@ export class apiService {
       });
   }
 
-  static payment (nonce, appointmentId, token){
+  static payment(nonce, appointmentId, token) {
     return axios
-      .post(`${API_HOST}payment/${appointmentId}/pay`,{nonce}, { headers: { "X-AUTH-TOKEN": token } })
-      .then(response=> console.log(response))
-      .catch(error=> console.log(error))
-
+      .post(
+        `${API_HOST}payment/${appointmentId}/pay`,
+        { nonce },
+        { headers: { "X-AUTH-TOKEN": token } }
+      )
+      .then(response => console.log(response))
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else {
+          console.log("Strange Error", error.message);
+        }
+        console.log(error.config);
+      });
   }
 }
