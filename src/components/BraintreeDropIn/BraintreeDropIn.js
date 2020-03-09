@@ -131,12 +131,16 @@ class BraintreeDropIn extends React.Component {
             }
           } else {
             this.props.handlePaymentMethod(payload);
-            apiService.payment(
-              payload.nonce,
-              this.props.appointment.id,
-              this.props.token
-            );
-            this.props.handleClose()
+            apiService
+              .payment(
+                payload.nonce,
+                this.props.appointment.id,
+                this.props.token
+              )
+              .catch((error) => {
+                console.log(error);
+                this.props.errorAction();
+              });
           }
         });
       });

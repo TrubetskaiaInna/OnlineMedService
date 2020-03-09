@@ -3,10 +3,11 @@ import braintree from "braintree-web-drop-in";
 import PropTypes from "prop-types";
 import BraintreeDropin from "../BraintreeDropIn/BraintreeDropIn";
 import { apiService } from "../../service/apiService";
+import {Error} from "../Error/Error";
 
 const renderSubmitButton = ({ onClick, isDisabled, text }) => {
   return (
-    <div className='wrapperButton'>
+    <div className="wrapperButton">
       <button
         className="btn btn-outline-warning"
         onClick={onClick}
@@ -28,7 +29,8 @@ class ExampleComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      authorizationToken: ""
+      authorizationToken: "",
+      actionError: false
     };
   }
 
@@ -38,8 +40,15 @@ class ExampleComponent extends React.Component {
       .then(response => {
         this.setState({ authorizationToken: response.data.clientToken });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.errorAction();
+        console.log(error);
+      });
   }
+
+  errorAction = () => {
+    this.setState({ actionError: !this.state.actionError });
+  };
 
   handlePaymentMethod = payload => {
     console.log("payload", payload);
@@ -81,9 +90,10 @@ class ExampleComponent extends React.Component {
             renderSubmitButton={renderSubmitButton}
             token={this.props.token}
             appointment={this.props.appointment}
-            handleClose={this.props.handleClose}
+            errorAction={this.errorAction}
           />
         ) : null}
+        {this.state.actionError && <Error errorAction={this.errorAction}/>}
       </>
     );
   }

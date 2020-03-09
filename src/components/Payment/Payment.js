@@ -55,10 +55,7 @@ const Payment = props => {
           <div className={classes.paper} style={{ outline: "none" }}>
             <p>The amount that will be debited from your bil: 300$</p>
             <>
-              <ExampleComponent
-                handleClose={handleClose}
-                appointment={props.appointment}
-              />
+              <ExampleComponent appointment={props.appointment} />
             </>
           </div>
         </Fade>
