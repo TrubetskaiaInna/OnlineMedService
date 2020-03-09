@@ -81,6 +81,7 @@ class ExampleComponent extends React.Component {
             renderSubmitButton={renderSubmitButton}
             token={this.props.token}
             appointment={this.props.appointment}
+            handleClose={this.props.handleClose}
           />
         ) : null}
       </>

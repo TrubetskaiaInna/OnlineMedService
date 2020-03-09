@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import ExampleComponent from '../BraintreeDropin/ClientAppContainer'
+import ExampleComponent from "../BraintreeDropin/ClientAppContainer";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 const Payment = props => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,18 +53,13 @@ const Payment = props => {
       >
         <Fade in={open}>
           <div className={classes.paper} style={{ outline: "none" }}>
-            <div
-              style={{
-                width: "315px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "end"
-              }}
-            >
-            </div>
             <p>The amount that will be debited from your bil: 300$</p>
-            <><ExampleComponent
-              appointment={props.appointment}/></>
+            <>
+              <ExampleComponent
+                handleClose={handleClose}
+                appointment={props.appointment}
+              />
+            </>
           </div>
         </Fade>
       </Modal>

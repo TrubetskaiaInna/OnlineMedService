@@ -136,6 +136,7 @@ class BraintreeDropIn extends React.Component {
               this.props.appointment.id,
               this.props.token
             );
+            this.props.handleClose()
           }
         });
       });
