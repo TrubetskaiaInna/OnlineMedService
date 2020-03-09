@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 const Payment = props => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,11 +35,20 @@ const Payment = props => {
     setOpen(false);
   };
 
+  const showButton = () => {
+    setShow(false);
+  };
+
   return (
     <div>
-      <button className="btn-sm btn-outline-primary" onClick={handleOpen}>
-        Payment
-      </button>
+      {show && !props.appointment.transactionId ? (
+        <button className="btn-sm btn-outline-primary" onClick={handleOpen}>
+          Payment
+        </button>
+      ) : (
+        <div style={{color:'green', width:'70px', display:'flex', justifyContent:'center'}}>Paid</div>
+      )}
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -55,7 +65,11 @@ const Payment = props => {
           <div className={classes.paper} style={{ outline: "none" }}>
             <p>The amount that will be debited from your bil: 300$</p>
             <>
-              <ExampleComponent appointment={props.appointment} handleClose={handleClose} />
+              <ExampleComponent
+                appointment={props.appointment}
+                handleClose={handleClose}
+                showButton={showButton}
+              />
             </>
           </div>
         </Fade>

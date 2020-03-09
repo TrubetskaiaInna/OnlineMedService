@@ -101,6 +101,7 @@ class ExampleComponent extends React.Component {
             errorAction={this.errorAction}
             showMessage={this.showMessage}
             handleClose={this.props.handleClose}
+            showButton={this.props.showButton}
           />
         ) : null}
         {this.state.actionError && <Error errorAction={this.errorAction} />}

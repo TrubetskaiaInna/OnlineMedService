@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { apiService } from "../../service/apiService";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { apiService } from '../../service/apiService'
 
 class BraintreeDropIn extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       dropInInstance: null,
       isSubmitButtonDisabled: true
-    };
+    }
   }
 
   componentDidMount = () => {
-    if (!this.props.braintree || this.state.dropInInstance) return;
-    this.setup();
-  };
+    if (!this.props.braintree || this.state.dropInInstance) return
+    this.setup()
+  }
 
   componentDidUpdate = prevProps => {
     if (
@@ -31,27 +31,27 @@ class BraintreeDropIn extends React.Component {
               isSubmitButtonDisabled: true
             },
             () => {
-              this.setup();
+              this.setup()
             }
-          );
+          )
         })
         .catch(err => {
           if (this.props.onError) {
-            this.props.onError(err);
+            this.props.onError(err)
           }
-        });
+        })
     }
-  };
+  }
 
   componentWillUnmount = () => {
-    if (!this.state.dropInInstance) return;
+    if (!this.state.dropInInstance) return
 
     this.tearDown().catch(err => {
       if (this.props.onError) {
-        this.props.onError(err);
+        this.props.onError(err)
       }
-    });
-  };
+    })
+  }
 
   setup = () => {
     const options = {
@@ -62,61 +62,61 @@ class BraintreeDropIn extends React.Component {
       card: this.props.card,
       ...this.props.options,
       authorization: this.props.authorizationToken,
-      container: ".braintree-dropin-react-form"
-    };
+      container: '.braintree-dropin-react-form'
+    }
     this.props.braintree.create(options, (err, dropinInstance) => {
       if (err) {
         if (this.props.onError) {
-          this.props.onError(err);
+          this.props.onError(err)
         }
-        return;
+        return
       } else {
         if (this.props.onCreate) {
-          this.props.onCreate(dropinInstance);
+          this.props.onCreate(dropinInstance)
         }
       }
 
       if (dropinInstance.isPaymentMethodRequestable()) {
         this.setState({
           isSubmitButtonDisabled: false
-        });
+        })
       }
 
-      dropinInstance.on("paymentMethodRequestable", event => {
+      dropinInstance.on('paymentMethodRequestable', event => {
         this.setState({
           isSubmitButtonDisabled: false
-        });
-      });
+        })
+      })
 
-      dropinInstance.on("noPaymentMethodRequestable", () => {
+      dropinInstance.on('noPaymentMethodRequestable', () => {
         this.setState({
           isSubmitButtonDisabled: true
-        });
-      });
+        })
+      })
 
       this.setState({
         dropInInstance: dropinInstance
-      });
-    });
-  };
+      })
+    })
+  }
 
   tearDown = () => {
     if (this.props.onDestroyStart) {
-      this.props.onDestroyStart();
+      this.props.onDestroyStart()
     }
     return new Promise((resolve, reject) => {
       this.state.dropInInstance.teardown(err => {
         if (this.props.onDestroyEnd) {
-          this.props.onDestroyEnd(err);
+          this.props.onDestroyEnd(err)
         }
         if (err) {
-          return reject(err);
+          return reject(err)
         } else {
-          return resolve();
+          return resolve()
         }
-      });
-    });
-  };
+      })
+    })
+  }
 
   handleSubmit = () => {
     if (this.state.dropInInstance && !this.state.isSubmitButtonDisabled) {
@@ -124,13 +124,13 @@ class BraintreeDropIn extends React.Component {
         this.state.dropInInstance.requestPaymentMethod((err, payload) => {
           this.setState({
             isSubmitButtonDisabled: false
-          });
+          })
           if (err) {
             if (this.props.onError) {
-              this.props.onError(err);
+              this.props.onError(err)
             }
           } else {
-            this.props.handlePaymentMethod(payload);
+            this.props.handlePaymentMethod(payload)
             apiService
               .payment(
                 payload.nonce,
@@ -138,24 +138,25 @@ class BraintreeDropIn extends React.Component {
                 this.props.token
               )
               .then((response) => {
-                console.log(response);
-                this.props.showMessage();
-                setTimeout(()=>{this.props.handleClose()},5500)
+                console.log(response)
+                this.props.showMessage()
+                setTimeout(() => {this.props.handleClose()}, 5500)
+                this.props.showButton()
               })
               .catch(error => {
-                console.log(error);
-                this.props.errorAction();
-              });
+                console.log(error)
+                this.props.errorAction()
+              })
           }
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
   render = () => {
     return (
       <div className={this.props.className}>
-        <div className="braintree-dropin-react-form" />
+        <div className="braintree-dropin-react-form"/>
         <div className="braintree-dropin-react-submit-btn-wrapper">
           {this.props.renderSubmitButton({
             onClick: this.handleSubmit,
@@ -164,8 +165,8 @@ class BraintreeDropIn extends React.Component {
           })}
         </div>
       </div>
-    );
-  };
+    )
+  }
 }
 
 BraintreeDropIn.propTypes = {
@@ -185,26 +186,26 @@ BraintreeDropIn.propTypes = {
   submitButtonText: PropTypes.string,
   className: PropTypes.string,
   renderSubmitButton: PropTypes.func
-};
+}
 
 const renderSubmitButton = ({ onClick, isDisabled, text }) => {
   return (
     <button onClick={onClick} disabled={isDisabled}>
       {text}
     </button>
-  );
-};
+  )
+}
 
 renderSubmitButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
-};
+}
 
 BraintreeDropIn.defaultProps = {
-  className: "braintree-dropin-react",
-  submitButtonText: "Confirm",
+  className: 'braintree-dropin-react',
+  submitButtonText: 'Confirm',
   renderSubmitButton
-};
+}
 
-export default BraintreeDropIn;
+export default BraintreeDropIn
