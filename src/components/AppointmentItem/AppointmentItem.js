@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { apiService } from "../../service/apiService";
 import "./AppointmentItem.scss";
-import Payment from "../Payment/Payment";
+import PaymentModal from "../PaymentModal/PaymentModal";
 
 const AppointmentItem = props => {
   const [day, setDay] = useState("");
@@ -82,7 +82,7 @@ const AppointmentItem = props => {
             <h5>Doctor:</h5>
             {props.appointment.doctor.fullName}
           </div>
-          <Payment appointment={props.appointment} />
+          <PaymentModal appointment={props.appointment} />
           <div>
             <button
               onClick={cancelAppointment}

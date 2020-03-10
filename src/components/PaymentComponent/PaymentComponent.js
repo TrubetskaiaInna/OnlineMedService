@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { apiService } from "../../service/apiService";
 
-class BraintreeDropIn extends Component {
+class PaymentComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -197,7 +197,7 @@ class BraintreeDropIn extends Component {
   };
 }
 
-BraintreeDropIn.propTypes = {
+PaymentComponent.propTypes = {
   braintree: PropTypes.object.isRequired,
   options: PropTypes.object,
   authorizationToken: PropTypes.string.isRequired,
@@ -230,10 +230,10 @@ renderSubmitButton.propTypes = {
   text: PropTypes.string.isRequired
 };
 
-BraintreeDropIn.defaultProps = {
+PaymentComponent.defaultProps = {
   className: "braintree-dropin-react",
   submitButtonText: "Confirm",
   renderSubmitButton
 };
 
-export default BraintreeDropIn;
+export default PaymentComponent;

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import clientApp from "./ClientApp";
+import Payment from "./Payment";
 import { token } from "../../actions";
 
 const mapStateToProps = state => {
@@ -21,9 +21,9 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-const clientAppContainer = connect(
+const paymentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(clientApp);
+)(Payment);
 
-export default clientAppContainer;
+export default paymentContainer;
