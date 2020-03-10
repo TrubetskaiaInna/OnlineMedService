@@ -1,27 +1,31 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { apiService } from '../../service/apiService'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { apiService } from "../../service/apiService";
 
-class BraintreeDropIn extends React.Component {
-  constructor (props) {
-    super(props)
+class BraintreeDropIn extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       dropInInstance: null,
       isSubmitButtonDisabled: true
-    }
+    };
   }
 
   componentDidMount = () => {
-    if (!this.props.braintree || this.state.dropInInstance) return
-    this.setup()
-  }
+    const { dropInInstance } = this.state;
+    const { braintree } = this.props;
+    if (!braintree || dropInInstance) return;
+    this.setup();
+  };
 
   componentDidUpdate = prevProps => {
+    const { authorizationToken, locale, onError } = this.props;
+    const { dropInInstance } = this.state;
     if (
-      this.props.authorizationToken &&
-      this.state.dropInInstance &&
-      (prevProps.authorizationToken !== this.props.authorizationToken ||
-        prevProps.locale !== this.props.locale)
+      authorizationToken &&
+      dropInInstance &&
+      (prevProps.authorizationToken !== authorizationToken ||
+        prevProps.locale !== locale)
     ) {
       this.tearDown()
         .then(() => {
@@ -31,132 +35,156 @@ class BraintreeDropIn extends React.Component {
               isSubmitButtonDisabled: true
             },
             () => {
-              this.setup()
+              this.setup();
             }
-          )
+          );
         })
         .catch(err => {
-          if (this.props.onError) {
-            this.props.onError(err)
+          if (onError) {
+            onError(err);
           }
-        })
+        });
     }
-  }
+  };
 
   componentWillUnmount = () => {
-    if (!this.state.dropInInstance) return
+    const { dropInInstance } = this.state;
+    const { onError } = this.props;
+    if (!dropInInstance) return;
 
     this.tearDown().catch(err => {
-      if (this.props.onError) {
-        this.props.onError(err)
+      if (onError) {
+        onError(err);
       }
-    })
-  }
+    });
+  };
 
   setup = () => {
+    const {
+      locale,
+      paypal,
+      paypalCredit,
+      paymentOptionPriority,
+      card,
+      authorizationToken,
+      braintree,
+      onError,
+      onCreate
+    } = this.props;
     const options = {
-      locale: this.props.locale,
-      paypal: this.props.paypal,
-      paypalCredit: this.props.paypalCredit,
-      paymentOptionPriority: this.props.paymentOptionPriority,
-      card: this.props.card,
+      locale: locale,
+      paypal: paypal,
+      paypalCredit: paypalCredit,
+      paymentOptionPriority: paymentOptionPriority,
+      card: card,
       ...this.props.options,
-      authorization: this.props.authorizationToken,
-      container: '.braintree-dropin-react-form'
-    }
-    this.props.braintree.create(options, (err, dropinInstance) => {
+      authorization: authorizationToken,
+      container: ".braintree-dropin-react-form"
+    };
+    braintree.create(options, (err, dropinInstance) => {
       if (err) {
-        if (this.props.onError) {
-          this.props.onError(err)
+        if (onError) {
+          onError(err);
         }
-        return
+        return;
       } else {
-        if (this.props.onCreate) {
-          this.props.onCreate(dropinInstance)
+        if (onCreate) {
+          onCreate(dropinInstance);
         }
       }
 
       if (dropinInstance.isPaymentMethodRequestable()) {
         this.setState({
           isSubmitButtonDisabled: false
-        })
+        });
       }
 
-      dropinInstance.on('paymentMethodRequestable', event => {
+      dropinInstance.on("paymentMethodRequestable", () => {
         this.setState({
           isSubmitButtonDisabled: false
-        })
-      })
+        });
+      });
 
-      dropinInstance.on('noPaymentMethodRequestable', () => {
+      dropinInstance.on("noPaymentMethodRequestable", () => {
         this.setState({
           isSubmitButtonDisabled: true
-        })
-      })
+        });
+      });
 
       this.setState({
         dropInInstance: dropinInstance
-      })
-    })
-  }
+      });
+    });
+  };
 
   tearDown = () => {
-    if (this.props.onDestroyStart) {
-      this.props.onDestroyStart()
+    const { onDestroyStart, onDestroyEnd } = this.props;
+    const { dropInInstance } = this.state;
+    if (onDestroyStart) {
+      onDestroyStart();
     }
     return new Promise((resolve, reject) => {
-      this.state.dropInInstance.teardown(err => {
-        if (this.props.onDestroyEnd) {
-          this.props.onDestroyEnd(err)
+      dropInInstance.teardown(err => {
+        if (onDestroyEnd) {
+          onDestroyEnd(err);
         }
         if (err) {
-          return reject(err)
+          return reject(err);
         } else {
-          return resolve()
+          return resolve();
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   handleSubmit = () => {
-    if (this.state.dropInInstance && !this.state.isSubmitButtonDisabled) {
+    const { dropInInstance, isSubmitButtonDisabled } = this.state;
+    const {
+      onError,
+      handlePaymentMethod,
+      appointment,
+      token,
+      showMessage,
+      handleClose,
+      showButton,
+      errorAction
+    } = this.props;
+    if (dropInInstance && !isSubmitButtonDisabled) {
       this.setState({ isSubmitButtonDisabled: true }, () => {
-        this.state.dropInInstance.requestPaymentMethod((err, payload) => {
+        dropInInstance.requestPaymentMethod((err, payload) => {
           this.setState({
             isSubmitButtonDisabled: false
-          })
+          });
           if (err) {
-            if (this.props.onError) {
-              this.props.onError(err)
+            if (onError) {
+              onError(err);
             }
           } else {
-            this.props.handlePaymentMethod(payload)
+            handlePaymentMethod(payload);
             apiService
-              .payment(
-                payload.nonce,
-                this.props.appointment.id,
-                this.props.token
-              )
-              .then((response) => {
-                console.log(response)
-                this.props.showMessage()
-                setTimeout(() => {this.props.handleClose()}, 5500)
-                this.props.showButton()
+              .payment(payload.nonce, appointment.id, token)
+              .then(response => {
+                console.log(response);
+                showMessage();
+                setTimeout(() => {
+                  handleClose();
+                }, 5500);
+                showButton();
               })
               .catch(error => {
-                console.log(error)
-                this.props.errorAction()
-              })
+                console.log(error);
+                errorAction();
+              });
           }
-        })
-      })
+        });
+      });
     }
-  }
+  };
 
   render = () => {
     return (
       <div className={this.props.className}>
-        <div className="braintree-dropin-react-form"/>
+        <div className="braintree-dropin-react-form" />
         <div className="braintree-dropin-react-submit-btn-wrapper">
           {this.props.renderSubmitButton({
             onClick: this.handleSubmit,
@@ -165,8 +193,8 @@ class BraintreeDropIn extends React.Component {
           })}
         </div>
       </div>
-    )
-  }
+    );
+  };
 }
 
 BraintreeDropIn.propTypes = {
@@ -186,26 +214,26 @@ BraintreeDropIn.propTypes = {
   submitButtonText: PropTypes.string,
   className: PropTypes.string,
   renderSubmitButton: PropTypes.func
-}
+};
 
 const renderSubmitButton = ({ onClick, isDisabled, text }) => {
   return (
     <button onClick={onClick} disabled={isDisabled}>
       {text}
     </button>
-  )
-}
+  );
+};
 
 renderSubmitButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
-}
+};
 
 BraintreeDropIn.defaultProps = {
-  className: 'braintree-dropin-react',
-  submitButtonText: 'Confirm',
+  className: "braintree-dropin-react",
+  submitButtonText: "Confirm",
   renderSubmitButton
-}
+};
 
-export default BraintreeDropIn
+export default BraintreeDropIn;

@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ExampleComponent from "../BraintreeDropin/ClientAppContainer";
+import "./Payment.scss";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -46,7 +47,7 @@ const Payment = props => {
           Payment
         </button>
       ) : (
-        <div style={{color:'green', width:'70px', display:'flex', justifyContent:'center'}}>Paid</div>
+        <div className="textPayment">Paid</div>
       )}
 
       <Modal

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import braintree from "braintree-web-drop-in";
 import PropTypes from "prop-types";
 import BraintreeDropin from "../BraintreeDropIn/BraintreeDropIn";
@@ -26,9 +26,9 @@ renderSubmitButton.propTypes = {
   text: PropTypes.string.isRequired
 };
 
-class ExampleComponent extends React.Component {
-  constructor() {
-    super();
+class ExampleComponent extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       authorizationToken: "",
       actionError: false,
@@ -37,8 +37,9 @@ class ExampleComponent extends React.Component {
   }
 
   componentDidMount() {
+    const {token} =this.props
     apiService
-      .getAuthorizationTokenPayment(this.props.token)
+      .getAuthorizationTokenPayment(token)
       .then(response => {
         this.setState({ authorizationToken: response.data.clientToken });
       })
