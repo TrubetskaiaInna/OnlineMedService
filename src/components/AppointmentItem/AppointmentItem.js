@@ -41,15 +41,18 @@ const AppointmentItem = props => {
     const { appointment, token, setAppointmentData } = props;
     await apiService
       .cancelAppointment(appointment.id, token)
-      .then(response => {
+      .then(() => {
         setShowMessage(true);
         setTextMessage("You canceled the appointment");
         apiService.getAppointment(props.token).then(response => {
           setAppointmentData(response.data.appointments);
-          // console.log(88888888, appointment.isRefunded)
-          // if(appointment.isRefunded){
-          //   setTextMessage("You canceled the appointment, money will be returned to you within the current day");
-          // }
+          response.data.appointments.forEach(el => {
+            if (el.id === appointment.id && el.isRefunded) {
+              setTextMessage(
+                "You canceled the appointment, money will be returned"
+              );
+            }
+          });
         });
       })
       .catch(() => {

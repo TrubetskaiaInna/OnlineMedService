@@ -117,20 +117,9 @@ export class apiService {
   }
 
   static cancelAppointment(id, token) {
-    return axios
-      .put(`${API_HOST}appointment/${id}/cancel`, null, {
-        headers: { "X-AUTH-TOKEN": token }
-      })
-      // .catch(error => {
-      //   if (error.response) {
-      //     console.log(error.response.data);
-      //     console.log(error.response.status);
-      //     console.log(error.response.headers);
-      //   } else {
-      //     console.log("Strange Error", error.message);
-      //   }
-      //   console.log(error.config);
-      // });
+    return axios.put(`${API_HOST}appointment/${id}/cancel`, null, {
+      headers: { "X-AUTH-TOKEN": token }
+    });
   }
 
   static getAuthorizationTokenPayment(token) {
