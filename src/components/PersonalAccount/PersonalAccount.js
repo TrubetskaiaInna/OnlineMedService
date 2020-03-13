@@ -9,7 +9,7 @@ const PersonalAccount = () => {
       <div className="infoTitle">
         <h4>Your entry at doctor</h4>
       </div>
-        <Appointment />
+      <Appointment />
       <div className="title">
         <h4>Select a doctor</h4>
       </div>

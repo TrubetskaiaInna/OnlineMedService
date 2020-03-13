@@ -6,7 +6,7 @@ const Entry = props => {
   const { photo, fullName, type, info } = props.selectedDoctors;
   return (
     <>
-      <div className='title'>Select a data</div>
+      <div className="title">Select a data</div>
       <div className="wrapperEntry">
         <div className="wrapperInfoDoctor">
           <div className="photoDoctor">

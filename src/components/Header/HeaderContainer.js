@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
   const { setUserData, clearUserData } = user;
   const { setDoctorData, clearDoctorData } = doctor;
   const { setToken, clearToken } = token;
-  const {clearAppointmentData} = appointment
+  const { clearAppointmentData } = appointment;
   return bindActionCreators(
     {
       setUserData,

@@ -12,7 +12,7 @@ const TimeButton = props => {
   );
 
   const getIdSchedule = () => {
-    props.setSelectedData(props.element.id)
+    props.setSelectedData(props.element.id);
   };
   return (
     <>

@@ -1,4 +1,4 @@
-import {  schedule } from '../constants'
+import { schedule } from '../constants'
 
 const setScheduleDoctor = (payload) => {
   return {

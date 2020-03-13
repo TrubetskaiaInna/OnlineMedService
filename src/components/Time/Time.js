@@ -43,7 +43,7 @@ const Time = props => {
 
   return (
     <>
-      <div className='title'>Select a time</div>
+      <div className="title">Select a time</div>
       {weekend.map((element, index) => {
         return (
           day === element && (

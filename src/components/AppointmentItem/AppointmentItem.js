@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { apiService } from "../../service/apiService";
 import "./AppointmentItem.scss";
 import PaymentModal from "../PaymentModal/PaymentModal";
+import Message from "../Message/Message";
 
 const AppointmentItem = props => {
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [textMessage, setTextMessage] = useState("");
+  const [colorMessage, setColorMessage] = useState("orange");
   const days = [
     "Sunday",
     "Monday",
@@ -31,13 +35,28 @@ const AppointmentItem = props => {
     "November",
     "December"
   ];
+
   const cancelAppointment = async () => {
+    setShowMessage(false);
     const { appointment, token, setAppointmentData } = props;
-    await apiService.cancelAppointment(appointment.id, token).then(() => {
-      apiService.getAppointment(props.token).then(response => {
-        setAppointmentData(response.data.appointments);
+    await apiService
+      .cancelAppointment(appointment.id, token)
+      .then(response => {
+        setShowMessage(true);
+        setTextMessage("You canceled the appointment");
+        apiService.getAppointment(props.token).then(response => {
+          setAppointmentData(response.data.appointments);
+          // console.log(88888888, appointment.isRefunded)
+          // if(appointment.isRefunded){
+          //   setTextMessage("You canceled the appointment, money will be returned to you within the current day");
+          // }
+        });
+      })
+      .catch(() => {
+        setShowMessage(true);
+        setColorMessage("red");
+        setTextMessage("Download failed, please try again later");
       });
-    });
   };
 
   const isNumberDay = () => {
@@ -93,6 +112,7 @@ const AppointmentItem = props => {
           </div>
         </div>
       ) : null}
+      {showMessage ? <Message text={textMessage} color={colorMessage} /> : null}
     </>
   );
 };

@@ -121,16 +121,16 @@ export class apiService {
       .put(`${API_HOST}appointment/${id}/cancel`, null, {
         headers: { "X-AUTH-TOKEN": token }
       })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else {
-          console.log("Strange Error", error.message);
-        }
-        console.log(error.config);
-      });
+      // .catch(error => {
+      //   if (error.response) {
+      //     console.log(error.response.data);
+      //     console.log(error.response.status);
+      //     console.log(error.response.headers);
+      //   } else {
+      //     console.log("Strange Error", error.message);
+      //   }
+      //   console.log(error.config);
+      // });
   }
 
   static getAuthorizationTokenPayment(token) {

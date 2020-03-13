@@ -12,7 +12,7 @@ const DoctorListItem = props => {
   return (
     <>
       {login ? (
-        <NavLink  to="/entry" className="card" onClick={handleClick}>
+        <NavLink to="/entry" className="card" onClick={handleClick}>
           <div className="wrapperPhoto">
             <img className="photo" src={photo} alt="img" />
           </div>

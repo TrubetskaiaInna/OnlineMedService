@@ -12,8 +12,7 @@ const useStyles = makeStyles(theme => ({
     background: "silver"
   }
 }));
-export const Error = (props) => {
-
+export const Error = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleClose = (event, reason) => {
@@ -21,7 +20,7 @@ export const Error = (props) => {
       return;
     }
     setOpen(false);
-    props.errorAction()
+    props.errorAction();
   };
   return (
     <div>
@@ -58,4 +57,4 @@ export const Error = (props) => {
       />
     </div>
   );
-}
+};

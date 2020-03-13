@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   const { setToken, clearToken } = token;
-  const {setAppointmentData}= appointment
+  const { setAppointmentData } = appointment;
   return bindActionCreators(
     {
       setToken,

@@ -21,9 +21,6 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-const paymentContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Payment);
+const paymentContainer = connect(mapStateToProps, mapDispatchToProps)(Payment);
 
 export default paymentContainer;

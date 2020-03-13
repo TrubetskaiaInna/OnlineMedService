@@ -8,14 +8,14 @@ const mapStateToProps = state => {
   return {
     selectedDoctors: state.selectedDoctor.doctors,
     schedule: state.schedule.schedule,
-    selectedData: state.selectedData.selectedData,
+    selectedData: state.selectedData.selectedData
   };
 };
 
 const mapDispatchToProps = dispatch => {
   const { setSelectedDoctorData } = selectedDoctor;
   const { setScheduleDoctor, clearScheduleDoctor } = schedule;
-  const  {setSelectedData} = selectedData
+  const { setSelectedData } = selectedData;
   return bindActionCreators(
     {
       setSelectedDoctorData,
@@ -27,6 +27,9 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-const TimeButtonContainer = connect(mapStateToProps, mapDispatchToProps)(TimeButton);
+const TimeButtonContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TimeButton);
 
 export default TimeButtonContainer;
