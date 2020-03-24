@@ -4,6 +4,7 @@ import "./Entry.scss";
 
 const Entry = props => {
   const { photo, fullName, type, info } = props.selectedDoctors;
+
   return (
     <>
       <div className="title">Select a data</div>

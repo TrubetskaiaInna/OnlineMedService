@@ -2,16 +2,7 @@ import React, { useEffect } from "react";
 import "./Time.scss";
 import TimeButton from "../TimeButton/TimeButtonContainer";
 import { apiService } from "../../service/apiService";
-
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
+import { days } from "../../constants";
 
 const Time = props => {
   const day = days[props.date.getDay()];
@@ -51,7 +42,7 @@ const Time = props => {
           )
         );
       })}
-      <div className="error">{props.error}</div>
+      {props.error && <div className="error">{props.error}</div>}
       <div className="wrapperTime">
         {props.schedule.map(element => {
           return (

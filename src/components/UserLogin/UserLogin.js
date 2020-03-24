@@ -126,13 +126,24 @@ class userLogin extends Component {
   };
 
   render() {
+    const { action } = this.props;
+    const {
+      error,
+      validInput,
+      userNameLog,
+      userNameErrorLog,
+      passwordLog,
+      passwordErrorLog,
+      disabled,
+      showMessage
+    } = this.state;
     return (
       <>
-        {this.props.action ? (
+        {action ? (
           <Spinner />
         ) : (
           <div className="wrapperLogComponent">
-            <div className="error"> {this.state.error} </div>
+            {error && <div className="error"> {error} </div>}
             <div className="wrapperLogin">
               <form onSubmit={this.onSubmit}>
                 <div className="text">
@@ -146,16 +157,16 @@ class userLogin extends Component {
                     name="userNameLog"
                     id="inputUserName"
                     className={
-                      this.state.validInput
+                      validInput
                         ? "form-control inputUserNameValid"
                         : "form-control"
                     }
-                    value={this.state.userNameLog}
+                    value={userNameLog}
                     type="text"
                     onChange={this.handleUserName}
                     placeholder="Enter userName"
                   />
-                  <span className="error">{this.state.userNameErrorLog}</span>
+                  <span className="error">{userNameErrorLog}</span>
                 </div>
 
                 <div className="password">
@@ -164,29 +175,31 @@ class userLogin extends Component {
                     required
                     pattern="^([a-zA-Z0-9]{5,})+$"
                     className={
-                      this.state.validInput
+                      validInput
                         ? "form-control inputUserNameValid"
                         : "form-control"
                     }
                     id="inputPassword"
                     type="password"
-                    value={this.state.passwordLog}
+                    value={passwordLog}
                     name="passwordLog"
                     onChange={this.handlePassword}
                     placeholder="Enter password"
                   />
-                  <span className="error">{this.state.passwordErrorLog}</span>
+                  <span className="error">{passwordErrorLog}</span>
                 </div>
                 <div className="wrapperButton">
                   <input
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                     className="btn btn-secondary"
                     type="submit"
                     value="Login"
                   />
                 </div>
               </form>
-              {this.state.showMessage ? <Message text={' Invalid login or password'} color={'red'}/> : null}
+              {showMessage ? (
+                <Message text={" Invalid login or password"} color={"red"} />
+              ) : null}
             </div>
           </div>
         )}

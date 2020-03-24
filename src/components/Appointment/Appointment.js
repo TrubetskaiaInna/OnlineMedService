@@ -12,26 +12,32 @@ class Appointment extends Component {
   }
   componentDidMount = async () => {
     this.props.showLoading();
-    const { token, setAppointmentData } = this.props;
+    const {
+      token,
+      setAppointmentData,
+      hideLoading,
+      clearAppointmentData
+    } = this.props;
     await apiService
       .getAppointment(token)
       .then(response => {
-        this.props.hideLoading();
+        hideLoading();
         setAppointmentData(response.data.appointments);
       })
       .catch(() => {
-        this.props.hideLoading();
-        this.props.clearAppointmentData()
+        hideLoading();
+        clearAppointmentData();
         this.setState({ error: "download failed, please try again later" });
       });
   };
 
   render() {
-    const { appointment } = this.props;
+    const { appointment, action } = this.props;
+    const { error } = this.state;
     return (
       <>
-        <div className="errorGetDoctor">{this.state.error}</div>
-        {this.props.action ? (
+        {error && <div className="errorGetDoctor">{error}</div>}
+        {action ? (
           <Spinner />
         ) : (
           <div>

@@ -341,13 +341,39 @@ export default class userRegistration extends Component {
   };
 
   render() {
+    const {
+      action,
+      error,
+      firstName,
+      firstNameError,
+      lastName,
+      lastNameError,
+      actionUserNameValid,
+      userName,
+      userNameError,
+      userNameValid,
+      actionPhoneError,
+      phone,
+      phoneError,
+      password,
+      passwordError,
+      actionConfirmPasswordError,
+      confirmPassword,
+      confirmPasswordError,
+      address,
+      sex,
+      email,
+      emailError,
+      additionalInfo,
+      disabled
+    } = this.state;
     return (
       <>
-        {this.props.action ? (
+        {action ? (
           <Spinner />
         ) : (
           <div className="wrapperRegComponent">
-            <div className="error">{this.state.error}</div>
+            {error && <div className="error">{error}</div>}
             <div className="wrapperForm">
               <form onSubmit={this.onSubmit}>
                 <div className="firstName">
@@ -361,11 +387,11 @@ export default class userRegistration extends Component {
                     id="inputFirstName"
                     className="form-control"
                     type="text"
-                    value={this.state.firstName}
+                    value={firstName}
                     onChange={this.handleFirsName}
                     placeholder="Enter first name"
                   />
-                  <span className="error">{this.state.firstNameError}</span>
+                  <span className="error">{firstNameError}</span>
                 </div>
 
                 <div className="lastName">
@@ -378,12 +404,12 @@ export default class userRegistration extends Component {
                     name="lastName"
                     className="form-control"
                     id="inputLastName"
-                    value={this.state.lastName}
+                    value={lastName}
                     type="text"
                     onChange={this.handleLastName}
                     placeholder="Enter last name"
                   />
-                  <span className="error">{this.state.lastNameError}</span>
+                  <span className="error">{lastNameError}</span>
                 </div>
 
                 <div className="userName">
@@ -396,17 +422,17 @@ export default class userRegistration extends Component {
                     name="userName"
                     className="form-control"
                     id={
-                      this.state.actionUserNameValid
+                      actionUserNameValid
                         ? "inputUserNameError"
                         : "inputUserName"
                     }
-                    value={this.state.userName}
+                    value={userName}
                     type="text"
                     onChange={this.handleUserName}
                     placeholder="Enter user name"
                   />
-                  <span className="error">{this.state.userNameError}</span>
-                  <span className="error">{this.state.userNameValid}</span>
+                  <span className="error">{userNameError}</span>
+                  <span className="error">{userNameValid}</span>
                 </div>
 
                 <div className="phone">
@@ -415,20 +441,18 @@ export default class userRegistration extends Component {
                   </span>
                   <MaskedInput
                     required
-                    mask={["+", /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+                    mask={[
+                      "+", /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/
+                    ]}
                     name="phone"
                     className="form-control"
-                    id={
-                      this.state.actionPhoneError
-                        ? "inputPhoneError"
-                        : "inputPhone"
-                    }
-                    value={this.state.phone}
+                    id={actionPhoneError ? "inputPhoneError" : "inputPhone"}
+                    value={phone}
                     type="text"
                     onChange={this.handlePhone}
                     placeholder="Enter telephone"
                   />
-                  <span className="error">{this.state.phoneError}</span>
+                  <span className="error">{phoneError}</span>
                 </div>
 
                 <div className="password">
@@ -441,12 +465,12 @@ export default class userRegistration extends Component {
                     className="form-control"
                     id="inputPassword"
                     type="password"
-                    value={this.state.password}
+                    value={password}
                     name="password"
                     onChange={this.handlePassword}
                     placeholder="Enter password"
                   />
-                  <span className="error">{this.state.passwordError}</span>
+                  <span className="error">{passwordError}</span>
                 </div>
 
                 <div className="confirmPassword">
@@ -455,21 +479,19 @@ export default class userRegistration extends Component {
                   </span>
                   <input
                     id={
-                      this.state.actionConfirmPasswordError
+                      actionConfirmPasswordError
                         ? "inputConfirmPasswordError"
                         : "inputConfirmPassword"
                     }
                     required
-                    value={this.state.confirmPassword}
+                    value={confirmPassword}
                     name="confirmPassword"
                     className="form-control"
                     type="password"
                     onChange={this.handleConfPassword}
                     placeholder="Enter password"
                   />
-                  <span className="error">
-                    {this.state.confirmPasswordError}
-                  </span>
+                  <span className="error">{confirmPasswordError}</span>
                 </div>
 
                 <div className="address">
@@ -478,7 +500,7 @@ export default class userRegistration extends Component {
                   </span>
                   <input
                     required
-                    value={this.state.address}
+                    value={address}
                     name="address"
                     className="form-control"
                     id="inputAddress"
@@ -496,7 +518,7 @@ export default class userRegistration extends Component {
                     <RadioButton
                       type="radio"
                       value="Women"
-                      checked={this.state.sex === "Women"}
+                      checked={sex === "Women"}
                       onChange={this.handleRadio}
                     />
                     <label>women</label>
@@ -504,7 +526,7 @@ export default class userRegistration extends Component {
                     <RadioButton
                       type="radio"
                       value="Men"
-                      checked={this.state.sex === "Men"}
+                      checked={sex === "Men"}
                       onChange={this.handleRadio}
                     />
                     <label>men</label>
@@ -518,18 +540,18 @@ export default class userRegistration extends Component {
                     pattern="^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$"
                     className="form-control"
                     id="inputEmail"
-                    value={this.state.email}
+                    value={email}
                     type="text"
                     onChange={this.handleEmail}
                     placeholder="Enter email"
                   />
-                  <span className="error">{this.state.emailError}</span>
+                  <span className="error">{emailError}</span>
                 </div>
 
                 <div className="info">
                   <span>Additional info:</span>
                   <textarea
-                    value={this.state.additionalInfo}
+                    value={additionalInfo}
                     name="additionalInfo"
                     onChange={this.handleInput}
                     className="form-control"
@@ -538,7 +560,7 @@ export default class userRegistration extends Component {
 
                 <div className="wrapperButton">
                   <input
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                     className="btn btn-outline-primary"
                     type="submit"
                     value="Registration"

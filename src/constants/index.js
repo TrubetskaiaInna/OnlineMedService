@@ -6,6 +6,7 @@ import schedule from './schedule'
 import token from './token'
 import selectedData from './selectedData'
 import appointment from './appointment'
+import {days, months, week} from './dates'
 
 export {
   user,
@@ -15,5 +16,8 @@ export {
   schedule,
   token,
   selectedData,
-  appointment
+  appointment,
+  days,
+  months,
+  week
 }

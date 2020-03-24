@@ -3,10 +3,10 @@ import DatePicker from "react-datepicker";
 import { addDays, getDay } from "date-fns";
 import "./Data.scss";
 import { apiService } from "../../service/apiService";
-
 import "react-datepicker/dist/react-datepicker.css";
 import Time from "../Time/TimeContainer";
 import Spinner from "../Spinner/Spinner";
+import { week } from "../../constants";
 
 export default class Data extends React.Component {
   state = {
@@ -18,15 +18,6 @@ export default class Data extends React.Component {
   isWeekend = res => {
     let weekday = [];
     let weekend = [];
-    let week = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ];
     let arr = res.data.schedule;
     for (let day of arr) {
       if (!weekday.includes(day.day)) {

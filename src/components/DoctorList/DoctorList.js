@@ -35,7 +35,7 @@ class DoctorList extends Component {
     const { error } = this.state;
     return (
       <>
-        <div className="errorGetDoctor">{error}</div>
+        {error && <div className="errorGetDoctor">{error}</div>}
         {action ? (
           <Spinner />
         ) : (

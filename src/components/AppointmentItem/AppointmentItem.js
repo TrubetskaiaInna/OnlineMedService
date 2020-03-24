@@ -3,6 +3,8 @@ import { apiService } from "../../service/apiService";
 import "./AppointmentItem.scss";
 import PaymentModal from "../PaymentModal/PaymentModal";
 import Message from "../Message/Message";
+import { months } from "../../constants";
+import { isNumberDay, nextWeekdayDate } from "../../utils/AppointmentItemUtils";
 
 const AppointmentItem = props => {
   const [day, setDay] = useState("");
@@ -11,30 +13,6 @@ const AppointmentItem = props => {
   const [showMessage, setShowMessage] = useState(false);
   const [textMessage, setTextMessage] = useState("");
   const [colorMessage, setColorMessage] = useState("orange");
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
 
   const cancelAppointment = async () => {
     setShowMessage(false);
@@ -44,7 +22,7 @@ const AppointmentItem = props => {
       .then(() => {
         setShowMessage(true);
         setTextMessage("You canceled the appointment");
-        apiService.getAppointment(props.token).then(response => {
+        apiService.getAppointment(token).then(response => {
           setAppointmentData(response.data.appointments);
           response.data.appointments.forEach(el => {
             if (el.id === appointment.id && el.isRefunded) {
@@ -62,20 +40,10 @@ const AppointmentItem = props => {
       });
   };
 
-  const isNumberDay = () => {
-    let index = days.findIndex(day => day === props.appointment.day);
-    return index;
-  };
-
-  const nextWeekdayDate = (date, day_in_week) => {
-    const ret = new Date(date || new Date());
-    ret.setDate(ret.getDate() + ((day_in_week - 1 - ret.getDay() + 7) % 7));
-    return ret;
-  };
-
   useEffect(() => {
     const date = new Date();
-    const result = nextWeekdayDate(date, isNumberDay());
+    const isNumber = isNumberDay(props.appointment.day);
+    const result = nextWeekdayDate(date, isNumber);
     const numberDay = result.getDate();
     const month = months[result.getMonth()];
     const year = result.getFullYear();

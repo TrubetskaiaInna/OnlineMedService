@@ -6,9 +6,11 @@ import { NavLink } from "react-router-dom";
 const DoctorListItem = props => {
   const { fullName, type, photo } = props.doctor;
   const { login } = props.user;
+
   const handleClick = () => {
     props.setSelectedDoctorData(props.doctor);
   };
+
   return (
     <>
       {login ? (
