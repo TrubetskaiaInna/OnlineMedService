@@ -1,14 +1,16 @@
-body{
+body {
   background-color: gainsboro;
 }
-header{
+
+header {
   display: flex;
   width: 1024px;
   justify-content: space-around;
   align-items: center;
   margin: auto;
 }
-.image{
+
+.image {
   margin: auto;
   width: 1024px;
   height: 400px;
@@ -17,33 +19,96 @@ header{
   background-size: cover;
 }
 
-.linc:hover{
+.linc:hover {
   text-decoration: none;
   color: silver;
 }
 
-.buttonLinc{
+.buttonLinc {
   color: #158CBA;
   text-decoration: none;
   background-color: transparent;
   cursor: pointer;
 }
 
-#btn{
+#btn {
   width: 300px;
   display: flex;
   justify-content: center;
   margin: 20px auto;
 }
 
-.homeText{
+.homeText {
   width: 500px;
   margin: 50px auto;
   font-size: 20px;
   color: grey;
 }
 
-li{
+li {
   width: 400px;
   margin: auto;
+}
+
+@media (max-width: 1023px) {
+
+  header {
+    width: 900px;
+    flex-wrap: wrap;
+  }
+
+  .image {
+    width: 900px;
+  }
+
+  .homeText {
+    width: 900px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  header {
+    width: 600px;
+  }
+
+  .image {
+    display: none;
+  }
+
+
+  .homeText {
+    width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  header {
+    width: 400px;
+  }
+
+  .homeText {
+    width: 400px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  header {
+    width: 320px;
+  }
+
+  .homeText {
+    width: 320px;
+  }
+
+  li {
+    width: 320px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
 }

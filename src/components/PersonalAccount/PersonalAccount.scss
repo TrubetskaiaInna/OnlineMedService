@@ -12,5 +12,17 @@
   margin: auto;
 }
 
+@media (max-width: 900px) {
 
+  .infoTitle{
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .infoTitle{
+    width: 320px;
+  }
+}
 

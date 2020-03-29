@@ -8,7 +8,7 @@ class Contact extends Component {
   render() {
     return (
       <>
-        <div className="map">
+        <div className="wrapperMap">
           <GoogleMap />
         </div>
         <div className="contactData">

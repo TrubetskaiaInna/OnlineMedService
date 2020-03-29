@@ -1,24 +1,46 @@
-.wrapperLogComponent{
+.wrapperLogComponent {
   display: flex;
   flex-wrap: wrap;
   width: 700px;
   margin: 5px auto;
 }
-.wrapperLogin{
+
+.wrapperLogin {
   width: 600px;
   margin: 5px auto;
   display: flex;
   justify-content: center;
 }
 
-.text{
+.text {
   display: flex;
   justify-content: center;
   color: grey;
 }
 
-.inputUserNameValid{
+.inputUserNameValid {
   border: 2px double red;
 }
 
+@media (max-width: 700px) {
+
+  .wrapperLogComponent {
+    width: 500px;
+  }
+
+  .wrapperForm {
+    width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .wrapperLogComponent {
+    width: 320px;
+  }
+
+  .wrapperLogin {
+    width: 320px;
+  }
+}
 

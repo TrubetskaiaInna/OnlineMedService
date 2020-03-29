@@ -1,9 +1,9 @@
-.map{
+.wrapperMap {
   width: 1024px;
   margin: 10px auto;
 }
 
-.contactData{
+.contactData {
   width: 200px;
   display: flex;
   justify-content: center;
@@ -11,22 +11,43 @@
   margin: 5px auto;
 }
 
-.wrapperPhone{
+.wrapperPhone {
   width: 140px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.wrapperEmail{
+.wrapperEmail {
   width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.phoneImg, .emailImg{
+.phoneImg, .emailImg {
   width: 15px;
   height: 15px;
   margin-top: 0;
+}
+
+@media (max-width: 900px) {
+
+  .wrapperMap {
+    width: 700px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .wrapperMap {
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .wrapperMap {
+    width: 320px;
+  }
 }

@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   width: 1024px;
   margin: auto;
-
 }
 
 .card {
@@ -34,3 +33,14 @@
   height: 120px;
 }
 
+@media (max-width: 1023px) {
+  .wrapperCard {
+    width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapperCard {
+    width: 320px;
+  }
+}
