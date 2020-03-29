@@ -24,4 +24,23 @@
   color: grey;
 }
 
+@media (max-width: 900px) {
 
+  .wrapperEntry{
+    width: 700px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .wrapperEntry{
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .wrapperEntry{
+    width: 320px;
+  }
+}
