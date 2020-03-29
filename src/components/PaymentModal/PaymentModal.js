@@ -64,7 +64,7 @@ const PaymentModal = props => {
       >
         <Fade in={open}>
           <div className={classes.paper} style={{ outline: "none" }}>
-            <p>The amount that will be debited from your bil: 300$</p>
+            <h5>The amount that will be debited from your bil: <span className='money'>300$</span> </h5>
             <>
               <ExampleComponent
                 appointment={props.appointment}

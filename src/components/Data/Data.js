@@ -1,4 +1,4 @@
-import React from "react";
+import React , {Component} from "react";
 import DatePicker from "react-datepicker";
 import { addDays, getDay } from "date-fns";
 import "./Data.scss";
@@ -8,7 +8,7 @@ import Time from "../Time/TimeContainer";
 import Spinner from "../Spinner/Spinner";
 import { week } from "../../constants";
 
-export default class Data extends React.Component {
+export default class Data extends Component {
   state = {
     startDate: new Date(),
     weekend: [],

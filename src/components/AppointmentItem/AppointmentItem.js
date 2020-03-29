@@ -47,7 +47,7 @@ const AppointmentItem = props => {
     const numberDay = result.getDate();
     const month = months[result.getMonth()];
     const year = result.getFullYear();
-    setDay(numberDay + 1);
+    setDay(numberDay);
     setMonth(month);
     setYear(year);
     // eslint-disable-next-line react-hooks/exhaustive-deps
