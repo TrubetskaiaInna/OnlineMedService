@@ -164,7 +164,6 @@ class PaymentComponent extends Component {
             apiService
               .payment(payload.nonce, appointment.id, token)
               .then(response => {
-                console.log(response);
                 showMessage();
                 setTimeout(() => {
                   handleClose();

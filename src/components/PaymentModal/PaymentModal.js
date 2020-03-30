@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import ExampleComponent from "../Payment/PaymentContainer";
+import Payment from "../Payment/PaymentContainer";
 import "./PaymentModal.scss";
 
 const useStyles = makeStyles(theme => ({
@@ -66,7 +66,7 @@ const PaymentModal = props => {
           <div className={classes.paper} style={{ outline: "none" }}>
             <h5>The amount that will be debited from your bil: <span className='money'>300$</span> </h5>
             <>
-              <ExampleComponent
+              <Payment
                 appointment={props.appointment}
                 handleClose={handleClose}
                 showButton={showButton}

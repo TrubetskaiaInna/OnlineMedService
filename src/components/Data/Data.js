@@ -1,4 +1,4 @@
-import React , {Component} from "react";
+import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import { addDays, getDay } from "date-fns";
 import "./Data.scss";
@@ -6,30 +6,13 @@ import { apiService } from "../../service/apiService";
 import "react-datepicker/dist/react-datepicker.css";
 import Time from "../Time/TimeContainer";
 import Spinner from "../Spinner/Spinner";
-import { week } from "../../constants";
+import { isWeekend } from "../../utils/DataUtils";
 
 export default class Data extends Component {
   state = {
     startDate: new Date(),
     weekend: [],
     error: ""
-  };
-
-  isWeekend = res => {
-    let weekday = [];
-    let weekend = [];
-    let arr = res.data.schedule;
-    for (let day of arr) {
-      if (!weekday.includes(day.day)) {
-        weekday.push(day.day);
-      }
-    }
-    week
-      .filter(x => !weekday.includes(x))
-      .forEach(el => {
-        weekend.push(week.indexOf(el));
-      });
-    this.setState({ weekend: weekend });
   };
 
   handleChange = async date => {
@@ -42,7 +25,8 @@ export default class Data extends Component {
       .getSchedule(this.props.selectedDoctors.id)
       .then(response => {
         this.props.hideLoading();
-        this.isWeekend(response);
+        let data = isWeekend(response);
+        this.setState(data);
         this.props.setScheduleDoctor(response.data.schedule);
         this.setState({ error: "" });
       })
@@ -65,6 +49,7 @@ export default class Data extends Component {
       day !== weekend[6]
     );
   };
+
 
   render() {
     const { startDate, error, weekend } = this.state;

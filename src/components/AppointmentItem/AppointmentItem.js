@@ -15,29 +15,31 @@ const AppointmentItem = props => {
   const [colorMessage, setColorMessage] = useState("orange");
 
   const cancelAppointment = async () => {
-    setShowMessage(false);
-    const { appointment, token, setAppointmentData } = props;
-    await apiService
-      .cancelAppointment(appointment.id, token)
-      .then(() => {
-        setShowMessage(true);
-        setTextMessage("You canceled the appointment");
-        apiService.getAppointment(token).then(response => {
-          setAppointmentData(response.data.appointments);
-          response.data.appointments.forEach(el => {
-            if (el.id === appointment.id && el.isRefunded) {
-              setTextMessage(
-                "You canceled the appointment, money will be returned"
-              );
-            }
+    if (window.confirm("Canceling appointment. Are you sure?")) {
+      setShowMessage(false);
+      const { appointment, token, setAppointmentData } = props;
+      await apiService
+        .cancelAppointment(appointment.id, token)
+        .then(() => {
+          setShowMessage(true);
+          setTextMessage("You canceled the appointment");
+          apiService.getAppointment(token).then(response => {
+            setAppointmentData(response.data.appointments);
+            response.data.appointments.forEach(el => {
+              if (el.id === appointment.id && el.isRefunded) {
+                setTextMessage(
+                  "You canceled the appointment, money will be returned"
+                );
+              }
+            });
           });
+        })
+        .catch(() => {
+          setShowMessage(true);
+          setColorMessage("red");
+          setTextMessage("Download failed, please try again later");
         });
-      })
-      .catch(() => {
-        setShowMessage(true);
-        setColorMessage("red");
-        setTextMessage("Download failed, please try again later");
-      });
+    }
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import braintree from "braintree-web-drop-in";
 import PropTypes from "prop-types";
-import BraintreeDropin from "../PaymentComponent/PaymentComponent";
+import PaymentComponent from "../PaymentComponent/PaymentComponent";
 import { apiService } from "../../service/apiService";
 import { Error } from "../Error/Error";
 import Message from "../Message/Message";
@@ -84,7 +84,7 @@ class Payment extends Component {
     return (
       <>
         {token ? (
-          <BraintreeDropin
+          <PaymentComponent
             braintree={braintree}
             options={{
               locale: "en_US",
