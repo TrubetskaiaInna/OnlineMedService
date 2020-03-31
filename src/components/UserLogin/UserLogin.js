@@ -114,11 +114,11 @@ class userLogin extends Component {
               validInput: true
             });
           } else {
-            this.setState({ error: "Having problems, please try again later" });
+            this.setState({ error: "Something went wrong, please try again later" });
           }
         } else {
           console.log("Strange Error", error.message);
-          this.setState({ error: "Having problems, please try again later" });
+          this.setState({ error: "Something went wrong, please try again later" });
         }
       });
   };
@@ -148,7 +148,7 @@ class userLogin extends Component {
                   <h4>Access to your personal account</h4>
                 </div>
                 <div className="userName">
-                  <span>UserName:</span>
+                  <span>Login:</span>
                   <input
                     required
                     pattern="^[A-Za-z0-9_\-.]+$"

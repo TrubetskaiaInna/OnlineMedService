@@ -250,20 +250,20 @@ export default class userRegistration extends Component {
       if (error.response.status === 500) {
         this.setState(
           {
-            userNameValid: "user with that name already exists",
+            userNameValid: "User with that name already exists",
             actionUserNameValid: true
           },
           this.isValidForm
         );
       } else {
         this.setState(
-          { error: "Having problems, please try again later" },
+          { error: "Something went wrong, please try again later" },
           this.isValidForm
         );
       }
     } else {
       this.setState(
-        { error: "Having problems, please try again later" },
+        { error: "Something went wrong, please try again later" },
         this.isValidForm
       );
     }

@@ -11,6 +11,7 @@ const Home = props => {
         <li>Quick recording and cancellation of reception</li>
         <li>Favorite doctors</li>
         <li>List of your medical events</li>
+        <li>Online payment for services</li>
       </ul>
       <div className="btn btn-outline-secondary" id="btn">
         {login ? (
