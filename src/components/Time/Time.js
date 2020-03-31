@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import "./Time.scss";
 import TimeButton from "../TimeButton/TimeButtonContainer";
 import { apiService } from "../../service/apiService";
-import { days } from "../../constants";
+import { calculationWeekend, calculationDay } from "../../utils/TimeUtils";
 
 const Time = props => {
-  const day = days[props.date.getDay()];
-  const weekend = [];
-  for (let i = 0; i < props.weekend.length; i++) {
-    weekend.push(days[props.weekend[i]]);
-  }
+  const weekend = calculationWeekend(props.weekend);
+
   useEffect(() => {
     props.clearSelectedData();
     props.clearScheduleDoctor();
@@ -36,15 +33,15 @@ const Time = props => {
     <>
       <div className="title">Select a time</div>
       {weekend.map((element, index) => {
+        const day = calculationDay(props.date);
         return (
-          day === element && (
-            <div key={index}>This day is a doctor's day off</div>
-          )
+          day === element && <div key={index}>Today is a doctor's day off</div>
         );
       })}
       {props.error && <div className="error">{props.error}</div>}
       <div className="wrapperTime">
         {props.schedule.map(element => {
+          const day = calculationDay(props.date);
           return (
             element.day === day && (
               <div key={element.id}>

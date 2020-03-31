@@ -1,8 +1,7 @@
 import { days } from "../constants";
 
 export const isNumberDay = appointmentDays => {
-  let index = days.findIndex(day => day === appointmentDays);
-  return index;
+  return days.findIndex(day => day === appointmentDays);
 };
 
 export const nextWeekdayDate = (date, day_in_week) => {

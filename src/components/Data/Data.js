@@ -15,25 +15,38 @@ export default class Data extends Component {
     error: ""
   };
 
-  handleChange = async date => {
-    this.props.showLoading();
-    this.props.clearScheduleDoctor();
-    this.setState({
-      startDate: date
-    });
-    await apiService
-      .getSchedule(this.props.selectedDoctors.id)
+  getSchedule = () => {
+    const { selectedDoctors, hideLoading, setScheduleDoctor } = this.props;
+    apiService
+      .getSchedule(selectedDoctors.id)
       .then(response => {
-        this.props.hideLoading();
+        hideLoading();
         let data = isWeekend(response);
         this.setState(data);
-        this.props.setScheduleDoctor(response.data.schedule);
+        setScheduleDoctor(response.data.schedule);
         this.setState({ error: "" });
       })
       .catch(() => {
-        this.props.hideLoading();
+        hideLoading();
         this.setState({ error: "download failed, please try again later" });
       });
+  };
+
+  componentDidMount() {
+    const { showLoading, clearScheduleDoctor } = this.props;
+    showLoading();
+    clearScheduleDoctor();
+    this.getSchedule();
+  }
+
+  handleChange = date => {
+    const { showLoading, clearScheduleDoctor } = this.props;
+    showLoading();
+    clearScheduleDoctor();
+    this.setState({
+      startDate: date
+    });
+    this.getSchedule();
   };
 
   isWeekday = date => {
@@ -49,7 +62,6 @@ export default class Data extends Component {
       day !== weekend[6]
     );
   };
-
 
   render() {
     const { startDate, error, weekend } = this.state;

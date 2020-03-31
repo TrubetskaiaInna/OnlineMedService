@@ -4,6 +4,7 @@ import { RadioButton } from "primereact/radiobutton";
 import "./UserRegistration.scss";
 import { apiService } from "../../service/apiService";
 import Spinner from "../Spinner/Spinner";
+import { regEmail, regName, regPassword, regPhone } from "../../utils/Pattern";
 
 export default class userRegistration extends Component {
   constructor(props) {
@@ -74,9 +75,17 @@ export default class userRegistration extends Component {
     );
   };
 
+  handleInputValid = ({ target: { name, value } }, func) => {
+    this.setState(
+      {
+        [name]: value
+      },
+      func
+    );
+  };
+
   isValidFirstName = () => {
-    let re = new RegExp("^[a-zA-Z]+$");
-    let result = re.test(this.state.firstName);
+    let result = regName(this.state.firstName);
     if (!result) {
       this.setState(
         { firstNameError: "first name can only contain letters" },
@@ -88,17 +97,11 @@ export default class userRegistration extends Component {
   };
 
   handleFirsName = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidFirstName
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidFirstName);
   };
 
   isValidLastName = () => {
-    let re = new RegExp("^[a-zA-Z]+$");
-    let result = re.test(this.state.lastName);
+    let result = regName(this.state.lastName);
     if (!result) {
       this.setState(
         { lastNameError: "last name can only contain letters" },
@@ -110,17 +113,11 @@ export default class userRegistration extends Component {
   };
 
   handleLastName = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidLastName
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidLastName);
   };
 
   isValidUserName = () => {
-    let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
-    let result = re.test(this.state.userName);
+    let result = regName(this.state.userName);
     if (!result) {
       this.setState(
         {
@@ -135,17 +132,11 @@ export default class userRegistration extends Component {
   };
 
   handleUserName = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidUserName
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidUserName);
   };
 
   isValidPhone = () => {
-    let re = new RegExp("(^(\\+)\\d{12})+$");
-    let result = re.test(this.state.phone);
+    let result = regPhone(this.state.phone);
     if (!result) {
       this.setState(
         {
@@ -166,12 +157,7 @@ export default class userRegistration extends Component {
   };
 
   handlePhone = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidPhone
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidPhone);
   };
 
   isValidMatchPassword = () => {
@@ -195,8 +181,7 @@ export default class userRegistration extends Component {
   };
 
   isValidPassword = () => {
-    let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
-    let result = re.test(this.state.password);
+    let result = regPassword(this.state.password);
     if (!result) {
       this.setState(
         {
@@ -211,12 +196,7 @@ export default class userRegistration extends Component {
   };
 
   handlePassword = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidPassword
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidPassword);
   };
 
   isValidConfPassword = () => {
@@ -240,12 +220,7 @@ export default class userRegistration extends Component {
   };
 
   handleConfPassword = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidConfPassword
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidConfPassword);
   };
 
   handleRadio = e => {
@@ -258,10 +233,7 @@ export default class userRegistration extends Component {
   };
 
   isValidEmail = () => {
-    let re = new RegExp(
-      "^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,4})$"
-    );
-    let result = re.test(this.state.email);
+    let result = regEmail(this.state.email);
     if (!result) {
       this.setState({ emailError: "enter valid email" }, this.isValidForm);
     } else {
@@ -270,12 +242,7 @@ export default class userRegistration extends Component {
   };
 
   handleEmail = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidEmail
-    );
+    this.handleInputValid({ target: { name, value } }, this.isValidEmail);
   };
 
   catchError = error => {

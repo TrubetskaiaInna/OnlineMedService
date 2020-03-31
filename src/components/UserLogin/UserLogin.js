@@ -3,6 +3,7 @@ import "./UserLogin.scss";
 import { apiService } from "../../service/apiService";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
+import { regName, regPassword } from "../../utils/Pattern";
 
 class userLogin extends Component {
   constructor(props) {
@@ -37,8 +38,7 @@ class userLogin extends Component {
   };
 
   isValidUserName = () => {
-    let re = new RegExp("^[A-Za-z0-9_\\-.]+$");
-    let result = re.test(this.state.userNameLog);
+    let result = regName(this.state.userNameLog);
     if (!result) {
       this.setState(
         {
@@ -53,8 +53,7 @@ class userLogin extends Component {
   };
 
   isValidPassword = () => {
-    let re = new RegExp("^([a-zA-Z0-9]{10,})+$");
-    let result = re.test(this.state.passwordLog);
+    let result = regPassword(this.state.passwordLog);
     if (!result) {
       this.setState(
         {
@@ -68,22 +67,21 @@ class userLogin extends Component {
     }
   };
 
-  handleUserName = ({ target: { name, value } }) => {
+  handleInput = ({ target: { name, value } }, func) => {
     this.setState(
       {
         [name]: value
       },
-      this.isValidUserName
+      func
     );
   };
 
+  handleUserName = ({ target: { name, value } }) => {
+    this.handleInput({ target: { name, value } }, this.isValidUserName);
+  };
+
   handlePassword = ({ target: { name, value } }) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      this.isValidPassword
-    );
+    this.handleInput({ target: { name, value } }, this.isValidPassword);
   };
 
   onSubmit = async e => {

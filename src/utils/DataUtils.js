@@ -16,5 +16,3 @@ export const isWeekend = res => {
     });
   return { weekend: weekend };
 };
-
-
