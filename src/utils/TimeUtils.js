@@ -8,10 +8,6 @@ export const calculationWeekend = propsWeekend => {
   return weekend;
 };
 
-export const calculationDay = propsDate => {
-  return days[propsDate.getDay()];
-};
-
 export const calculationDate = (propsElement, propsDate) => {
   const arr = propsElement.startTime.split(":");
   return new Date(
