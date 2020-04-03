@@ -1,4 +1,4 @@
-import { isWeekend } from "../DataUtils";
+import { isWeekend } from "../../utils/DataUtils";
 
 test("isWeekend func returns weekend on weekdays", () => {
   const oneResponse = {

@@ -1,4 +1,4 @@
-import { calculationWeekend, calculationDate } from "../TimeUtils";
+import { calculationWeekend, calculationDate } from "../../utils/TimeUtils";
 
 test("calculationWeekend func returns array of weekends", () => {
   const firstData = [1, 2];

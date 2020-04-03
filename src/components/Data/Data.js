@@ -20,7 +20,6 @@ export default class Data extends Component {
     apiService
       .getSchedule(selectedDoctors.id)
       .then(response => {
-        console.log(response)
         hideLoading();
         let data = isWeekend(response);
         this.setState(data);

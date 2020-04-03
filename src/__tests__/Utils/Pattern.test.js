@@ -1,4 +1,4 @@
-import { regName, regPassword, regPhone, regEmail } from "../Pattern";
+import { regName, regPassword, regPhone, regEmail } from "../../utils/Pattern";
 
 test("regName with correct data", () => {
   const firstName = 'Ivan';

@@ -1,4 +1,4 @@
-import { isNumberDay, nextWeekdayDate } from "../AppointmentItemUtils";
+import { isNumberDay, nextWeekdayDate } from "../../utils/AppointmentItemUtils";
 
 test("isNumberDay func returns number of weekday of day of the week", () => {
   const oneDay = 'Monday';
