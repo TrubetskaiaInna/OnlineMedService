@@ -41,7 +41,11 @@ class DoctorList extends Component {
         ) : (
           doctors.map(doctor => {
             return (
-              <div className="wrapperItemCard" key={doctor.id}>
+              <div
+                className="wrapperItemCard"
+                key={doctor.id}
+                data-testid={doctor.id}
+              >
                 <DoctorListItem doctor={doctor} user={mainUser} />
               </div>
             );
