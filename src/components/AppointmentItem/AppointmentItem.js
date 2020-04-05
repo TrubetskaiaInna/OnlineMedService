@@ -55,28 +55,30 @@ const AppointmentItem = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const {appointment} = props
   return (
     <>
-      {props.appointment.status === "created" ? (
+      {appointment.status === "created" ? (
         <div className="wrapperInfoEntry">
           <div className="infoEntryData">
             <h5>Day:</h5>
-            <span> {props.appointment.day},</span>
+            <span> {appointment.day},</span>
             <span> {day} </span>
             <span>{month}</span>
             <span>{year}</span>
           </div>
           <div className="infoEntry">
             <h5>Time:</h5>
-            {props.appointment.startTime}
+            {appointment.startTime}
           </div>
           <div className="infoEntry">
             <h5>Doctor:</h5>
-            {props.appointment.doctor.fullName}
+            {appointment.doctor.fullName}
           </div>
-          <PaymentModal appointment={props.appointment} />
+          <PaymentModal appointment={appointment} />
           <div>
             <button
+              data-testid='SignInTestId'
               onClick={cancelAppointment}
               className="btn-sm btn-outline-primary"
             >

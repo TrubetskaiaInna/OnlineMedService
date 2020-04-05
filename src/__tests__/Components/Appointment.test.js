@@ -3,11 +3,28 @@ import Appointment from "../../components/Appointment/Appointment";
 import renderWithRedux from "../../__mocks__/renderWihtRedux";
 import { apiService } from "../../service/apiService";
 jest.mock("../../components/Spinner/Spinner.js", () => () => "Spinner");
+let appointment = [{ id: 1 }, { id: 2 }];
+const showLoading = jest.fn();
+const hideLoading = jest.fn();
+const clearAppointmentData = jest.fn();
+apiService.getAppointment = jest.fn(() => {
+  return new Promise(resolve => {
+    resolve({});
+  })
+    .then(response => {
+      return (response = {
+        data: {
+          appointments: []
+        }
+      });
+    })
+    .catch(err => {
+      console.log("err", err);
+    });
+});
 
 test("render spinner", () => {
   let action = true;
-  let appointment = [1, 2, 3, 4];
-  let showLoading = jest.fn();
 
   const { getByText } = renderWithRedux(
     <Appointment
@@ -22,30 +39,7 @@ test("render spinner", () => {
 });
 
 test("render appointmentItem wrapper", () => {
-  apiService.getAppointment = jest.fn(() => {
-    return new Promise(resolve => {
-      resolve({});
-    })
-      .then(response => {
-        return (response = {
-          data: {
-            appointments: [{ id: 1 }, { id: 2 }]
-          }
-        });
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
-  });
-  let appointment = [];
-  apiService.getAppointment(1).then(async res => {
-    appointment = res.data.appointments;
-    return appointment;
-  });
   const action = false;
-  const showLoading = jest.fn();
-  const hideLoading = jest.fn();
-  const clearAppointmentData = jest.fn();
 
   const { getByTestId } = renderWithRedux(
     <Appointment
