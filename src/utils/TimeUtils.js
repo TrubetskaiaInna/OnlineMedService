@@ -1,12 +1,16 @@
 import { days } from "../constants";
 
-export const calculationWeekend = propsWeekend => {
+export let calculationWeekend = propsWeekend => {
   const weekend = [];
   for (let i = 0; i < propsWeekend.length; i++) {
     weekend.push(days[propsWeekend[i]]);
   }
   return weekend;
 };
+
+export let calculationDay = (propsDate) => {
+  return days[propsDate.getDay()]
+}
 
 export const calculationDate = (propsElement, propsDate) => {
   const arr = propsElement.startTime.split(":");

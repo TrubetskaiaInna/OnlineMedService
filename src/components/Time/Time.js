@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import "./Time.scss";
 import TimeButton from "../TimeButton/TimeButtonContainer";
 import { apiService } from "../../service/apiService";
-import { calculationWeekend } from "../../utils/TimeUtils";
-import { days } from '../../constants'
+import { calculationWeekend, calculationDay } from "../../utils/TimeUtils";
 
 const Time = props => {
   const weekend = calculationWeekend(props.weekend);
-  const day = days[props.date.getDay()];
+  const day = calculationDay(props.date);
 
   useEffect(() => {
-    props.clearSelectedData();
-    props.clearScheduleDoctor();
+    const { clearSelectedData, clearScheduleDoctor, history } = props;
+    clearSelectedData();
+    clearScheduleDoctor();
     const timeout = setTimeout(
       () => {
-        props.history.push("/personalAccount");
+        history.push("/personalAccount");
       },
       1000 * 60 * 6,
       []
@@ -26,11 +26,12 @@ const Time = props => {
   }, [props.history]);
 
   const getIdDoctor = async () => {
-    await apiService.createAppointment(String(props.selectedData), props.token);
-    props.history.push("/personalAccount");
-    props.clearSelectedData();
+    const { selectedData, token, history, clearSelectedData } = props;
+    await apiService.createAppointment(String(selectedData), token);
+    history.push("/personalAccount");
+    clearSelectedData();
   };
-
+  const { error, schedule, date, selectedData } = props;
   return (
     <>
       <div className="title">Select a time</div>
@@ -39,13 +40,13 @@ const Time = props => {
           day === element && <div key={index}>Today is a doctor's day off</div>
         );
       })}
-      {props.error && <div className="error">{props.error}</div>}
-      <div className="wrapperTime">
-        {props.schedule.map(element => {
+      {error && <div className="error">{error}</div>}
+      <div className="wrapperTime" data-testid="wrapperTime">
+        {schedule.map(element => {
           return (
             element.day === day && (
               <div key={element.id}>
-                <TimeButton element={element} date={props.date} />
+                <TimeButton element={element} date={date} />
               </div>
             )
           );
@@ -53,9 +54,10 @@ const Time = props => {
       </div>
       <div className="wrapperButton">
         <button
-          disabled={!props.selectedData ? true : null}
+          disabled={!selectedData ? true : null}
           onClick={getIdDoctor}
           className="btn btn-outline-primary"
+          data-testid="SignInTestId"
         >
           Confirm
         </button>

@@ -1,4 +1,4 @@
-import { calculationWeekend, calculationDate } from "../../utils/TimeUtils";
+import { calculationWeekend, calculationDate, calculationDay } from "../../utils/TimeUtils";
 
 test("calculationWeekend func returns array of weekends", () => {
   const firstData = [1, 2];
@@ -7,6 +7,11 @@ test("calculationWeekend func returns array of weekends", () => {
   expect(calculationWeekend(firstData)).toEqual(["Monday", "Tuesday"]);
   expect(calculationWeekend(secondData)).toContain("Wednesday");
   expect(calculationWeekend(secondData)).not.toContain("Friday");
+});
+
+test("calculationDay func returns weekday", () => {
+  const date = new Date(2020,3,6)
+  expect(calculationDay(date)).toEqual("Monday");
 });
 
 test("calculationDate func returns date 15 minutes ago (GMT)", () => {
