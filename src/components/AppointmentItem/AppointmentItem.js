@@ -55,7 +55,7 @@ const AppointmentItem = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {appointment} = props
+  const { appointment } = props;
   return (
     <>
       {appointment.status === "created" ? (
@@ -78,7 +78,7 @@ const AppointmentItem = props => {
           <PaymentModal appointment={appointment} />
           <div>
             <button
-              data-testid='SignInTestId'
+              data-testid="SignInTestId"
               onClick={cancelAppointment}
               className="btn-sm btn-outline-primary"
             >

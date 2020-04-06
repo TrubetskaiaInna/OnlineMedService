@@ -23,13 +23,14 @@ test("render NavLink Login", () => {
   const mainUser = {
     login: false
   };
-  const { getByTestId } = renderWithRedux(
+  const { getByTestId, queryByTestId } = renderWithRedux(
     <BrowserRouter>
       <Header mainUser={mainUser} />
     </BrowserRouter>,
     {}
   );
   expect(getByTestId("Login")).toBeInTheDocument();
+  expect(queryByTestId("NavLink")).toBeNull();
 });
 
 test("render NavLink Personal account", () => {
@@ -37,13 +38,14 @@ test("render NavLink Personal account", () => {
     login: true,
     userNameLog: "Ivan"
   };
-  const { getByTestId, getByText } = renderWithRedux(
+  const { getByTestId, getByText, queryByTestId } = renderWithRedux(
     <BrowserRouter>
       <Header mainUser={mainUser} />
     </BrowserRouter>,
     {}
   );
   expect(getByTestId("Personal")).toBeInTheDocument();
+  expect(queryByTestId("Login")).toBeNull();
   expect(getByText("Ivan")).toBeInTheDocument();
 });
 

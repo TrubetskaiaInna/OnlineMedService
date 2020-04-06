@@ -15,11 +15,15 @@ const Home = props => {
       </ul>
       <div className="btn btn-outline-secondary" id="btn">
         {login ? (
-          <NavLink className="linc" to="/personalAccount">
+          <NavLink
+            className="linc"
+            to="/personalAccount"
+            data-testid="Personal"
+          >
             Make an appointment
           </NavLink>
         ) : (
-          <NavLink className="linc" to="/login">
+          <NavLink className="linc" to="/login" data-testid="Login">
             Make an appointment
           </NavLink>
         )}

@@ -40,7 +40,7 @@ class Appointment extends Component {
         {action ? (
           <Spinner />
         ) : (
-          <div data-testid='SignInTestId'>
+          <div data-testid="SignInTestId">
             {appointment.map(appointment => {
               return (
                 <AppointmentItem
