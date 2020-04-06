@@ -6,6 +6,5 @@ jest.mock('../../components/DoctorList/DoctorListContainer.js', () => () => 'Doc
 
 test('renders learn react link', () => {
   const { getByText } = render(<AboutUs />)
-  const linkElement = getByText(/Our doctors/i)
-  expect(linkElement).toBeInTheDocument()
+  expect(getByText(/Our doctors/i)).toBeInTheDocument()
 })

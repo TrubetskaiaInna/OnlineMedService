@@ -54,8 +54,7 @@ test("render element", () => {
     <AppointmentItem appointment={appointment} />,
     {}
   );
-  const linkElement = getByText(/Monday/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(getByText(/Monday/i)).toBeInTheDocument();
 });
 
 test("cancel element", async () => {

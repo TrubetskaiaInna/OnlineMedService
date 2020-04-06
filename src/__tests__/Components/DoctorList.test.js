@@ -53,8 +53,7 @@ test("render spinner", () => {
     />,
     {}
   );
-  const linkElement = getByText(/Spinner/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(getByText(/Spinner/i)).toBeInTheDocument();
 });
 
 test("render wrapperItemCard", () => {
@@ -96,6 +95,6 @@ test("render wrapperItemCard", () => {
     clearDoctorData: clearDoctorData
   });
 
-  const linkElement = getByTestId("2");
-  expect(linkElement).toBeInTheDocument();
+  expect(getByTestId("1")).toBeInTheDocument();
+  expect(getByTestId("2")).toBeInTheDocument();
 });

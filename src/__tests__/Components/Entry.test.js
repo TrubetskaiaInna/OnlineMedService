@@ -14,6 +14,5 @@ test("renders learn react link", () => {
     <Entry selectedDoctors={selectedDoctors} />,
     {}
   );
-  const linkElement = getByText(/Ivan/i, /Surgeon/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(getByText(/Ivan/i, /Surgeon/i)).toBeInTheDocument();
 });

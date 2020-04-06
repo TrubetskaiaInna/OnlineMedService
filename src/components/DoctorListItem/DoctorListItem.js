@@ -14,7 +14,12 @@ const DoctorListItem = props => {
   return (
     <>
       {login ? (
-        <NavLink to="/entry" className="card" onClick={handleClick}>
+        <NavLink
+          to="/entry"
+          className="card"
+          onClick={handleClick}
+          data-testid="NavLink"
+        >
           <div className="wrapperPhoto">
             <img className="photo" src={photo} alt="img" />
           </div>
@@ -24,7 +29,7 @@ const DoctorListItem = props => {
           </div>
         </NavLink>
       ) : (
-        <div className="card">
+        <div className="card" data-testid="Div">
           <div className="wrapperPhoto">
             <img className="photo" src={photo} alt="img" />
           </div>

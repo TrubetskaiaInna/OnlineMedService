@@ -31,11 +31,12 @@ test("render spinner", () => {
       action={action}
       appointment={appointment}
       showLoading={showLoading}
+      hideLoading={hideLoading}
+      clearAppointmentData={clearAppointmentData}
     />,
     {}
   );
-  const linkElement = getByText(/Spinner/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(getByText(/Spinner/i)).toBeInTheDocument();
 });
 
 test("render appointmentItem wrapper", () => {
@@ -51,6 +52,5 @@ test("render appointmentItem wrapper", () => {
     />,
     {}
   );
-  const linkElement = getByTestId("SignInTestId");
-  expect(linkElement).toBeInTheDocument();
+  expect(getByTestId("SignInTestId")).toBeInTheDocument();
 });
