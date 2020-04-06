@@ -31,11 +31,15 @@ const Header = props => {
       </div>
       <div className="wrapperLinc">
         {login ? (
-          <NavLink className="linc" to="/personalAccount">
+          <NavLink
+            className="linc"
+            to="/personalAccount"
+            data-testid="Personal"
+          >
             Personal account
           </NavLink>
         ) : (
-          <NavLink className="linc" to="/login">
+          <NavLink className="linc" to="/login" data-testid="Login">
             Personal account
           </NavLink>
         )}
@@ -46,7 +50,11 @@ const Header = props => {
         </NavLink>
       </div>
       {userNameLog}
-      <div className="buttonLinc" onClick={exitFunction}>
+      <div
+        className="buttonLinc"
+        onClick={exitFunction}
+        data-testid="SignInTestId"
+      >
         <NavLink className="linc" to="/">
           Exit
         </NavLink>
