@@ -27,9 +27,9 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-const PersonalAccountComponentContainer = connect(
+const PersonalAccountContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(PersonalAccount);
 
-export default PersonalAccountComponentContainer;
+export default PersonalAccountContainer;

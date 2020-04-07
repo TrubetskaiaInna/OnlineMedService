@@ -1,17 +1,13 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-export const ProtectedRoute = (prop, { component: Component, ...rest }) => {
+export const ProtectedRoute = ({ component: Component, mainUser: mainUser, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
-        if (prop.mainUser.login === "true") {
-          return <Component {...props} />;
-        } else {
-          return <Redirect to="/" />;
-        }
-      }}
+      render={props =>
+        mainUser.login ? <Component {...props} /> : <Redirect to="/" />
+      }
     />
   );
 };

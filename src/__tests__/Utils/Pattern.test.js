@@ -1,4 +1,4 @@
-import { regName, regPassword, regPhone, regEmail } from "../../utils/Pattern";
+import { regName, regPassword, regPhone, regEmail, regFirstLastName } from "../../utils/Pattern";
 
 test("regName with correct data", () => {
   const firstName = 'Ivan';
@@ -9,6 +9,17 @@ test("regName with correct data", () => {
   expect(regName(secondName)).toEqual(false);
   expect(regName(thirdName)).toEqual(false);
   expect(regName(fourthName)).toEqual(true);
+});
+
+test("regFirstLastName with correct data", () => {
+  const firstName = 'Ivan';
+  const secondName = '11&_@';
+  const thirdName = '123@ukr.com';
+  const fourthName = 'Ivan555';
+  expect(regFirstLastName(firstName)).toEqual(true);
+  expect(regFirstLastName(secondName)).toEqual(false);
+  expect(regFirstLastName(thirdName)).toEqual(false);
+  expect(regFirstLastName(fourthName)).toEqual(false);
 });
 
 test("regPassword with correct data", () => {
