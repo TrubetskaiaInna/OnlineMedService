@@ -3,6 +3,11 @@ export const regName = name => {
   return result.test(name);
 };
 
+export const regFirstLastName = name => {
+  let result = new RegExp("^[A-Za-z]+$");
+  return result.test(name);
+};
+
 export const regPassword = password => {
   let result = new RegExp("^([a-zA-Z0-9]{10,})+$");
   return result.test(password);

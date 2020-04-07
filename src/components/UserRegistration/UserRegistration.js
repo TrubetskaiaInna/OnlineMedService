@@ -4,7 +4,13 @@ import { RadioButton } from "primereact/radiobutton";
 import "./UserRegistration.scss";
 import { apiService } from "../../service/apiService";
 import Spinner from "../Spinner/Spinner";
-import { regEmail, regName, regPassword, regPhone } from "../../utils/Pattern";
+import {
+  regEmail,
+  regName,
+  regPassword,
+  regPhone,
+  regFirstLastName
+} from "../../utils/Pattern";
 
 export default class userRegistration extends Component {
   constructor(props) {
@@ -85,7 +91,7 @@ export default class userRegistration extends Component {
   };
 
   isValidFirstName = () => {
-    let result = regName(this.state.firstName);
+    let result = regFirstLastName(this.state.firstName);
     if (!result) {
       this.setState(
         { firstNameError: "first name can only contain letters" },
@@ -101,7 +107,7 @@ export default class userRegistration extends Component {
   };
 
   isValidLastName = () => {
-    let result = regName(this.state.lastName);
+    let result = regFirstLastName(this.state.lastName);
     if (!result) {
       this.setState(
         { lastNameError: "last name can only contain letters" },
@@ -132,6 +138,9 @@ export default class userRegistration extends Component {
   };
 
   handleUserName = ({ target: { name, value } }) => {
+    this.setState({
+      userNameValid: ""
+    });
     this.handleInputValid({ target: { name, value } }, this.isValidUserName);
   };
 
@@ -220,7 +229,10 @@ export default class userRegistration extends Component {
   };
 
   handleConfPassword = ({ target: { name, value } }) => {
-    this.handleInputValid({ target: { name, value } }, this.isValidConfPassword);
+    this.handleInputValid(
+      { target: { name, value } },
+      this.isValidConfPassword
+    );
   };
 
   handleRadio = e => {
@@ -381,7 +393,7 @@ export default class userRegistration extends Component {
 
                 <div className="userName">
                   <span>
-                    <span className="important"> * </span>UserName:
+                    <span className="important"> * </span>User name:
                   </span>
                   <input
                     required
@@ -409,7 +421,19 @@ export default class userRegistration extends Component {
                   <MaskedInput
                     required
                     mask={[
-                      "+", /[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/
+                      "+",
+                      /[0-9]/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/
                     ]}
                     name="phone"
                     className="form-control"

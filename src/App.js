@@ -13,6 +13,7 @@ import AboutUsComponent from './components/AboutUs/AboutUsContainer'
 import Data from './components/Data/Data'
 import Contact from './components/Contact/Contact'
 import Entry from './components/Entry/EntryContainer'
+import  ProtectedRoute from './components/ProtectedRoute/ProtectedRouteContainer'
 
 const history = createBrowserHistory()
 const { store, persistor } = configureStore()
@@ -29,10 +30,10 @@ function App () {
               <Route path='/about' component={AboutUsComponent} />
               <Route path='/registration' component={UserRegistrationComponent} />
               <Route path='/login' component={UserLoginComponent} />
-              <Route path='/personalAccount' component={PersonalAccountComponent} />
+              <ProtectedRoute path='/personalAccount' component={PersonalAccountComponent} />
               <Route path='/data' component={Data} />
               <Route path='/contact' component={Contact} />
-              <Route path='/entry' component={Entry} />
+              <ProtectedRoute path='/entry' component={Entry} />
               <Route path='*' component={() => '404 NOT FOUND'} />
             </Switch>
           </Router>
