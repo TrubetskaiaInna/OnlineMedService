@@ -13,7 +13,7 @@ some.calculationDate = jest.fn(() => {
 });
 const setSelectedData = jest.fn();
 
-test("render", () => {
+test("render Button", () => {
   const { getByTestId } = renderWithRedux(<TimeButton element={element} />, {});
   expect(getByTestId("SignInTestId")).toBeInTheDocument();
 });

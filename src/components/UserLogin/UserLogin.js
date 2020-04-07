@@ -114,11 +114,15 @@ class userLogin extends Component {
               validInput: true
             });
           } else {
-            this.setState({ error: "Something went wrong, please try again later" });
+            this.setState({
+              error: "Something went wrong, please try again later"
+            });
           }
         } else {
           console.log("Strange Error", error.message);
-          this.setState({ error: "Something went wrong, please try again later" });
+          this.setState({
+            error: "Something went wrong, please try again later"
+          });
         }
       });
   };
@@ -192,6 +196,7 @@ class userLogin extends Component {
                     className="btn btn-secondary"
                     type="submit"
                     value="Login"
+                    data-testid="SignInTestId"
                   />
                 </div>
               </form>
