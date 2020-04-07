@@ -12,7 +12,7 @@ export let calculationDay = (propsDate) => {
   return days[propsDate.getDay()]
 }
 
-export const calculationDate = (propsElement, propsDate) => {
+export let calculationDate = (propsElement, propsDate) => {
   const arr = propsElement.startTime.split(":");
   return new Date(
     propsDate.getFullYear(),

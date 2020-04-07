@@ -15,6 +15,7 @@ const TimeButton = props => {
         className="btn btn-secondary"
         disabled={!element.enabled || data - now < 0 ? true : null}
         id="time"
+        data-testid="SignInTestId"
       >
         {element.startTime}-{element.endTime}
       </button>
