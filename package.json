@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "braintree-web-drop-in": "^1.22.1",
     "date-fns": "^2.9.0",
     "google-map-react": "^1.1.5",
